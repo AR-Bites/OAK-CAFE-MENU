@@ -113,7 +113,7 @@ const translations = {
     // Product Descriptions
     'red-eye-desc': 'Strong coffee with espresso shot',
     'v60-desc': 'Pour-over specialty coffee',
-    'flat-white-desc': 'Smooth coffee with microfoam',
+    'flat-white-desc': 'Smooth espresso with steamed milk and minimal foam',
     'espresso-macchiato-desc': 'Espresso with steamed milk foam',
     'marshmallow-hot-chocolate-desc': 'Rich hot chocolate with marshmallows',
     'related-products': 'RELATED PRODUCTS',
@@ -258,7 +258,7 @@ const translations = {
     // Product Descriptions
     'red-eye-desc': 'قهوة قوية مع جرعة إسبريسو',
     'v60-desc': 'قهوة مختصة بالتقطير',
-    'flat-white-desc': 'قهوة ناعمة برغوة دقيقة',
+    'flat-white-desc': 'إسبريسو ناعم بحليب مبخر ورغوة قليلة',
     'espresso-macchiato-desc': 'إسبريسو برغوة حليب مبخرة',
     'marshmallow-hot-chocolate-desc': 'شوكولاتة ساخنة غنية بالمارشملو',
     'related-products': 'منتجات ذات صلة',

@@ -193,7 +193,7 @@ export default function ProductDetail() {
             <div className="h-px bg-gray-400 w-16"></div>
           </div>
           
-          <p className="text-lg text-gray-700 leading-relaxed">{t(product.descriptionKey) || product.description}</p>
+          <p className="text-lg text-gray-700 leading-relaxed">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
         </div>
 
         {/* Related Products */}
