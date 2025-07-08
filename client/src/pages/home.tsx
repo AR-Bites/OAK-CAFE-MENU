@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { Globe, Coffee, Utensils, Star } from "lucide-react";
 import { FaSmoking } from "react-icons/fa";
+import { useLocation } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [, setLocation] = useLocation();
   
   const handleCategorySelect = (category: string) => {
     setSelectedCategory(category);
-    // Future: Implement category filtering logic
-    console.log('Category selected:', category);
+    if (category === 'beverage') {
+      setLocation('/beverages');
+    } else {
+      // Future: Implement other category pages
+      console.log('Category selected:', category);
+    }
   };
 
   const categories = [
