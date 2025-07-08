@@ -12,7 +12,7 @@ const getShishaCategories = (t: (key: string) => string) => [
 ];
 
 const shishaProducts = [
-  { id: 301, name: 'Sahem Gum Shisha', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 301, name: 'Sahem Gum Shisha', nameKey: 'regular', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
   { id: 302, name: 'Lemon with Mint', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
   { id: 303, name: 'Two Apple Fakher', price: '7.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'premium' },
   { id: 304, name: 'Special Shisha', price: '17.15 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'special' },
@@ -33,7 +33,7 @@ export default function Shisha() {
   const [selectedCategory, setSelectedCategory] = useState('regular');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
 
   const shishaCategories = getShishaCategories(t);
 
@@ -60,6 +60,17 @@ export default function Shisha() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
+      {/* Language Toggle */}
+      <div className="absolute top-4 right-4 z-50">
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="bg-black/20 text-white border border-white/30 hover:bg-white/10 transition-all duration-300 px-3 py-1 rounded text-sm"
+        >
+          <Globe className="w-4 h-4 inline mr-1" />
+          {language === 'en' ? 'AR' : 'EN'}
+        </button>
+      </div>
+      
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -158,7 +169,7 @@ export default function Shisha() {
                     />
                   </div>
                   <div className="p-3 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{product.name}</h3>
+                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{t(product.nameKey) || product.name}</h3>
                     <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
                   </div>
                 </div>

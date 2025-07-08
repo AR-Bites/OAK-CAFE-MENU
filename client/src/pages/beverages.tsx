@@ -19,11 +19,11 @@ const getBeverageCategories = (t: (key: string) => string) => [
 
 const beverageProducts = {
   'hot-drinks': [
-    { id: 101, name: 'Red Eye', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 102, name: 'V60 / CHEMEX', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 103, name: 'Flat White', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 104, name: 'Espresso Macchiato', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 105, name: 'Marshmallow Chocolate', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 101, name: 'Red Eye', nameKey: 'red-eye', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 102, name: 'V60 / CHEMEX', nameKey: 'v60', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 103, name: 'Flat White', nameKey: 'flat-white', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 104, name: 'Espresso Macchiato', nameKey: 'espresso-macchiato', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 105, name: 'Marshmallow Chocolate', nameKey: 'marshmallow-hot-chocolate', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
     { id: 106, name: 'Turkish Coffee Single', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
     { id: 111, name: 'Double Espresso', price: '2.75 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
     { id: 112, name: 'Cappuccino', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
@@ -81,7 +81,7 @@ export default function Beverages() {
   const [selectedCategory, setSelectedCategory] = useState('hot-drinks');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
 
   const beverageCategories = getBeverageCategories(t);
 
@@ -104,7 +104,16 @@ export default function Beverages() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
-
+      {/* Language Toggle */}
+      <div className="absolute top-4 right-4 z-50">
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="bg-black/20 text-white border border-white/30 hover:bg-white/10 transition-all duration-300 px-3 py-1 rounded text-sm"
+        >
+          <Globe className="w-4 h-4 inline mr-1" />
+          {language === 'en' ? 'AR' : 'EN'}
+        </button>
+      </div>
       
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
@@ -211,7 +220,7 @@ export default function Beverages() {
                     />
                   </div>
                   <div className="p-3 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{product.name}</h3>
+                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{t(product.nameKey) || product.name}</h3>
                     <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
                   </div>
                 </div>

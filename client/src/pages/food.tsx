@@ -19,9 +19,9 @@ const getFoodCategories = (t: (key: string) => string) => [
 
 const foodProducts = {
   'breakfast': [
-    { id: 201, name: 'Eggs of Your Choice', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 202, name: 'Hallomi Croissant', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 203, name: 'Tuna Sandwich', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 201, name: 'Eggs of Your Choice', nameKey: 'eggs-of-your-choice', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 202, name: 'Hallomi Croissant', nameKey: 'french-toast', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 203, name: 'Tuna Sandwich', nameKey: 'pancakes', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
     { id: 211, name: 'Manageesh Labaneh and Rocca', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
     { id: 212, name: 'Turkey Omelette Croissant', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
     { id: 213, name: 'Zaatar and Pomegranate', price: '2.50 JD', image: 'https://images.unsplash.com/photo-1628692188846-b0d366ade8b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
@@ -81,7 +81,7 @@ export default function Food() {
   const [selectedCategory, setSelectedCategory] = useState('breakfast');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
 
   const foodCategories = getFoodCategories(t);
 
@@ -106,6 +106,17 @@ export default function Food() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
+      {/* Language Toggle */}
+      <div className="absolute top-4 right-4 z-50">
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="bg-black/20 text-white border border-white/30 hover:bg-white/10 transition-all duration-300 px-3 py-1 rounded text-sm"
+        >
+          <Globe className="w-4 h-4 inline mr-1" />
+          {language === 'en' ? 'AR' : 'EN'}
+        </button>
+      </div>
+      
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -208,7 +219,7 @@ export default function Food() {
                     />
                   </div>
                   <div className="p-3 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{product.name}</h3>
+                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{t(product.nameKey) || product.name}</h3>
                     <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
                   </div>
                 </div>
