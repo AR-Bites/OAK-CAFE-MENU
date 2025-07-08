@@ -71,6 +71,7 @@ const translations = {
     // Common
     'welcome': 'Welcome to The Oak Cafe',
     'premium-experience': 'Premium Middle Eastern Experience',
+    'oak-cafe': 'Oak Cafe',
     
     // Product Names - Beverages
     'red-eye': 'Red Eye',
@@ -78,6 +79,7 @@ const translations = {
     'chemex': 'Chemex',
     'flat-white': 'Flat White',
     'espresso-macchiato': 'Espresso Macchiato',
+    'oak-seasonal-juice': 'The Oak Seasonal Fresh Juice',
     'marshmallow-hot-chocolate': 'Marshmallow Hot Chocolate',
     'iced-coffee': 'Iced Coffee',
     'cold-brew': 'Cold Brew',
@@ -186,6 +188,7 @@ const translations = {
     // Common
     'welcome': 'مرحباً بكم في مقهى أوك',
     'premium-experience': 'تجربة شرق أوسطية مميزة',
+    'oak-cafe': 'مقهى أوك',
     
     // Product Names - Beverages (Cultural Adaptations)
     'red-eye': 'قهوة ريد آي',
@@ -193,6 +196,7 @@ const translations = {
     'chemex': 'قهوة كيمكس',
     'flat-white': 'قهوة فلات وايت',
     'espresso-macchiato': 'إسبريسو ماكياتو',
+    'oak-seasonal-juice': 'عصير أوك الموسمي الطازج',
     'marshmallow-hot-chocolate': 'شوكولاتة ساخنة بالمارشملو',
     'iced-coffee': 'قهوة مثلجة',
     'cold-brew': 'قهوة باردة',

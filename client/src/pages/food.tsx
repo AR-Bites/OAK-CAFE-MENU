@@ -116,17 +116,20 @@ export default function Food() {
               <Home className="w-5 h-5" />
             </button>
           </Link>
-          <button className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md">
-            <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">EN</span>
-          </button>
+
         </div>
         
         <div className="bg-white px-3 py-1 rounded-full shadow-lg">
           <img src={logoImage} alt="HyaQqabaz" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
         </div>
         
-        <div className="w-20"></div>
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="text-gold-primary hover:text-gold-secondary transition-colors duration-300 flex items-center gap-2"
+        >
+          <Globe className="w-4 h-4" />
+          <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+        </button>
       </div>
 
       {/* Secondary Navigation */}
@@ -161,7 +164,7 @@ export default function Food() {
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } w-64`}>
           <div className="p-6 pt-20">
-            <h2 className="text-xl font-bold mb-6 luxury-font">FOOD MENU</h2>
+            <h2 className="text-xl font-bold mb-6 luxury-font">{t('food-menu')}</h2>
             <nav className="space-y-4">
               {foodCategories.map((category) => {
                 const IconComponent = category.icon;
@@ -176,7 +179,7 @@ export default function Food() {
                     }`}
                   >
                     <IconComponent className="w-5 h-5" />
-                    <span className="text-sm font-medium">{category.label}</span>
+                    <span className="text-sm font-medium">{t(category.id)}</span>
                   </button>
                 );
               })}

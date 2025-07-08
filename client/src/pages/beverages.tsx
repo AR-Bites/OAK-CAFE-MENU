@@ -39,7 +39,7 @@ const beverageProducts = {
     { id: 118, name: 'Iced Americano', price: '3.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
   ],
   'fresh-juice': [
-    { id: 109, name: 'The Oak Seasonal Fresh Juice', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
+    { id: 109, name: 'The Oak Seasonal Fresh Juice', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice', nameKey: 'oak-seasonal-juice', descriptionKey: 'oak-seasonal-juice-desc' },
     { id: 110, name: 'Pomegranate', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
     { id: 119, name: 'Mango Mint', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
     { id: 120, name: 'Orange Juice', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
@@ -114,17 +114,20 @@ export default function Beverages() {
               <Home className="w-5 h-5" />
             </button>
           </Link>
-          <button className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md">
-            <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">EN</span>
-          </button>
+
         </div>
         
         <div className="bg-white px-3 py-1 rounded-full shadow-lg">
           <img src={logoImage} alt="HyaQqabaz" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
         </div>
         
-        <div className="w-20"></div>
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="text-gold-primary hover:text-gold-secondary transition-colors duration-300 flex items-center gap-2"
+        >
+          <Globe className="w-4 h-4" />
+          <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+        </button>
       </div>
 
       {/* Secondary Navigation */}
@@ -150,7 +153,7 @@ export default function Beverages() {
         <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="p-6 border-b border-opacity-20 border-white">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold luxury-font">DRINKS MENU</h2>
+              <h2 className="text-xl font-bold luxury-font">{t('drinks-menu')}</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
                 <X className="w-6 h-6" />
               </button>
@@ -171,7 +174,7 @@ export default function Beverages() {
                   }`}
                 >
                   <IconComponent className="w-5 h-5" />
-                  <span className="text-sm font-medium">{category.label}</span>
+                  <span className="text-sm font-medium">{t(category.id)}</span>
                 </button>
               );
             })}

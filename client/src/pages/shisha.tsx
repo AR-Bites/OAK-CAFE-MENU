@@ -70,17 +70,20 @@ export default function Shisha() {
               <Home className="w-5 h-5" />
             </button>
           </Link>
-          <button className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md">
-            <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">EN</span>
-          </button>
+
         </div>
         
         <div className="bg-white px-3 py-1 rounded-full shadow-lg">
           <img src={logoImage} alt="HyaQqabaz" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
         </div>
         
-        <div className="w-20"></div>
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="text-gold-primary hover:text-gold-secondary transition-colors duration-300 flex items-center gap-2"
+        >
+          <Globe className="w-4 h-4" />
+          <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+        </button>
       </div>
 
       {/* Secondary Navigation */}
@@ -106,7 +109,7 @@ export default function Shisha() {
         <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="p-6 border-b border-opacity-20 border-white">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold luxury-font">SHISHA MENU</h2>
+              <h2 className="text-xl font-bold luxury-font">{t('shisha-menu')}</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
                 <X className="w-6 h-6" />
               </button>
