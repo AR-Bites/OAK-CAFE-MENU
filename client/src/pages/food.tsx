@@ -19,16 +19,16 @@ const getFoodCategories = (t: (key: string) => string) => [
 
 const foodProducts = {
   'breakfast': [
-    { id: 201, name: 'Eggs of Your Choice', nameKey: 'eggs-of-your-choice', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 202, name: 'Hallomi Croissant', nameKey: 'halloumi-croissant', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 203, name: 'Tuna Sandwich', nameKey: 'tuna-sandwich', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 211, name: 'Manageesh Labaneh and Rocca', nameKey: 'manakish-labneh-rocca', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 212, name: 'Turkey Omelette Croissant', nameKey: 'turkey-omelette-croissant', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 213, name: 'Zaatar and Pomegranate', nameKey: 'zaatar-pomegranate', price: '2.50 JD', image: 'https://images.unsplash.com/photo-1628692188846-b0d366ade8b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 201, name: 'Eggs of Your Choice', nameKey: 'eggs-of-your-choice', descriptionKey: 'eggs-of-your-choice-desc', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 202, name: 'Hallomi Croissant', nameKey: 'halloumi-croissant', descriptionKey: 'halloumi-croissant-desc', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 203, name: 'Tuna Sandwich', nameKey: 'tuna-sandwich', descriptionKey: 'tuna-sandwich-desc', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 211, name: 'Manageesh Labaneh and Rocca', nameKey: 'manakish-labneh-rocca', descriptionKey: 'manakish-labneh-rocca-desc', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 212, name: 'Turkey Omelette Croissant', nameKey: 'turkey-omelette-croissant', descriptionKey: 'turkey-omelette-croissant-desc', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 213, name: 'Zaatar and Pomegranate', nameKey: 'zaatar-pomegranate', descriptionKey: 'zaatar-pomegranate-desc', price: '2.50 JD', image: 'https://images.unsplash.com/photo-1628692188846-b0d366ade8b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
   ],
   'pizza': [
-    { id: 204, name: 'Pizza Margherita', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
-    { id: 205, name: 'Chicken BBQ Pizza', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 204, name: 'Pizza Margherita', nameKey: 'pizza-margherita', descriptionKey: 'pizza-margherita-desc', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 205, name: 'Chicken BBQ Pizza', nameKey: 'chicken-bbq-pizza', descriptionKey: 'chicken-bbq-pizza-desc', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
     { id: 214, name: 'Mix Formaggio', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
     { id: 215, name: 'Pizza Chicken Alfredo', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
     { id: 216, name: 'Calzone Pizza', price: '7.00 JD', image: 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
@@ -54,9 +54,9 @@ const foodProducts = {
   ],
   'sandwiches': [
     { id: 225, name: 'OAK Beef Burger', nameKey: 'oak-beef-burger', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
-    { id: 26, name: 'The Oak Sandwich', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
-    { id: 27, name: 'Shawarma Meat', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
-    { id: 28, name: 'Crispy Chicken Burger', price: '6.50 JD', image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 226, name: 'The Oak Sandwich', nameKey: 'oak-sandwich', descriptionKey: 'oak-sandwich-desc', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 227, name: 'Shawarma Meat', nameKey: 'shawarma-meat', descriptionKey: 'shawarma-meat-desc', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 228, name: 'Crispy Chicken Burger', nameKey: 'crispy-chicken-burger', descriptionKey: 'crispy-chicken-burger-desc', price: '6.50 JD', image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
   ],
   'italian': [
     { id: 29, name: 'Seafood Pasta', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'italian' },
