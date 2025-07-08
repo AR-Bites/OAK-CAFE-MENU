@@ -295,9 +295,9 @@ export default function ProductDetail() {
         <div className="p-6 border-b border-opacity-20 border-white">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold luxury-font">
-              {product.type === 'beverage' && 'DRINKS MENU'}
-              {product.type === 'food' && 'FOOD MENU'}
-              {product.type === 'shisha' && 'SHISHA MENU'}
+              {product.type === 'beverage' && t('drinks-menu')}
+              {product.type === 'food' && t('food-menu')}
+              {product.type === 'shisha' && t('shisha-menu')}
             </h2>
             <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
               <X className="w-6 h-6" />
@@ -311,55 +311,55 @@ export default function ProductDetail() {
               <Link href="/beverages?category=hot-drinks">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
-                  <span className="text-sm font-medium">HOT DRINKS</span>
+                  <span className="text-sm font-medium">{t('hot-drinks')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=cold-coffee">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
-                  <span className="text-sm font-medium">COLD COFFEE</span>
+                  <span className="text-sm font-medium">{t('cold-coffee')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=fresh-juice">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
-                  <span className="text-sm font-medium">FRESH JUICE</span>
+                  <span className="text-sm font-medium">{t('fresh-juice')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=soft-drinks">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
-                  <span className="text-sm font-medium">SOFT DRINKS</span>
+                  <span className="text-sm font-medium">{t('soft-drinks')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=frappe">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
-                  <span className="text-sm font-medium">FRAPPE</span>
+                  <span className="text-sm font-medium">{t('frappe')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=milkshake">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
-                  <span className="text-sm font-medium">MILK SHAKE</span>
+                  <span className="text-sm font-medium">{t('milkshake')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=smoothies">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
-                  <span className="text-sm font-medium">SMOOTHIES</span>
+                  <span className="text-sm font-medium">{t('smoothies')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=mojito">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
-                  <span className="text-sm font-medium">MOJITO</span>
+                  <span className="text-sm font-medium">{t('mojito')}</span>
                 </button>
               </Link>
               <Link href="/beverages?category=iced-tea">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
-                  <span className="text-sm font-medium">ICED TEA</span>
+                  <span className="text-sm font-medium">{t('iced-tea')}</span>
                 </button>
               </Link>
             </>
@@ -370,55 +370,55 @@ export default function ProductDetail() {
               <Link href="/food?category=breakfast">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
-                  <span className="text-sm font-medium">BREAKFAST</span>
+                  <span className="text-sm font-medium">{t('breakfast')}</span>
                 </button>
               </Link>
               <Link href="/food?category=pizza">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
-                  <span className="text-sm font-medium">PIZZA</span>
+                  <span className="text-sm font-medium">{t('pizza')}</span>
                 </button>
               </Link>
               <Link href="/food?category=sandwiches">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
-                  <span className="text-sm font-medium">SANDWICHES</span>
+                  <span className="text-sm font-medium">{t('sandwiches')}</span>
                 </button>
               </Link>
               <Link href="/food?category=italian">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
-                  <span className="text-sm font-medium">ITALIAN</span>
+                  <span className="text-sm font-medium">{t('italian')}</span>
                 </button>
               </Link>
               <Link href="/food?category=main-course">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
-                  <span className="text-sm font-medium">MAIN COURSE</span>
+                  <span className="text-sm font-medium">{t('main-course')}</span>
                 </button>
               </Link>
               <Link href="/food?category=appetizers">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
-                  <span className="text-sm font-medium">APPETIZERS</span>
+                  <span className="text-sm font-medium">{t('appetizers')}</span>
                 </button>
               </Link>
               <Link href="/food?category=salads">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
-                  <span className="text-sm font-medium">SALADS</span>
+                  <span className="text-sm font-medium">{t('salads')}</span>
                 </button>
               </Link>
               <Link href="/food?category=soup">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
-                  <span className="text-sm font-medium">SOUP</span>
+                  <span className="text-sm font-medium">{t('soup')}</span>
                 </button>
               </Link>
               <Link href="/food?category=desserts">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
-                  <span className="text-sm font-medium">DESSERTS</span>
+                  <span className="text-sm font-medium">{t('desserts')}</span>
                 </button>
               </Link>
             </>
@@ -429,19 +429,19 @@ export default function ProductDetail() {
               <Link href="/shisha?category=regular">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Flame className="w-5 h-5" />
-                  <span className="text-sm font-medium">REGULAR SHISHA</span>
+                  <span className="text-sm font-medium">{t('regular-shisha')}</span>
                 </button>
               </Link>
               <Link href="/shisha?category=premium">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Crown className="w-5 h-5" />
-                  <span className="text-sm font-medium">PREMIUM SHISHA</span>
+                  <span className="text-sm font-medium">{t('premium-shisha')}</span>
                 </button>
               </Link>
               <Link href="/shisha?category=special">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Star className="w-5 h-5" />
-                  <span className="text-sm font-medium">SPECIAL SHISHA</span>
+                  <span className="text-sm font-medium">{t('special-shisha')}</span>
                 </button>
               </Link>
             </>
