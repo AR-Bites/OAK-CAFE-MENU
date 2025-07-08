@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Globe, Coffee, Utensils, Star } from "lucide-react";
 import { FaSmoking } from "react-icons/fa";
+import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -83,7 +84,11 @@ export default function Home() {
         
         {/* Central Logo */}
         <div className="central-logo w-32 h-32 rounded-full flex items-center justify-center z-20">
-          <h1 className="text-lg luxury-font font-bold text-gray-800 tracking-wide">HyaQqabaz</h1>
+          <img 
+            src={logoImage} 
+            alt="The Oak Cafe" 
+            className="w-24 h-24 object-contain"
+          />
         </div>
         
         {/* Category Icons Bottom */}
