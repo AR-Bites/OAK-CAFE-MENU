@@ -33,8 +33,11 @@ export default function Shisha() {
   const [location, setLocation] = useLocation();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    // Use window location search for URL parameters
+    const searchParams = window.location.search;
+    const urlParams = new URLSearchParams(searchParams);
     const categoryParam = urlParams.get('category');
+    
     if (categoryParam && shishaCategories.find(cat => cat.id === categoryParam)) {
       setSelectedCategory(categoryParam);
     }
