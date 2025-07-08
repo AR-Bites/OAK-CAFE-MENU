@@ -158,7 +158,7 @@ export default function ProductDetail() {
         <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-300 px-4 py-2 rounded-lg w-fit">
           <Home className="w-4 h-4" />
           <span>/</span>
-          <span className="text-gray-800 font-medium">
+          <span className="text-gray-800 font-bold text-lg">
             {t(`category-${product.category}`) || product.category.toUpperCase().replace('-', ' ')}
           </span>
           <span>/</span>
