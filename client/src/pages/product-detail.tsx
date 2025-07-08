@@ -132,7 +132,7 @@ export default function ProductDetail() {
           </button>
         </div>
         
-        <div className="bg-white px-6 py-2 rounded-full shadow-lg">
+        <div className="bg-white px-3 py-1 rounded-full shadow-lg">
           <img src={logoImage} alt="HyaQqabaz" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
         </div>
         
