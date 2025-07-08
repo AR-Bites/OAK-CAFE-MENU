@@ -154,11 +154,11 @@
 
 .category-icon:hover {
   transform: translateY(-5px) scale(1.1);
-  box-shadow: 0 10px 25px hsla(43, 74%, 49%, 0.4);
 }
 
 .category-icon:hover .icon-bg {
   background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-secondary) 100%);
+  box-shadow: 0 10px 25px hsla(43, 74%, 49%, 0.4);
 }
 
 .floating-element {
