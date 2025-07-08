@@ -104,8 +104,7 @@ export default function Beverages() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
-      {/* Language Toggle */}
-      <LanguageToggle />
+
       
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">

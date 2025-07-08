@@ -9,7 +9,7 @@ import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [, setLocation] = useLocation();
-  const { t } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   
   useEffect(() => {
     // Prevent scrolling on home page
@@ -44,7 +44,15 @@ export default function Home() {
   return (
     <div className="luxury-bg ornate-pattern w-full h-screen overflow-hidden relative" style={{ height: '100vh', overflow: 'hidden' }}>
       {/* Language Toggle */}
-      <LanguageToggle className="top-4 left-4" />
+      <div className="absolute top-4 left-4 z-20">
+        <button 
+          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+          className="text-gold-primary hover:text-gold-secondary transition-colors duration-300 flex items-center gap-2"
+        >
+          <Globe className="w-4 h-4" />
+          <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+        </button>
+      </div>
       
       {/* Main Container */}
       <div className="relative w-full h-screen flex items-center justify-center -mt-20">
