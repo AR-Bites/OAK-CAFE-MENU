@@ -36,7 +36,6 @@ export default function Home() {
     { id: 'beverage', label: 'BEVERAGE', icon: Coffee },
     { id: 'food', label: 'FOOD', icon: Utensils },
     { id: 'shisha', label: 'SHISHA', icon: FaSmoking },
-    { id: 'unique', label: 'UNIQUE OFFERINGS', icon: Star },
   ];
 
   return (
