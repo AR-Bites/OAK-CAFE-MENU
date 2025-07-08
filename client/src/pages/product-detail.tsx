@@ -3,98 +3,34 @@ import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight } fro
 import { Link, useParams } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
+// All products with unique IDs
 const allProducts = [
-  { 
-    id: 1, 
-    name: 'Step', 
-    price: '7.00 JD', 
-    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Fresh Kiwi* Fresh Orange Juice* Fresh Passion Fruit* Fresh Lemon Juice',
-    category: 'signatures',
-    type: 'beverage'
-  },
-  { 
-    id: 2, 
-    name: 'Rocket', 
-    price: '16.00 JD', 
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Premium energy blend with exotic fruits and natural caffeine boost',
-    category: 'signatures',
-    type: 'beverage'
-  },
-  { 
-    id: 3, 
-    name: 'Jaws', 
-    price: '7.00 JD', 
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Bold and refreshing tropical fusion with a bite of citrus',
-    category: 'signatures',
-    type: 'beverage'
-  },
-  { 
-    id: 4, 
-    name: 'Madame Q', 
-    price: '8.00 JD', 
-    image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Elegant blend of premium ingredients with a sophisticated taste',
-    category: 'signatures',
-    type: 'beverage'
-  },
-  { 
-    id: 5, 
-    name: 'Oreo Affogato', 
-    price: '6.00 JD', 
-    image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Classic Italian dessert coffee with crushed Oreo cookies',
-    category: 'special-coffees',
-    type: 'beverage'
-  },
-  { 
-    id: 6, 
-    name: 'Frequency®', 
-    price: '8.50 JD', 
-    image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Signature coffee blend with unique brewing method',
-    category: 'special-coffees',
-    type: 'beverage'
-  },
-  { 
-    id: 7, 
-    name: 'Nocturne', 
-    price: '8.00 JD', 
-    image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Dark roast evening blend with smooth chocolate notes',
-    category: 'special-coffees',
-    type: 'beverage'
-  },
-  // Food Products
-  { 
-    id: 8, 
-    name: 'Pan Breakfast', 
-    price: '11.00 JD', 
-    image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Traditional Turkish breakfast served in a pan with fresh ingredients',
-    category: 'turkish-breakfast',
-    type: 'food'
-  },
-  { 
-    id: 9, 
-    name: 'Spread Breakfast', 
-    price: '25.00 JD', 
-    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Elaborate Turkish breakfast spread with various traditional dishes',
-    category: 'turkish-breakfast',
-    type: 'food'
-  },
-  { 
-    id: 10, 
-    name: 'Fried Egg', 
-    price: '4.00 JD', 
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
-    description: 'Perfectly fried eggs served with traditional accompaniments',
-    category: 'turkish-breakfast',
-    type: 'food'
-  },
+  // Beverages (IDs 100-199)
+  { id: 101, name: 'Red Eye', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'hot-drinks', description: 'Premium coffee blend with double shot espresso for the perfect morning boost' },
+  { id: 102, name: 'V60 / CHEMEX', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'hot-drinks', description: 'Pour-over coffee brewed with precision using V60 or Chemex methods' },
+  { id: 103, name: 'Flat White', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'hot-drinks', description: 'Smooth espresso with steamed milk and minimal foam' },
+  { id: 104, name: 'Espresso Macchiato', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'hot-drinks', description: 'Rich espresso with a touch of steamed milk foam' },
+  { id: 105, name: 'Marshmallow Chocolate', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'hot-drinks', description: 'Decadent hot chocolate topped with fluffy marshmallows' },
+  { id: 106, name: 'Turkish Coffee Single', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'hot-drinks', description: 'Traditional Turkish coffee prepared in authentic copper pot' },
+  { id: 107, name: 'Iced Caramel Macchiato', price: '3.95 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'cold-coffee', description: 'Chilled espresso with vanilla syrup, steamed milk and caramel drizzle' },
+  { id: 108, name: 'Cold Brew', price: '5.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'cold-coffee', description: 'Smooth, slow-steeped coffee served over ice for maximum flavor' },
+  { id: 109, name: 'The Oak Seasonal Fresh Juice', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'fresh-juice', description: 'Our signature seasonal blend of the freshest fruits available' },
+  { id: 110, name: 'Pomegranate', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'beverage', category: 'fresh-juice', description: 'Fresh pomegranate juice packed with antioxidants' },
+  
+  // Food (IDs 200-299)
+  { id: 201, name: 'Eggs of Your Choice', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'breakfast', description: 'Fresh eggs prepared exactly how you like them - scrambled, fried, or boiled' },
+  { id: 202, name: 'Hallomi Croissant', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'breakfast', description: 'Buttery croissant filled with grilled hallomi cheese' },
+  { id: 203, name: 'Tuna Sandwich', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'breakfast', description: 'Fresh tuna salad sandwich with crisp vegetables' },
+  { id: 204, name: 'Pizza Margherita', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'pizza', description: 'Classic Italian pizza with fresh mozzarella, tomato sauce, and basil' },
+  { id: 205, name: 'Chicken BBQ Pizza', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'pizza', description: 'Tender chicken pieces with BBQ sauce, mozzarella, and red onions' },
+  { id: 206, name: 'The Oak Steak', price: '13.75 JD', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'main-course', description: 'Our signature premium steak grilled to perfection with special seasoning' },
+  { id: 207, name: 'Salmon Grill', price: '14.75 JD', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'food', category: 'main-course', description: 'Fresh Atlantic salmon fillet grilled with herbs and lemon' },
+  
+  // Shisha (IDs 300-399)
+  { id: 301, name: 'Sahem Gum Shisha', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'shisha', category: 'regular', description: 'Premium tobacco blend with sweet gum flavor' },
+  { id: 302, name: 'Lemon with Mint', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'shisha', category: 'regular', description: 'Refreshing citrus and mint combination for a cool smoking experience' },
+  { id: 303, name: 'Two Apple Fakher', price: '7.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'shisha', category: 'premium', description: 'Premium Fakher brand double apple flavor with rich tobacco taste' },
+  { id: 304, name: 'Special Shisha', price: '17.15 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600', type: 'shisha', category: 'special', description: 'Our exclusive premium blend with the finest tobacco and exotic flavors' },
 ];
 
 export default function ProductDetail() {
