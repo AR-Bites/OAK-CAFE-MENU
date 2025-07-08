@@ -120,10 +120,10 @@ export default function Beverages() {
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">SIGNATURES</h1>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
             {signatureProducts.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
-                <div className="product-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer">
+                <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                   <div className="aspect-square bg-black relative">
                     <img 
                       src={product.image} 
@@ -131,9 +131,9 @@ export default function Beverages() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-6 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-lg mb-2 luxury-font">{product.name}</h3>
-                    <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                  <div className="p-3 text-center bg-warm-brown text-white">
+                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{product.name}</h3>
+                    <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
                   </div>
                 </div>
               </Link>

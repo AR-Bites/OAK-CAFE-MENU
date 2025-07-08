@@ -58,6 +58,27 @@ const turkishBreakfastProducts = [
     image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
     category: 'turkish-breakfast'
   },
+  { 
+    id: 7, 
+    name: 'Menemen', 
+    price: '6.50 JD', 
+    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
+    category: 'turkish-breakfast'
+  },
+  { 
+    id: 8, 
+    name: 'Mixed Breakfast', 
+    price: '12.00 JD', 
+    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
+    category: 'turkish-breakfast'
+  },
+  { 
+    id: 9, 
+    name: 'Turkish Pancake', 
+    price: '8.00 JD', 
+    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
+    category: 'turkish-breakfast'
+  },
 ];
 
 export default function Food() {
@@ -162,10 +183,10 @@ export default function Food() {
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">TURKISH BREAKFAST</h1>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
             {filteredProducts.map((product) => (
               <Link key={product.id} href={`/food-product/${product.id}`}>
-                <div className="product-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer">
+                <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                   <div className="aspect-square bg-black relative">
                     <img 
                       src={product.image} 
@@ -173,9 +194,9 @@ export default function Food() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-6 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-lg mb-2 luxury-font">{product.name}</h3>
-                    <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                  <div className="p-3 text-center bg-warm-brown text-white">
+                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{product.name}</h3>
+                    <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
                   </div>
                 </div>
               </Link>
