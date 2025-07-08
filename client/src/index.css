@@ -89,6 +89,25 @@
   50% { transform: translateY(-10px) rotate(1deg); }
 }
 
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .hexagon-content {
+  direction: rtl;
+}
+
+[dir="rtl"] .hamburger-menu {
+  left: 20px;
+  right: auto;
+}
+
+[dir="rtl"] .language-toggle {
+  left: 4px;
+  right: auto;
+}
+
 .hexagon-container {
   width: 400px;
   height: 346px;

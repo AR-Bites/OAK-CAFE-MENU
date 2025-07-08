@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { Globe, Coffee, Utensils, Star } from "lucide-react";
 import { FaSmoking } from "react-icons/fa";
 import { useLocation } from "wouter";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [, setLocation] = useLocation();
+  const { t } = useLanguage();
   
   useEffect(() => {
     // Prevent scrolling on home page
@@ -33,20 +36,15 @@ export default function Home() {
   };
 
   const categories = [
-    { id: 'beverage', label: 'BEVERAGE', icon: Coffee },
-    { id: 'food', label: 'FOOD', icon: Utensils },
-    { id: 'shisha', label: 'SHISHA', icon: FaSmoking },
+    { id: 'beverage', label: t('beverages'), icon: Coffee },
+    { id: 'food', label: t('food'), icon: Utensils },
+    { id: 'shisha', label: t('shisha'), icon: FaSmoking },
   ];
 
   return (
     <div className="luxury-bg ornate-pattern w-full h-screen overflow-hidden relative" style={{ height: '100vh', overflow: 'hidden' }}>
       {/* Language Toggle */}
-      <div className="absolute top-4 left-4 z-20">
-        <button className="text-gold-primary hover:text-gold-secondary transition-colors duration-300 flex items-center gap-2">
-          <Globe className="w-4 h-4" />
-          <span className="text-sm font-medium">EN</span>
-        </button>
-      </div>
+      <LanguageToggle className="top-4 left-4" />
       
       {/* Main Container */}
       <div className="relative w-full h-screen flex items-center justify-center -mt-20">

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Utensils, Salad, Sandwich, Apple, PizzaIcon as Pizza, Star, Droplets, IceCream, Leaf } from "lucide-react";
 import { Link, useLocation } from "wouter";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const foodCategories = [
@@ -79,6 +81,7 @@ export default function Food() {
   const [selectedCategory, setSelectedCategory] = useState('breakfast');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
+  const { t } = useLanguage();
 
   useEffect(() => {
     // Use window location search for URL parameters  
@@ -101,6 +104,9 @@ export default function Food() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
+      {/* Language Toggle */}
+      <LanguageToggle />
+      
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">

@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Droplets, Snowflake, Zap, IceCream, Leaf, Citrus } from "lucide-react";
 import { Link, useLocation, useRoute } from "wouter";
+import { useLanguage } from '@/contexts/LanguageContext';
+import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const beverageCategories = [
@@ -79,6 +81,9 @@ export default function Beverages() {
   const [selectedCategory, setSelectedCategory] = useState('hot-drinks');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
+  const { t } = useLanguage();
+
+  const beverageCategories = getBeverageCategories(t);
 
   useEffect(() => {
     // Use window location search for URL parameters
@@ -99,6 +104,9 @@ export default function Beverages() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
+      {/* Language Toggle */}
+      <LanguageToggle />
+      
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
