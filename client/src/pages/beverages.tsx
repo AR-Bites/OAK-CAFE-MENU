@@ -81,14 +81,24 @@ export default function Beverages() {
   const [location, setLocation] = useLocation();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    console.log('Full location:', location);
+    console.log('Window location search:', window.location.search);
+    console.log('Window location href:', window.location.href);
+    
+    // Try both wouter location and window location
+    const searchParams = window.location.search;
+    const urlParams = new URLSearchParams(searchParams);
     const categoryParam = urlParams.get('category');
+    
     console.log('URL category param:', categoryParam);
     console.log('Available beverage categories:', beverageCategories.map(cat => cat.id));
     console.log('Available product keys:', Object.keys(beverageProducts));
+    
     if (categoryParam && beverageCategories.find(cat => cat.id === categoryParam)) {
       console.log('Setting category to:', categoryParam);
       setSelectedCategory(categoryParam);
+    } else if (categoryParam) {
+      console.log('Category param exists but not found in categories:', categoryParam);
     }
   }, [location]);
 
