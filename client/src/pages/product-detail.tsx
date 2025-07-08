@@ -132,7 +132,7 @@ export default function ProductDetail() {
         <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-300 px-4 py-2 rounded-lg w-fit">
           <Home className="w-4 h-4" />
           <span>/</span>
-          <span>{product.category.toUpperCase().replace('-', ' ')}</span>
+          <span>{t(product.category) || product.category.toUpperCase().replace('-', ' ')}</span>
           <span>/</span>
           <span className="text-gray-800 font-medium">{t(product.nameKey) || product.name}</span>
         </div>
@@ -169,7 +169,7 @@ export default function ProductDetail() {
             
             {/* Product Name Tag */}
             <div className="absolute bottom-4 right-4 bg-white px-3 py-1 rounded">
-              <span className="text-sm font-medium text-gray-800">{product.name.toLowerCase()}</span>
+              <span className="text-sm font-medium text-gray-800">{(t(product.nameKey) || product.name).toLowerCase()}</span>
             </div>
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function ProductDetail() {
         {/* Related Products */}
         {relatedProducts.length > 0 && (
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8 luxury-font">RELATED PRODUCTS</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8 luxury-font">{t('related-products')}</h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {relatedProducts.map((relatedProduct) => (
@@ -213,7 +213,7 @@ export default function ProductDetail() {
                       />
                     </div>
                     <div className="p-6 text-center bg-warm-brown text-white">
-                      <h3 className="font-bold text-lg mb-2 luxury-font">{relatedProduct.name}</h3>
+                      <h3 className="font-bold text-lg mb-2 luxury-font">{t(relatedProduct.nameKey) || relatedProduct.name}</h3>
                       <p className="text-yellow-300 font-bold text-lg">{relatedProduct.price}</p>
                     </div>
                   </div>
