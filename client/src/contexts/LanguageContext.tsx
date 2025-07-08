@@ -108,6 +108,14 @@ const translations = {
     'manakish-labneh-rocca': 'Manakish Labneh and Rocca',
     'turkey-omelette-croissant': 'Turkey Omelette Croissant',
     'zaatar-pomegranate': 'Zaatar and Pomegranate',
+    'marshmallow-hot-chocolate': 'Marshmallow Hot Chocolate',
+    
+    // Product Descriptions
+    'red-eye-desc': 'Strong coffee with espresso shot',
+    'v60-desc': 'Pour-over specialty coffee',
+    'flat-white-desc': 'Smooth coffee with microfoam',
+    'espresso-macchiato-desc': 'Espresso with steamed milk foam',
+    'marshmallow-hot-chocolate-desc': 'Rich hot chocolate with marshmallows',
     'fanta': 'Fanta',
     'caramel-frappe': 'Caramel Frappe',
     'vanilla-frappe': 'Vanilla Frappe',
@@ -244,6 +252,14 @@ const translations = {
     'manakish-labneh-rocca': 'مناقيش لبنة وجرجير',
     'turkey-omelette-croissant': 'كرواسان أومليت ديك رومي',
     'zaatar-pomegranate': 'زعتر ودبس رمان',
+    'marshmallow-hot-chocolate': 'شوكولاتة ساخنة بالمارشملو',
+    
+    // Product Descriptions
+    'red-eye-desc': 'قهوة قوية مع جرعة إسبريسو',
+    'v60-desc': 'قهوة مختصة بالتقطير',
+    'flat-white-desc': 'قهوة ناعمة برغوة دقيقة',
+    'espresso-macchiato-desc': 'إسبريسو برغوة حليب مبخرة',
+    'marshmallow-hot-chocolate-desc': 'شوكولاتة ساخنة غنية بالمارشملو',
     'fanta': 'فانتا',
     'caramel-frappe': 'فرابيه كراميل',
     'vanilla-frappe': 'فرابيه فانيلا',
