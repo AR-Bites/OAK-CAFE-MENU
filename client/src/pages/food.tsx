@@ -53,7 +53,7 @@ const foodProducts = {
     { id: 24, name: 'Kenafa Naama', price: '3.80 JD', image: 'https://images.unsplash.com/photo-1536071994059-2bda637b9200?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
   ],
   'sandwiches': [
-    { id: 25, name: 'OAK Beef Burger', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 225, name: 'OAK Beef Burger', nameKey: 'oak-beef-burger', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
     { id: 26, name: 'The Oak Sandwich', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
     { id: 27, name: 'Shawarma Meat', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
     { id: 28, name: 'Crispy Chicken Burger', price: '6.50 JD', image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
@@ -203,7 +203,7 @@ export default function Food() {
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
             {currentProducts.map((product) => (
-              <Link key={product.id} href={`/food-product/${product.id}`}>
+              <Link key={product.id} href={`/product/${product.id}`}>
                 <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                   <div className="aspect-square bg-black relative">
                     <img 
