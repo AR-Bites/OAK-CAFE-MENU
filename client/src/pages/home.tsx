@@ -83,7 +83,7 @@ export default function Home() {
         </div>
         
         {/* Central Logo */}
-        <div className="central-logo w-36 h-36 rounded-full flex items-center justify-center z-20">
+        <div className="central-logo w-32 h-32 rounded-full flex items-center justify-center z-20">
           <img 
             src={logoImage} 
             alt="The Oak Cafe" 
@@ -101,10 +101,10 @@ export default function Home() {
                 className="category-icon cursor-pointer"
                 onClick={() => handleCategorySelect(category.id)}
               >
-                <div className="icon-bg w-14 h-14 rounded-full bg-warm-brown flex items-center justify-center mb-2 transition-all duration-300">
-                  <IconComponent className="text-white text-lg w-5 h-5" />
+                <div className="icon-bg w-16 h-16 rounded-full bg-warm-brown flex items-center justify-center mb-2 transition-all duration-300">
+                  <IconComponent className="text-white text-xl w-6 h-6" />
                 </div>
-                <p className="gold-primary text-xs font-medium text-center">{category.label}</p>
+                <p className="gold-primary text-sm font-medium text-center">{category.label}</p>
               </div>
             );
           })}
