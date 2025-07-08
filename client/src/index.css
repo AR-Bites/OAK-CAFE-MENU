@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom HyaQqabaz colors */
+  --luxury-dark: hsl(220, 13%, 9%);
+  --gold-primary: hsl(43, 74%, 49%);
+  --gold-secondary: hsl(43, 71%, 84%);
+  --warm-brown: hsl(25, 76%, 31%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+    overflow: hidden;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Custom HyaQqabaz Styles */
+.luxury-bg {
+  background: var(--luxury-dark);
+}
+
+.ornate-pattern {
+  background-image: 
+    radial-gradient(circle at 20% 30%, hsla(43, 74%, 49%, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, hsla(43, 74%, 49%, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 60% 20%, hsla(43, 74%, 49%, 0.05) 0%, transparent 50%);
+  background-size: 400px 400px, 600px 600px, 300px 300px;
+  animation: floatPattern 20s ease-in-out infinite;
+}
+
+@keyframes floatPattern {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+.hexagon {
+  width: 280px;
+  height: 242px;
+  position: relative;
+  margin: 121px 0;
+  transform: rotate(30deg);
+  overflow: hidden;
+}
+
+.hexagon-inner {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-60deg);
+  overflow: hidden;
+}
+
+.hexagon-content {
+  width: 100%;
+  height: 100%;
+  transform: rotate(30deg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hexagon:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(60deg, transparent 35%, hsla(43, 74%, 49%, 0.2) 35%, hsla(43, 74%, 49%, 0.2) 65%, transparent 65%);
+  z-index: 1;
+}
+
+.geometric-accent {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid hsla(43, 74%, 49%, 0.3);
+  transform: rotate(45deg);
+  animation: rotate 30s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(45deg); }
+  to { transform: rotate(405deg); }
+}
+
+.central-logo {
+  position: relative;
+  z-index: 10;
+  background: radial-gradient(circle, hsla(0, 0%, 100%, 0.95) 0%, hsla(0, 0%, 100%, 0.9) 100%);
+  backdrop-filter: blur(10px);
+  border: 3px solid hsla(43, 74%, 49%, 0.5);
+  box-shadow: 0 0 30px hsla(43, 74%, 49%, 0.3);
+}
+
+.category-icon {
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 5;
+}
+
+.category-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 10px 25px hsla(43, 74%, 49%, 0.4);
+}
+
+.category-icon:hover .icon-bg {
+  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-secondary) 100%);
+}
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.luxury-font {
+  font-family: 'Playfair Display', serif;
+}
+
+.gold-primary {
+  color: var(--gold-primary);
+}
+
+.gold-secondary {
+  color: var(--gold-secondary);
+}
+
+.warm-brown {
+  color: var(--warm-brown);
+}
+
+.bg-warm-brown {
+  background-color: var(--warm-brown);
+}
