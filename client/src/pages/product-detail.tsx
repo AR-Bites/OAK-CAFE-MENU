@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap } from "lucide-react";
+import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap, Flame, Crown, Star } from "lucide-react";
 import { Link, useParams } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
@@ -240,6 +240,36 @@ export default function ProductDetail() {
                   <span className="text-sm font-medium">SOFT DRINKS</span>
                 </button>
               </Link>
+              <Link href="/beverages">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Snowflake className="w-5 h-5" />
+                  <span className="text-sm font-medium">FRAPPE</span>
+                </button>
+              </Link>
+              <Link href="/beverages">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Snowflake className="w-5 h-5" />
+                  <span className="text-sm font-medium">MILK SHAKE</span>
+                </button>
+              </Link>
+              <Link href="/beverages">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Droplets className="w-5 h-5" />
+                  <span className="text-sm font-medium">SMOOTHIES</span>
+                </button>
+              </Link>
+              <Link href="/beverages">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Zap className="w-5 h-5" />
+                  <span className="text-sm font-medium">MOJITO</span>
+                </button>
+              </Link>
+              <Link href="/beverages">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Droplets className="w-5 h-5" />
+                  <span className="text-sm font-medium">ICED TEA</span>
+                </button>
+              </Link>
             </>
           )}
           
@@ -260,7 +290,37 @@ export default function ProductDetail() {
               <Link href="/food">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
+                  <span className="text-sm font-medium">SANDWICHES</span>
+                </button>
+              </Link>
+              <Link href="/food">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Coffee className="w-5 h-5" />
+                  <span className="text-sm font-medium">ITALIAN</span>
+                </button>
+              </Link>
+              <Link href="/food">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Zap className="w-5 h-5" />
                   <span className="text-sm font-medium">MAIN COURSE</span>
+                </button>
+              </Link>
+              <Link href="/food">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Droplets className="w-5 h-5" />
+                  <span className="text-sm font-medium">APPETIZERS</span>
+                </button>
+              </Link>
+              <Link href="/food">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Coffee className="w-5 h-5" />
+                  <span className="text-sm font-medium">SALADS</span>
+                </button>
+              </Link>
+              <Link href="/food">
+                <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+                  <Droplets className="w-5 h-5" />
+                  <span className="text-sm font-medium">SOUP</span>
                 </button>
               </Link>
               <Link href="/food">
@@ -276,19 +336,19 @@ export default function ProductDetail() {
             <>
               <Link href="/shisha">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
-                  <Coffee className="w-5 h-5" />
+                  <Flame className="w-5 h-5" />
                   <span className="text-sm font-medium">REGULAR SHISHA</span>
                 </button>
               </Link>
               <Link href="/shisha">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
-                  <Droplets className="w-5 h-5" />
+                  <Crown className="w-5 h-5" />
                   <span className="text-sm font-medium">PREMIUM SHISHA</span>
                 </button>
               </Link>
               <Link href="/shisha">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
-                  <Zap className="w-5 h-5" />
+                  <Star className="w-5 h-5" />
                   <span className="text-sm font-medium">SPECIAL SHISHA</span>
                 </button>
               </Link>
