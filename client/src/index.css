@@ -142,6 +142,8 @@
   position: relative;
   z-index: 10;
   background: transparent;
+  border: 2px solid hsla(43, 74%, 49%, 0.4);
+  box-shadow: 0 0 20px hsla(43, 74%, 49%, 0.2);
 }
 
 .category-icon {
