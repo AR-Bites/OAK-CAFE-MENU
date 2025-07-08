@@ -49,7 +49,7 @@ export default function Home() {
       <div className="relative w-full h-screen flex items-center justify-center -mt-20">
         
         {/* Left Hexagon Container */}
-        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="absolute left-16 top-1/2 transform -translate-y-1/2 z-10">
           <div className="hexagon-container">
             <div className="hexagon-shape">
               <video 
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
         
         {/* Right Hexagon Container */}
-        <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="absolute right-16 top-1/2 transform -translate-y-1/2 z-10">
           <div className="hexagon-container">
             <div className="hexagon-shape">
               <video 
@@ -108,7 +108,7 @@ export default function Home() {
         </div>
         
         {/* Category Icons Bottom */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-8">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-8">
           {categories.map((category) => {
             const IconComponent = category.icon;
             return (
