@@ -5,16 +5,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
-const foodCategories = [
-  { id: 'breakfast', label: 'BREAKFAST', icon: Coffee },
-  { id: 'pizza', label: 'PIZZA', icon: Pizza },
-  { id: 'sandwiches', label: 'SANDWICHES', icon: Sandwich },
-  { id: 'italian', label: 'ITALIAN', icon: Star },
-  { id: 'main-course', label: 'MAIN COURSE', icon: Utensils },
-  { id: 'appetizers', label: 'APPETIZERS', icon: Apple },
-  { id: 'salads', label: 'SALADS', icon: Salad },
-  { id: 'soup', label: 'SOUP', icon: Droplets },
-  { id: 'desserts', label: 'DESSERTS', icon: IceCream },
+const getFoodCategories = (t: (key: string) => string) => [
+  { id: 'breakfast', label: t('breakfast'), icon: Coffee },
+  { id: 'pizza', label: t('pizza'), icon: Pizza },
+  { id: 'sandwiches', label: t('sandwiches'), icon: Sandwich },
+  { id: 'italian', label: t('italian'), icon: Star },
+  { id: 'main-course', label: t('main-course'), icon: Utensils },
+  { id: 'appetizers', label: t('appetizers'), icon: Apple },
+  { id: 'salads', label: t('salads'), icon: Salad },
+  { id: 'soup', label: t('soup'), icon: Droplets },
+  { id: 'desserts', label: t('desserts'), icon: IceCream },
 ];
 
 const foodProducts = {
@@ -82,6 +82,8 @@ export default function Food() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { t } = useLanguage();
+
+  const foodCategories = getFoodCategories(t);
 
   useEffect(() => {
     // Use window location search for URL parameters  

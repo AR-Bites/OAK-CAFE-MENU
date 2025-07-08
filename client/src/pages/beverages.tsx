@@ -5,16 +5,16 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
-const beverageCategories = [
-  { id: 'hot-drinks', label: 'HOT DRINKS', icon: Coffee },
-  { id: 'cold-coffee', label: 'COLD COFFEE', icon: IceCream },
-  { id: 'fresh-juice', label: 'FRESH JUICE', icon: Citrus },
-  { id: 'soft-drinks', label: 'SOFT DRINKS', icon: Droplets },
-  { id: 'frappe', label: 'FRAPPE', icon: Snowflake },
-  { id: 'milkshake', label: 'MILK SHAKE', icon: IceCream },
-  { id: 'smoothies', label: 'SMOOTHIES', icon: Leaf },
-  { id: 'mojito', label: 'MOJITO', icon: Zap },
-  { id: 'iced-tea', label: 'ICED TEA', icon: Leaf },
+const getBeverageCategories = (t: (key: string) => string) => [
+  { id: 'hot-drinks', label: t('hot-drinks'), icon: Coffee },
+  { id: 'cold-coffee', label: t('cold-coffee'), icon: IceCream },
+  { id: 'fresh-juice', label: t('fresh-juice'), icon: Citrus },
+  { id: 'soft-drinks', label: t('soft-drinks'), icon: Droplets },
+  { id: 'frappe', label: t('frappe'), icon: Snowflake },
+  { id: 'milkshake', label: t('milkshake'), icon: IceCream },
+  { id: 'smoothies', label: t('smoothies'), icon: Leaf },
+  { id: 'mojito', label: t('mojito'), icon: Zap },
+  { id: 'iced-tea', label: t('iced-tea'), icon: Leaf },
 ];
 
 const beverageProducts = {

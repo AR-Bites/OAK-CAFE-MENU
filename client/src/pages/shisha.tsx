@@ -5,10 +5,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
-const shishaCategories = [
-  { id: 'regular', label: 'REGULAR SHISHA', icon: Flame },
-  { id: 'premium', label: 'PREMIUM SHISHA', icon: Crown },
-  { id: 'special', label: 'SPECIAL SHISHA', icon: Star },
+const getShishaCategories = (t: (key: string) => string) => [
+  { id: 'regular', label: t('regular'), icon: Flame },
+  { id: 'premium', label: t('premium'), icon: Crown },
+  { id: 'special', label: t('special'), icon: Star },
 ];
 
 const shishaProducts = [
@@ -34,6 +34,8 @@ export default function Shisha() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { t } = useLanguage();
+
+  const shishaCategories = getShishaCategories(t);
 
   useEffect(() => {
     // Use window location search for URL parameters

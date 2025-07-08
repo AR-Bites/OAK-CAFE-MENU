@@ -15,7 +15,7 @@ export const LanguageToggle = ({ className = "" }: { className?: string }) => {
       onClick={toggleLanguage}
       className={`fixed top-4 right-4 z-50 bg-black/20 text-white border-white/30 hover:bg-white/10 transition-all duration-300 ${className}`}
     >
-      {language === 'en' ? 'العربية' : 'English'}
+      {language === 'en' ? 'AR' : 'EN'}
     </Button>
   );
 };
