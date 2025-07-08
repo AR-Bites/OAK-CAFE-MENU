@@ -197,6 +197,44 @@ export default function ProductDetail() {
           </div>
         )}
       </div>
+      
+      {/* Sidebar */}
+      <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-6 border-b border-opacity-20 border-white">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-bold luxury-font">MENU</h2>
+            <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+        </div>
+        
+        <nav className="p-6">
+          <Link href="/beverages">
+            <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+              <span className="text-sm font-medium">BEVERAGES</span>
+            </button>
+          </Link>
+          <Link href="/food">
+            <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+              <span className="text-sm font-medium">FOOD</span>
+            </button>
+          </Link>
+          <Link href="/shisha">
+            <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
+              <span className="text-sm font-medium">SHISHA</span>
+            </button>
+          </Link>
+        </nav>
+      </div>
+
+      {/* Overlay */}
+      {sidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 z-10"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 }
