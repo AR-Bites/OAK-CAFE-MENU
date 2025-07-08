@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, Home, Globe, Menu, X, Zap, Droplets, Snowflake, Flame, Wind, Crown, Star, Coffee } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const shishaCategories = [
@@ -30,6 +30,15 @@ const shishaProducts = [
 export default function Shisha() {
   const [selectedCategory, setSelectedCategory] = useState('regular');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const categoryParam = urlParams.get('category');
+    if (categoryParam && shishaCategories.find(cat => cat.id === categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [location]);
 
   const filteredProducts = shishaProducts.filter(product => {
     return product.category === selectedCategory;

@@ -216,55 +216,55 @@ export default function ProductDetail() {
         <nav className="p-6">
           {product.type === 'beverage' && (
             <>
-              <Link href="/beverages">
+              <Link href="/beverages?category=hot-drinks">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
                   <span className="text-sm font-medium">HOT DRINKS</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=cold-coffee">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
                   <span className="text-sm font-medium">COLD COFFEE</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=fresh-juice">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
                   <span className="text-sm font-medium">FRESH JUICE</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=soft-drinks">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
                   <span className="text-sm font-medium">SOFT DRINKS</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=frappe">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
                   <span className="text-sm font-medium">FRAPPE</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=milkshake">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
                   <span className="text-sm font-medium">MILK SHAKE</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=smoothies">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
                   <span className="text-sm font-medium">SMOOTHIES</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=mojito">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
                   <span className="text-sm font-medium">MOJITO</span>
                 </button>
               </Link>
-              <Link href="/beverages">
+              <Link href="/beverages?category=iced-tea">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
                   <span className="text-sm font-medium">ICED TEA</span>
@@ -275,55 +275,55 @@ export default function ProductDetail() {
           
           {product.type === 'food' && (
             <>
-              <Link href="/food">
+              <Link href="/food?category=breakfast">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
                   <span className="text-sm font-medium">BREAKFAST</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=pizza">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
                   <span className="text-sm font-medium">PIZZA</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=sandwiches">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
                   <span className="text-sm font-medium">SANDWICHES</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=italian">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
                   <span className="text-sm font-medium">ITALIAN</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=main-course">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Zap className="w-5 h-5" />
                   <span className="text-sm font-medium">MAIN COURSE</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=appetizers">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
                   <span className="text-sm font-medium">APPETIZERS</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=salads">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Coffee className="w-5 h-5" />
                   <span className="text-sm font-medium">SALADS</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=soup">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Droplets className="w-5 h-5" />
                   <span className="text-sm font-medium">SOUP</span>
                 </button>
               </Link>
-              <Link href="/food">
+              <Link href="/food?category=desserts">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Snowflake className="w-5 h-5" />
                   <span className="text-sm font-medium">DESSERTS</span>
@@ -334,19 +334,19 @@ export default function ProductDetail() {
           
           {product.type === 'shisha' && (
             <>
-              <Link href="/shisha">
+              <Link href="/shisha?category=regular">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Flame className="w-5 h-5" />
                   <span className="text-sm font-medium">REGULAR SHISHA</span>
                 </button>
               </Link>
-              <Link href="/shisha">
+              <Link href="/shisha?category=premium">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Crown className="w-5 h-5" />
                   <span className="text-sm font-medium">PREMIUM SHISHA</span>
                 </button>
               </Link>
-              <Link href="/shisha">
+              <Link href="/shisha?category=special">
                 <button className="w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors hover:bg-white hover:bg-opacity-10">
                   <Star className="w-5 h-5" />
                   <span className="text-sm font-medium">SPECIAL SHISHA</span>

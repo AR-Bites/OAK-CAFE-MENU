@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Utensils, Salad, Sandwich, Apple, PizzaIcon as Pizza, Star, Droplets, IceCream, Leaf } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const foodCategories = [
@@ -78,6 +78,15 @@ const foodProducts = {
 export default function Food() {
   const [selectedCategory, setSelectedCategory] = useState('breakfast');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const categoryParam = urlParams.get('category');
+    if (categoryParam && foodCategories.find(cat => cat.id === categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [location]);
 
   const currentProducts = foodProducts[selectedCategory as keyof typeof foodProducts] || foodProducts['breakfast'];
 

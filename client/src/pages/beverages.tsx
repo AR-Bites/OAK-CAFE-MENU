@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Droplets, Snowflake, Zap, IceCream, Leaf, Citrus } from "lucide-react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const beverageCategories = [
@@ -53,6 +53,15 @@ const beverageProducts = {
 export default function Beverages() {
   const [selectedCategory, setSelectedCategory] = useState('hot-drinks');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(location.split('?')[1] || '');
+    const categoryParam = urlParams.get('category');
+    if (categoryParam && beverageCategories.find(cat => cat.id === categoryParam)) {
+      setSelectedCategory(categoryParam);
+    }
+  }, [location]);
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
