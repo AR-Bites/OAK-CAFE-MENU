@@ -10,7 +10,8 @@ const allProducts = [
     price: '7.00 JD', 
     image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Fresh Kiwi* Fresh Orange Juice* Fresh Passion Fruit* Fresh Lemon Juice',
-    category: 'signatures'
+    category: 'signatures',
+    type: 'beverage'
   },
   { 
     id: 2, 
@@ -18,7 +19,8 @@ const allProducts = [
     price: '16.00 JD', 
     image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Premium energy blend with exotic fruits and natural caffeine boost',
-    category: 'signatures'
+    category: 'signatures',
+    type: 'beverage'
   },
   { 
     id: 3, 
@@ -26,7 +28,8 @@ const allProducts = [
     price: '7.00 JD', 
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Bold and refreshing tropical fusion with a bite of citrus',
-    category: 'signatures'
+    category: 'signatures',
+    type: 'beverage'
   },
   { 
     id: 4, 
@@ -34,7 +37,8 @@ const allProducts = [
     price: '8.00 JD', 
     image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Elegant blend of premium ingredients with a sophisticated taste',
-    category: 'signatures'
+    category: 'signatures',
+    type: 'beverage'
   },
   { 
     id: 5, 
@@ -42,7 +46,8 @@ const allProducts = [
     price: '6.00 JD', 
     image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Classic Italian dessert coffee with crushed Oreo cookies',
-    category: 'special-coffees'
+    category: 'special-coffees',
+    type: 'beverage'
   },
   { 
     id: 6, 
@@ -50,7 +55,8 @@ const allProducts = [
     price: '8.50 JD', 
     image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Signature coffee blend with unique brewing method',
-    category: 'special-coffees'
+    category: 'special-coffees',
+    type: 'beverage'
   },
   { 
     id: 7, 
@@ -58,7 +64,36 @@ const allProducts = [
     price: '8.00 JD', 
     image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
     description: 'Dark roast evening blend with smooth chocolate notes',
-    category: 'special-coffees'
+    category: 'special-coffees',
+    type: 'beverage'
+  },
+  // Food Products
+  { 
+    id: 8, 
+    name: 'Pan Breakfast', 
+    price: '11.00 JD', 
+    image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    description: 'Traditional Turkish breakfast served in a pan with fresh ingredients',
+    category: 'turkish-breakfast',
+    type: 'food'
+  },
+  { 
+    id: 9, 
+    name: 'Spread Breakfast', 
+    price: '25.00 JD', 
+    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    description: 'Elaborate Turkish breakfast spread with various traditional dishes',
+    category: 'turkish-breakfast',
+    type: 'food'
+  },
+  { 
+    id: 10, 
+    name: 'Fried Egg', 
+    price: '4.00 JD', 
+    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600',
+    description: 'Perfectly fried eggs served with traditional accompaniments',
+    category: 'turkish-breakfast',
+    type: 'food'
   },
 ];
 
@@ -105,7 +140,7 @@ export default function ProductDetail() {
         </div>
         
         <div className="flex items-center gap-3">
-          <Link href="/beverages">
+          <Link href={product.type === 'food' ? '/food' : '/beverages'}>
             <button className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
               <ArrowLeft className="w-4 h-4" />
             </button>
@@ -125,7 +160,7 @@ export default function ProductDetail() {
         <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-300 px-4 py-2 rounded-lg w-fit">
           <Home className="w-4 h-4" />
           <span>/</span>
-          <span>SIGNATURES</span>
+          <span>{product.category.toUpperCase().replace('-', ' ')}</span>
           <span>/</span>
           <span className="text-gray-800 font-medium">{product.name}</span>
         </div>
