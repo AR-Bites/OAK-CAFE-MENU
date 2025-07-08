@@ -46,10 +46,10 @@ export default function Home() {
       </div>
       
       {/* Main Container */}
-      <div className="relative w-full h-screen flex items-center justify-center">
+      <div className="relative w-full h-screen flex items-center justify-center" style={{ marginTop: '-60px' }}>
         
         {/* Left Hexagon Container */}
-        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="absolute left-8 top-1/2 transform -translate-y-1/2 -translate-y-16 z-10">
           <div className="hexagon-container">
             <div className="hexagon-shape">
               <video 
@@ -74,7 +74,7 @@ export default function Home() {
         </div>
         
         {/* Right Hexagon Container */}
-        <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10">
+        <div className="absolute right-8 top-1/2 transform -translate-y-1/2 -translate-y-16 z-10">
           <div className="hexagon-container">
             <div className="hexagon-shape">
               <video 
