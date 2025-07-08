@@ -120,7 +120,11 @@ export default function ProductDetail() {
   const { t, language, setLanguage } = useLanguage();
 
   const product = allProducts.find(p => p.id === productId) || allProducts[0];
-  const relatedProducts = allProducts.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
+  
+  // Get related products from the same category, excluding current product
+  const relatedProducts = allProducts
+    .filter(p => p.category === product.category && p.id !== product.id && p.type === product.type)
+    .slice(0, 6); // Limit to 6 related products
 
   const productImages = [product.image]; // In real app, would have multiple images
 
@@ -244,40 +248,49 @@ export default function ProductDetail() {
           </div>
           
           <p className="text-lg text-gray-700 leading-relaxed">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
+          
+          <button className="w-full bg-warm-brown text-white py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition-colors luxury-font">
+            {t('add-to-cart')}
+          </button>
         </div>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div className="max-w-6xl mx-auto">
+          <div className="mt-12 max-w-6xl mx-auto">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8 luxury-font">{t('related-products')}</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedProducts.map((relatedProduct) => (
-                <Link key={relatedProduct.id} href={`/product/${relatedProduct.id}`}>
-                  <div className="product-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer">
-                    <div className="aspect-square bg-black relative">
-                      <img 
-                        src={relatedProduct.image} 
-                        alt={relatedProduct.name}
-                        className="w-full h-full object-cover"
-                      />
+            {/* Related Products Horizontal Scroll */}
+            <div className="relative">
+              <div className="flex gap-4 overflow-x-auto pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                {relatedProducts.map((relatedProduct) => (
+                  <Link key={relatedProduct.id} href={`/product/${relatedProduct.id}`}>
+                    <div className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
+                      <div className="aspect-square bg-black relative">
+                        <img 
+                          src={relatedProduct.image} 
+                          alt={relatedProduct.name}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div className="p-4 text-center bg-warm-brown text-white">
+                        <h3 className="font-bold text-base mb-2 luxury-font truncate">
+                          {t(relatedProduct.nameKey) || relatedProduct.name}
+                        </h3>
+                        <p className="text-yellow-300 font-bold text-lg">{relatedProduct.price}</p>
+                      </div>
                     </div>
-                    <div className="p-6 text-center bg-warm-brown text-white">
-                      <h3 className="font-bold text-lg mb-2 luxury-font">{t(relatedProduct.nameKey) || relatedProduct.name}</h3>
-                      <p className="text-yellow-300 font-bold text-lg">{relatedProduct.price}</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
-            </div>
-            
-            {/* Pagination Dots */}
-            <div className="flex justify-center gap-2 mt-8">
-              <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-              <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                  </Link>
+                ))}
+              </div>
+              
+              {/* Navigation dots */}
+              <div className="flex justify-center mt-4 gap-2">
+                <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
+                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+              </div>
             </div>
           </div>
         )}
