@@ -83,7 +83,11 @@ export default function Beverages() {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
     const categoryParam = urlParams.get('category');
+    console.log('URL category param:', categoryParam);
+    console.log('Available beverage categories:', beverageCategories.map(cat => cat.id));
+    console.log('Available product keys:', Object.keys(beverageProducts));
     if (categoryParam && beverageCategories.find(cat => cat.id === categoryParam)) {
+      console.log('Setting category to:', categoryParam);
       setSelectedCategory(categoryParam);
     }
   }, [location]);
