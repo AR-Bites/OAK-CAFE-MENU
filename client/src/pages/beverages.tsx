@@ -122,19 +122,21 @@ export default function Beverages() {
           {/* Product Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {signatureProducts.map((product) => (
-              <div key={product.id} className="product-card bg-white rounded-xl shadow-lg overflow-hidden">
-                <div className="aspect-square bg-black relative">
-                  <img 
-                    src={product.image} 
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
+              <Link key={product.id} href={`/product/${product.id}`}>
+                <div className="product-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer">
+                  <div className="aspect-square bg-black relative">
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="p-6 text-center bg-warm-brown text-white">
+                    <h3 className="font-bold text-lg mb-2 luxury-font">{product.name}</h3>
+                    <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
+                  </div>
                 </div>
-                <div className="p-6 text-center bg-warm-brown text-white">
-                  <h3 className="font-bold text-lg mb-2 luxury-font">{product.name}</h3>
-                  <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
-                </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
