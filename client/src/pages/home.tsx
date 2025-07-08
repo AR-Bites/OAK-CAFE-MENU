@@ -83,11 +83,11 @@ export default function Home() {
         </div>
         
         {/* Central Logo */}
-        <div className="central-logo w-32 h-32 rounded-full flex items-center justify-center z-20">
+        <div className="central-logo w-40 h-40 rounded-full flex items-center justify-center z-20">
           <img 
             src={logoImage} 
             alt="The Oak Cafe" 
-            className="w-24 h-24 object-contain"
+            className="w-32 h-32 object-contain"
           />
         </div>
         
