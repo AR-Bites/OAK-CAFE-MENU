@@ -40,9 +40,6 @@ export default function Beverages() {
               <Home className="w-5 h-5" />
             </button>
           </Link>
-          <button className="w-10 h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-            <Share className="w-5 h-5" />
-          </button>
           <button className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md">
             <Globe className="w-4 h-4" />
             <span className="text-sm font-medium">EN</span>
@@ -53,20 +50,24 @@ export default function Beverages() {
           <img src={logoImage} alt="HyaQqabaz" className="h-10 w-auto object-contain" />
         </div>
         
-        <div className="flex items-center gap-4">
-          <button 
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
-          >
-            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            <span className="text-base font-medium">Menu</span>
+        <div className="w-20"></div>
+      </div>
+
+      {/* Secondary Navigation */}
+      <div className="bg-gray-200 px-6 pb-4 flex items-center justify-between">
+        <button 
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
+        >
+          {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          <span className="text-base font-medium">Menu</span>
+        </button>
+        
+        <Link href="/">
+          <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
+            <ArrowLeft className="w-6 h-6" />
           </button>
-          <Link href="/">
-            <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-              <ArrowLeft className="w-6 h-6" />
-            </button>
-          </Link>
-        </div>
+        </Link>
       </div>
 
       {/* Main Content */}
