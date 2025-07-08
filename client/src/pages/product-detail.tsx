@@ -149,7 +149,7 @@ export default function ProductDetail() {
           <span className="text-base font-medium">Menu</span>
         </button>
         
-        <Link href={product.type === 'food' ? '/food' : '/beverages'}>
+        <Link href={product.type === 'food' ? '/food' : product.type === 'shisha' ? '/shisha' : '/beverages'}>
           <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
             <ArrowLeft className="w-6 h-6" />
           </button>

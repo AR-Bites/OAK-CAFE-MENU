@@ -24,6 +24,8 @@ export default function Home() {
       setLocation('/beverages');
     } else if (category === 'food') {
       setLocation('/food');
+    } else if (category === 'shisha') {
+      setLocation('/shisha');
     } else {
       // Future: Implement other category pages
       console.log('Category selected:', category);
