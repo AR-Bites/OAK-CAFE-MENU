@@ -4,30 +4,54 @@ import { Link } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const beverageCategories = [
-  { id: 'signatures', label: 'SIGNATURES', icon: Zap },
-  { id: 'non-alcoholic', label: 'NON ALCOHOLIC', icon: Droplets },
+  { id: 'hot-drinks', label: 'HOT DRINKS', icon: Coffee },
+  { id: 'cold-coffee', label: 'COLD COFFEE', icon: IceCream },
+  { id: 'fresh-juice', label: 'FRESH JUICE', icon: Citrus },
   { id: 'soft-drinks', label: 'SOFT DRINKS', icon: Droplets },
-  { id: 'special-coffees', label: 'SPECIAL COFFEES', icon: Coffee },
-  { id: 'ice-chocolate', label: 'ICE CHOCOLATE & COFFEES', icon: IceCream },
-  { id: 'classic-coffee', label: 'CLASSIC COFFEE', icon: Coffee },
-  { id: 'teas', label: 'TEAS', icon: Leaf },
-  { id: 'frozen', label: 'FROZEN', icon: Snowflake },
-  { id: 'lemonades', label: 'LEMONADES', icon: Citrus },
+  { id: 'frappe', label: 'FRAPPE', icon: Snowflake },
+  { id: 'milkshake', label: 'MILK SHAKE', icon: IceCream },
+  { id: 'smoothies', label: 'SMOOTHIES', icon: Leaf },
+  { id: 'mojito', label: 'MOJITO', icon: Zap },
+  { id: 'iced-tea', label: 'ICED TEA', icon: Leaf },
 ];
 
-const signatureProducts = [
-  { id: 1, name: 'Slap', price: '7.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 2, name: 'Rocket', price: '16.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 3, name: 'Jaws', price: '7.00 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 4, name: 'Madame Q', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 5, name: 'Maqaw', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 6, name: 'Nocturne', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 7, name: 'Stiletto', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-  { id: 8, name: 'X', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300' },
-];
+const beverageProducts = {
+  'hot-drinks': [
+    { id: 1, name: 'Red Eye', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 2, name: 'V60 / CHEMEX', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 3, name: 'Flat White', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 4, name: 'Espresso Macchiato', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 5, name: 'Marshmallow Chocolate', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 6, name: 'Double Espresso', price: '2.75 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 7, name: 'Cappuccino', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 8, name: 'Cortado', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 9, name: 'Latte', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 10, name: 'Americano', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 11, name: 'Turkish Coffee Single', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+    { id: 12, name: 'Turkish Coffee Double', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
+  ],
+  'cold-coffee': [
+    { id: 13, name: 'Iced Caramel Macchiato', price: '3.95 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
+    { id: 14, name: 'Iced Dark Mocha', price: '3.85 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
+    { id: 15, name: 'Cold Brew', price: '5.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
+    { id: 16, name: 'Iced Americano', price: '3.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
+  ],
+  'fresh-juice': [
+    { id: 17, name: 'The Oak Seasonal Fresh Juice', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
+    { id: 18, name: 'Mango Mint', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
+    { id: 19, name: 'Pomegranate', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
+    { id: 20, name: 'Orange Juice', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
+  ],
+  'soft-drinks': [
+    { id: 21, name: 'Coca Cola', price: '2.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
+    { id: 22, name: 'Sprite', price: '2.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
+    { id: 23, name: 'Red Bull', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
+    { id: 24, name: 'Perrier', price: '3.60 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
+  ]
+};
 
 export default function Beverages() {
-  const [selectedCategory, setSelectedCategory] = useState('signatures');
+  const [selectedCategory, setSelectedCategory] = useState('hot-drinks');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -76,7 +100,7 @@ export default function Beverages() {
         <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
           <div className="p-6 border-b border-opacity-20 border-white">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold luxury-font">SIGNATURES</h2>
+              <h2 className="text-xl font-bold luxury-font">DRINKS MENU</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
                 <X className="w-6 h-6" />
               </button>
@@ -125,11 +149,11 @@ export default function Beverages() {
           </div>
 
           {/* Page Title */}
-          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">SIGNATURES</h1>
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{beverageCategories.find(cat => cat.id === selectedCategory)?.label || 'HOT DRINKS'}</h1>
 
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
-            {signatureProducts.map((product) => (
+            {(beverageProducts[selectedCategory as keyof typeof beverageProducts] || beverageProducts['hot-drinks']).map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
                 <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                   <div className="aspect-square bg-black relative">

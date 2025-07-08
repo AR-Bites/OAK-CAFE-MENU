@@ -1,93 +1,85 @@
 import { useState } from "react";
-import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Utensils, Salad, Sandwich, Apple, PizzaIcon as Pizza } from "lucide-react";
+import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Utensils, Salad, Sandwich, Apple, PizzaIcon as Pizza, Star, Droplets, IceCream, Leaf } from "lucide-react";
 import { Link } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const foodCategories = [
   { id: 'breakfast', label: 'BREAKFAST', icon: Coffee },
-  { id: 'turkish-breakfast', label: 'TURKISH BREAKFAST', icon: Utensils },
-  { id: 'signature-breakfast', label: 'SIGNATURE BREAKFAST', icon: Coffee },
-  { id: 'designing-breakfast', label: 'DESIGNING YOUR BREAKFAST', icon: Utensils },
+  { id: 'pizza', label: 'PIZZA', icon: Pizza },
+  { id: 'sandwiches', label: 'SANDWICHES', icon: Sandwich },
+  { id: 'italian', label: 'ITALIAN', icon: Star },
+  { id: 'main-course', label: 'MAIN COURSE', icon: Utensils },
   { id: 'appetizers', label: 'APPETIZERS', icon: Apple },
   { id: 'salads', label: 'SALADS', icon: Salad },
-  { id: 'q-diet', label: 'Q DIET', icon: Apple },
-  { id: 'burgers', label: 'BURGERS', icon: Sandwich },
-  { id: 'q-sense', label: 'Q SENSE', icon: Pizza },
+  { id: 'soup', label: 'SOUP', icon: Droplets },
+  { id: 'desserts', label: 'DESSERTS', icon: IceCream },
 ];
 
-const turkishBreakfastProducts = [
-  { 
-    id: 1, 
-    name: 'Pan Breakfast', 
-    price: '11.00 JD', 
-    image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 2, 
-    name: 'Spread Breakfast', 
-    price: '25.00 JD', 
-    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 3, 
-    name: 'Fried Egg', 
-    price: '4.00 JD', 
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 4, 
-    name: 'Fried Egg With Tomato', 
-    price: '6.00 JD', 
-    image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 5, 
-    name: 'Fried Egg With Sujuk', 
-    price: '6.00 JD', 
-    image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 6, 
-    name: 'Fried Sujuk', 
-    price: '5.50 JD', 
-    image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 7, 
-    name: 'Menemen', 
-    price: '6.50 JD', 
-    image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 8, 
-    name: 'Mixed Breakfast', 
-    price: '12.00 JD', 
-    image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-  { 
-    id: 9, 
-    name: 'Turkish Pancake', 
-    price: '8.00 JD', 
-    image: 'https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300',
-    category: 'turkish-breakfast'
-  },
-];
+const foodProducts = {
+  'breakfast': [
+    { id: 1, name: 'Eggs of Your Choice', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 2, name: 'Manageesh Labaneh and Rocca', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 3, name: 'Hallomi Croissant', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 4, name: 'Turkey Omelette Croissant', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 5, name: 'Zaatar and Pomegranate', price: '2.50 JD', image: 'https://images.unsplash.com/photo-1628692188846-b0d366ade8b4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+    { id: 6, name: 'Tuna Sandwich', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
+  ],
+  'pizza': [
+    { id: 7, name: 'Mix Formaggio', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 8, name: 'Pizza Chicken Alfredo', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 9, name: 'Calzone Pizza', price: '7.00 JD', image: 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 10, name: 'Pizza Margherita', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 11, name: 'Pepperoni', price: '7.00 JD', image: 'https://images.unsplash.com/photo-1628840042765-356cda07504e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+    { id: 12, name: 'Chicken BBQ Pizza', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'pizza' },
+  ],
+  'main-course': [
+    { id: 13, name: 'The Oak Steak', price: '13.75 JD', image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'main-course' },
+    { id: 14, name: 'Salmon Grill', price: '14.75 JD', image: 'https://images.unsplash.com/photo-1467003909585-2f8a72700288?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'main-course' },
+    { id: 15, name: 'Beef Steak', price: '12.00 JD', image: 'https://images.unsplash.com/photo-1558030006-450675393462?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'main-course' },
+    { id: 16, name: 'Chicken Mushroom', price: '11.50 JD', image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'main-course' },
+  ],
+  'appetizers': [
+    { id: 17, name: 'Mix Platter', price: '18.00 JD', image: 'https://images.unsplash.com/photo-1541833590746-8b9858c50b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
+    { id: 18, name: 'Mexican Nachos', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
+    { id: 19, name: 'Dynamite Shrimp', price: '8.50 JD', image: 'https://images.unsplash.com/photo-1565299585323-38174c9d1bb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
+    { id: 20, name: 'Chicken Dynamite', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
+  ],
+  'desserts': [
+    { id: 21, name: 'San Sebastian Cake', price: '4.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
+    { id: 22, name: 'Tiramisu Cake', price: '4.10 JD', image: 'https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
+    { id: 23, name: 'Cheesecake', price: '4.25 JD', image: 'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
+    { id: 24, name: 'Kenafa Naama', price: '3.80 JD', image: 'https://images.unsplash.com/photo-1536071994059-2bda637b9200?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
+  ],
+  'sandwiches': [
+    { id: 25, name: 'OAK Beef Burger', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 26, name: 'The Oak Sandwich', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 27, name: 'Shawarma Meat', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 28, name: 'Crispy Chicken Burger', price: '6.50 JD', image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+  ],
+  'italian': [
+    { id: 29, name: 'Seafood Pasta', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1621996346565-e3dbc353d2e5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'italian' },
+    { id: 30, name: 'Spaghetti Bolognese', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1551183053-bf91a1d81141?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'italian' },
+    { id: 31, name: 'Fettuccine Alfredo', price: '7.00 JD', image: 'https://images.unsplash.com/photo-1570197788417-0e82375c9371?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'italian' },
+    { id: 32, name: 'Lasagna', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'italian' },
+  ],
+  'salads': [
+    { id: 33, name: 'Chef Salad', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 34, name: 'Greek Salad', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1544726135-e4b4a4b0a2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 35, name: 'Caesar Salad', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 36, name: 'Smoked Salmon Salad', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+  ],
+  'soup': [
+    { id: 37, name: 'Mushroom Soup', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
+    { id: 38, name: 'Seafood Soup', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1519707456040-8be4aa1d7b80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
+    { id: 39, name: 'Corn Soup', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
+  ]
+};
 
 export default function Food() {
-  const [selectedCategory, setSelectedCategory] = useState('turkish-breakfast');
+  const [selectedCategory, setSelectedCategory] = useState('breakfast');
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const filteredProducts = turkishBreakfastProducts.filter(product => 
-    product.category === selectedCategory
-  );
+  const currentProducts = foodProducts[selectedCategory as keyof typeof foodProducts] || foodProducts['breakfast'];
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
@@ -181,11 +173,11 @@ export default function Food() {
         {/* Main Content */}
         <div className="flex-1 px-8 py-8">
           {/* Page Title */}
-          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">TURKISH BREAKFAST</h1>
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{foodCategories.find(cat => cat.id === selectedCategory)?.label || 'BREAKFAST'}</h1>
 
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
-            {filteredProducts.map((product) => (
+            {currentProducts.map((product) => (
               <Link key={product.id} href={`/food-product/${product.id}`}>
                 <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                   <div className="aspect-square bg-black relative">
