@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { ArrowLeft, Home, Share, Globe, Menu, X } from "lucide-react";
+import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Droplets, Snowflake, Zap, IceCream, Leaf, Lemon } from "lucide-react";
 import { Link } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const beverageCategories = [
-  { id: 'signatures', label: 'SIGNATURES', icon: '🏆' },
-  { id: 'non-alcoholic', label: 'NON ALCOHOLIC', icon: '🥤' },
-  { id: 'soft-drinks', label: 'SOFT DRINKS', icon: '🥛' },
-  { id: 'special-coffees', label: 'SPECIAL COFFEES', icon: '☕' },
-  { id: 'ice-chocolate', label: 'ICE CHOCOLATE & COFFEES', icon: '🧊' },
-  { id: 'classic-coffee', label: 'CLASSIC COFFEE', icon: '☕' },
-  { id: 'teas', label: 'TEAS', icon: '🫖' },
-  { id: 'frozen', label: 'FROZEN', icon: '🧊' },
-  { id: 'lemonades', label: 'LEMONADES', icon: '🍋' },
+  { id: 'signatures', label: 'SIGNATURES', icon: Zap },
+  { id: 'non-alcoholic', label: 'NON ALCOHOLIC', icon: Droplets },
+  { id: 'soft-drinks', label: 'SOFT DRINKS', icon: Droplets },
+  { id: 'special-coffees', label: 'SPECIAL COFFEES', icon: Coffee },
+  { id: 'ice-chocolate', label: 'ICE CHOCOLATE & COFFEES', icon: IceCream },
+  { id: 'classic-coffee', label: 'CLASSIC COFFEE', icon: Coffee },
+  { id: 'teas', label: 'TEAS', icon: Leaf },
+  { id: 'frozen', label: 'FROZEN', icon: Snowflake },
+  { id: 'lemonades', label: 'LEMONADES', icon: Lemon },
 ];
 
 const signatureProducts = [
@@ -31,65 +31,71 @@ export default function Beverages() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-100 relative">
+    <div className="min-h-screen bg-gray-200 relative">
       {/* Top Navigation */}
-      <div className="bg-white shadow-sm border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      <div className="bg-white shadow-sm px-4 py-3 flex items-center justify-between">
+        <div className="flex items-center gap-3">
           <Link href="/">
             <button className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
               <Home className="w-4 h-4" />
             </button>
           </Link>
-
+          <button className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
+            <ArrowLeft className="w-4 h-4" />
+          </button>
           <button className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
             <Globe className="w-4 h-4" />
             <span className="ml-1 text-xs">EN</span>
           </button>
         </div>
         
-        <div className="flex items-center">
-          <img src={logoImage} alt="The Oak Cafe" className="h-12 w-auto object-contain" />
+        <div className="flex items-center bg-white px-4 py-1 rounded-full shadow-sm">
+          <img src={logoImage} alt="HyaQqabaz" className="h-8 w-auto object-contain" />
         </div>
         
         <button 
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors"
+          className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors"
         >
-          <Menu className="w-4 h-4" />
+          {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          <span className="text-sm font-medium">Menu</span>
         </button>
       </div>
 
       {/* Main Content */}
       <div className="flex">
         {/* Sidebar */}
-        <div className={`fixed left-0 top-0 h-full w-64 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <div className="p-4 border-b border-opacity-20 border-white">
+        <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+          <div className="p-6 border-b border-opacity-20 border-white">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold">SIGNATURES</h2>
+              <h2 className="text-xl font-bold luxury-font">SIGNATURES</h2>
               <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
-                <X className="w-5 h-5" />
+                <X className="w-6 h-6" />
               </button>
             </div>
           </div>
           
-          <nav className="p-4">
-            {beverageCategories.map((category) => (
-              <button
-                key={category.id}
-                onClick={() => {
-                  setSelectedCategory(category.id);
-                  setSidebarOpen(false);
-                }}
-                className={`w-full text-left px-4 py-3 rounded-lg mb-2 flex items-center gap-3 transition-colors ${
-                  selectedCategory === category.id 
-                    ? 'bg-white bg-opacity-20' 
-                    : 'hover:bg-white hover:bg-opacity-10'
-                }`}
-              >
-                <span className="text-lg">{category.icon}</span>
-                <span className="text-sm font-medium">{category.label}</span>
-              </button>
-            ))}
+          <nav className="p-6">
+            {beverageCategories.map((category) => {
+              const IconComponent = category.icon;
+              return (
+                <button
+                  key={category.id}
+                  onClick={() => {
+                    setSelectedCategory(category.id);
+                    setSidebarOpen(false);
+                  }}
+                  className={`w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors ${
+                    selectedCategory === category.id 
+                      ? 'bg-white bg-opacity-20' 
+                      : 'hover:bg-white hover:bg-opacity-10'
+                  }`}
+                >
+                  <IconComponent className="w-5 h-5" />
+                  <span className="text-sm font-medium">{category.label}</span>
+                </button>
+              );
+            })}
           </nav>
         </div>
 
@@ -102,21 +108,21 @@ export default function Beverages() {
         )}
 
         {/* Content Area */}
-        <div className="flex-1 p-6">
+        <div className="flex-1 p-8">
           {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-6">
+          <div className="flex items-center gap-2 text-sm text-gray-600 mb-6 bg-white px-4 py-2 rounded-lg shadow-sm w-fit">
             <Home className="w-4 h-4" />
             <span>/</span>
             <span className="text-gray-800 font-medium">SIGNATURES</span>
           </div>
 
           {/* Page Title */}
-          <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">SIGNATURES</h1>
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">SIGNATURES</h1>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
             {signatureProducts.map((product) => (
-              <div key={product.id} className="product-card bg-white rounded-lg shadow-md overflow-hidden">
+              <div key={product.id} className="product-card bg-white rounded-xl shadow-lg overflow-hidden">
                 <div className="aspect-square bg-black relative">
                   <img 
                     src={product.image} 
@@ -124,9 +130,9 @@ export default function Beverages() {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="p-4 text-center bg-warm-brown text-white">
-                  <h3 className="font-semibold text-lg mb-1">{product.name}</h3>
-                  <p className="text-yellow-300 font-bold">{product.price}</p>
+                <div className="p-6 text-center bg-warm-brown text-white">
+                  <h3 className="font-bold text-lg mb-2 luxury-font">{product.name}</h3>
+                  <p className="text-yellow-300 font-bold text-lg">{product.price}</p>
                 </div>
               </div>
             ))}
