@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Droplets, Snowflake, Zap, IceCream, Leaf, Citrus } from "lucide-react";
-import { Link, useLocation } from "wouter";
+import { Link, useLocation, useRoute } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 const beverageCategories = [
@@ -53,7 +53,7 @@ const beverageProducts = {
 export default function Beverages() {
   const [selectedCategory, setSelectedCategory] = useState('hot-drinks');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
@@ -62,6 +62,12 @@ export default function Beverages() {
       setSelectedCategory(categoryParam);
     }
   }, [location]);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    setLocation(`/beverages?category=${categoryId}`);
+    setSidebarOpen(false);
+  };
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
@@ -122,10 +128,7 @@ export default function Beverages() {
               return (
                 <button
                   key={category.id}
-                  onClick={() => {
-                    setSelectedCategory(category.id);
-                    setSidebarOpen(false);
-                  }}
+                  onClick={() => handleCategoryChange(category.id)}
                   className={`w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors ${
                     selectedCategory === category.id 
                       ? 'bg-white bg-opacity-20' 

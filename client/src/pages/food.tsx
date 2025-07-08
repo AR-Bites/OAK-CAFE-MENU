@@ -78,7 +78,7 @@ const foodProducts = {
 export default function Food() {
   const [selectedCategory, setSelectedCategory] = useState('breakfast');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
@@ -87,6 +87,12 @@ export default function Food() {
       setSelectedCategory(categoryParam);
     }
   }, [location]);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    setLocation(`/food?category=${categoryId}`);
+    setSidebarOpen(false);
+  };
 
   const currentProducts = foodProducts[selectedCategory as keyof typeof foodProducts] || foodProducts['breakfast'];
 
@@ -152,10 +158,7 @@ export default function Food() {
                 return (
                   <button
                     key={category.id}
-                    onClick={() => {
-                      setSelectedCategory(category.id);
-                      setSidebarOpen(false);
-                    }}
+                    onClick={() => handleCategoryChange(category.id)}
                     className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                       selectedCategory === category.id
                         ? 'bg-yellow-600 text-white'

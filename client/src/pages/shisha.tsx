@@ -30,7 +30,7 @@ const shishaProducts = [
 export default function Shisha() {
   const [selectedCategory, setSelectedCategory] = useState('regular');
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.split('?')[1] || '');
@@ -39,6 +39,12 @@ export default function Shisha() {
       setSelectedCategory(categoryParam);
     }
   }, [location]);
+
+  const handleCategoryChange = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    setLocation(`/shisha?category=${categoryId}`);
+    setSidebarOpen(false);
+  };
 
   const filteredProducts = shishaProducts.filter(product => {
     return product.category === selectedCategory;
@@ -103,10 +109,7 @@ export default function Shisha() {
               return (
                 <button
                   key={category.id}
-                  onClick={() => {
-                    setSelectedCategory(category.id);
-                    setSidebarOpen(false);
-                  }}
+                  onClick={() => handleCategoryChange(category.id)}
                   className={`w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors ${
                     selectedCategory === category.id 
                       ? 'bg-white bg-opacity-20' 
