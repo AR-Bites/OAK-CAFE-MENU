@@ -34,14 +34,23 @@ export default function Home() {
         {/* Left Hexagon Container */}
         <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
           <div className="hexagon-container">
-            <div 
-              className="hexagon-shape"
-              style={{ 
-                backgroundImage: `url('https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            >
+            <div className="hexagon-shape">
+              <video 
+                className="hexagon-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+              >
+                <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4" />
+                {/* Fallback image if video fails */}
+                <img 
+                  src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+                  alt="Dessert"
+                  className="hexagon-video"
+                />
+              </video>
               <div className="hexagon-overlay"></div>
             </div>
           </div>
@@ -50,14 +59,23 @@ export default function Home() {
         {/* Right Hexagon Container */}
         <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10">
           <div className="hexagon-container">
-            <div 
-              className="hexagon-shape"
-              style={{ 
-                backgroundImage: `url('https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600')`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center'
-              }}
-            >
+            <div className="hexagon-shape">
+              <video 
+                className="hexagon-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="auto"
+              >
+                <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4" type="video/mp4" />
+                {/* Fallback image if video fails */}
+                <img 
+                  src="https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600"
+                  alt="Sweets"
+                  className="hexagon-video"
+                />
+              </video>
               <div className="hexagon-overlay"></div>
             </div>
           </div>
