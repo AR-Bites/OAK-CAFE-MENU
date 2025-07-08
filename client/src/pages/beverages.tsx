@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Droplets, Snowflake, Zap, IceCream, Leaf, Lemon } from "lucide-react";
+import { ArrowLeft, Home, Share, Globe, Menu, X, Coffee, Droplets, Snowflake, Zap, IceCream, Leaf, Citrus } from "lucide-react";
 import { Link } from "wouter";
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
@@ -12,7 +12,7 @@ const beverageCategories = [
   { id: 'classic-coffee', label: 'CLASSIC COFFEE', icon: Coffee },
   { id: 'teas', label: 'TEAS', icon: Leaf },
   { id: 'frozen', label: 'FROZEN', icon: Snowflake },
-  { id: 'lemonades', label: 'LEMONADES', icon: Lemon },
+  { id: 'lemonades', label: 'LEMONADES', icon: Citrus },
 ];
 
 const signatureProducts = [
