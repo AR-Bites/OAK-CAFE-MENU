@@ -195,7 +195,9 @@ export default function Beverages() {
           <div className="flex items-center gap-2 text-sm text-gray-600 mb-6 bg-white px-4 py-2 rounded-lg shadow-sm w-fit">
             <Home className="w-4 h-4" />
             <span>/</span>
-            <span className="text-gray-800 font-medium">SIGNATURES</span>
+            <span className="text-gray-800 font-bold text-lg">
+              {selectedCategory ? t(`category-${selectedCategory}`) : t('beverages-menu')}
+            </span>
           </div>
 
           {/* Page Title */}
