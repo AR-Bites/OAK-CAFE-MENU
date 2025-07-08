@@ -188,16 +188,9 @@ export default function Beverages() {
           {/* Page Title */}
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{beverageCategories.find(cat => cat.id === selectedCategory)?.label || 'HOT DRINKS'}</h1>
 
-          {/* Debug info - remove later */}
-          {!beverageProducts[selectedCategory as keyof typeof beverageProducts] && (
-            <div className="text-center mb-4 p-4 bg-red-100 text-red-800">
-              Debug: No products found for category '{selectedCategory}'. Available categories: {Object.keys(beverageProducts).join(', ')}
-            </div>
-          )}
-
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
-            {(beverageProducts[selectedCategory as keyof typeof beverageProducts] || []).map((product) => (
+            {(beverageProducts[selectedCategory as keyof typeof beverageProducts] || beverageProducts['hot-drinks']).map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
                 <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
                   <div className="aspect-square bg-black relative">
