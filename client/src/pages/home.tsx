@@ -46,7 +46,7 @@ export default function Home() {
       </div>
       
       {/* Main Container */}
-      <div className="relative w-full h-screen flex items-center justify-center">
+      <div className="relative w-full h-screen flex items-center justify-center -mt-20">
         
         {/* Left Hexagon Container */}
         <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
