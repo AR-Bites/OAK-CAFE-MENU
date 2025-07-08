@@ -248,48 +248,42 @@ export default function ProductDetail() {
           </div>
           
           <p className="text-lg text-gray-700 leading-relaxed">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
-          
-          <button className="w-full bg-warm-brown text-white py-4 rounded-lg font-bold text-lg hover:bg-opacity-90 transition-colors luxury-font">
-            {t('add-to-cart')}
-          </button>
         </div>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
-          <div className="mt-12 max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8 luxury-font">{t('related-products')}</h2>
+          <div className="mt-8 px-4">
+            <h2 className="text-xl font-bold text-center text-gray-800 mb-6 luxury-font">{t('related-products')}</h2>
             
-            {/* Related Products Horizontal Scroll */}
+            {/* Related Products Compact Horizontal Scroll */}
             <div className="relative">
-              <div className="flex gap-4 overflow-x-auto pb-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {relatedProducts.map((relatedProduct) => (
                   <Link key={relatedProduct.id} href={`/product/${relatedProduct.id}`}>
-                    <div className="flex-shrink-0 w-64 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
-                      <div className="aspect-square bg-black relative">
+                    <div className="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105">
+                      <div className="aspect-[4/3] bg-black relative">
                         <img 
                           src={relatedProduct.image} 
                           alt={relatedProduct.name}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="p-4 text-center bg-warm-brown text-white">
-                        <h3 className="font-bold text-base mb-2 luxury-font truncate">
+                      <div className="p-3 text-center bg-warm-brown text-white">
+                        <h3 className="font-bold text-sm mb-1 luxury-font truncate">
                           {t(relatedProduct.nameKey) || relatedProduct.name}
                         </h3>
-                        <p className="text-yellow-300 font-bold text-lg">{relatedProduct.price}</p>
+                        <p className="text-yellow-300 font-bold text-sm">{relatedProduct.price}</p>
                       </div>
                     </div>
                   </Link>
                 ))}
               </div>
               
-              {/* Navigation dots */}
-              <div className="flex justify-center mt-4 gap-2">
-                <div className="w-3 h-3 bg-gray-800 rounded-full"></div>
-                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
-                <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+              {/* Navigation dots - smaller */}
+              <div className="flex justify-center mt-3 gap-1">
+                <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
               </div>
             </div>
           </div>
