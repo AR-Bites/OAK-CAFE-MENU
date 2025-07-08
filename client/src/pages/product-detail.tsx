@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap, Flame, Crown, Star } from "lucide-react";
 import { Link, useParams } from "wouter";
+import { useLanguage } from '@/contexts/LanguageContext';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 
 // All products with unique IDs
@@ -68,6 +69,7 @@ export default function ProductDetail() {
   const productId = parseInt(params.id || '1');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t, language, setLanguage } = useLanguage();
 
   const product = allProducts.find(p => p.id === productId) || allProducts[0];
   const relatedProducts = allProducts.filter(p => p.id !== product.id && p.category === product.category).slice(0, 3);
@@ -92,9 +94,12 @@ export default function ProductDetail() {
               <Home className="w-5 h-5" />
             </button>
           </Link>
-          <button className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md">
+          <button 
+            onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
+            className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md"
+          >
             <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">EN</span>
+            <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
           </button>
         </div>
         
@@ -112,7 +117,7 @@ export default function ProductDetail() {
           className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          <span className="text-base font-medium">Menu</span>
+          <span className="text-base font-medium">{t('menu')}</span>
         </button>
         
         <Link href={product.type === 'food' ? '/food' : product.type === 'shisha' ? '/shisha' : '/beverages'}>
@@ -129,7 +134,7 @@ export default function ProductDetail() {
           <span>/</span>
           <span>{product.category.toUpperCase().replace('-', ' ')}</span>
           <span>/</span>
-          <span className="text-gray-800 font-medium">{product.name}</span>
+          <span className="text-gray-800 font-medium">{t(product.nameKey) || product.name}</span>
         </div>
       </div>
 
@@ -178,7 +183,7 @@ export default function ProductDetail() {
             <div className="h-px bg-gray-400 w-16"></div>
           </div>
           
-          <h1 className="text-4xl font-bold luxury-font text-gray-800 mb-4">{product.name}</h1>
+          <h1 className="text-4xl font-bold luxury-font text-gray-800 mb-4">{t(product.nameKey) || product.name}</h1>
           <p className="text-2xl font-bold text-gray-800 mb-6">{product.price}</p>
           
           {/* Decorative Line */}
@@ -188,7 +193,7 @@ export default function ProductDetail() {
             <div className="h-px bg-gray-400 w-16"></div>
           </div>
           
-          <p className="text-lg text-gray-700 leading-relaxed">{product.description}</p>
+          <p className="text-lg text-gray-700 leading-relaxed">{t(product.descriptionKey) || product.description}</p>
         </div>
 
         {/* Related Products */}

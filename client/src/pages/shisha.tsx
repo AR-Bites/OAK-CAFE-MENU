@@ -60,16 +60,7 @@ export default function Shisha() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
-      {/* Language Toggle */}
-      <div className="absolute top-4 right-4 z-50">
-        <button 
-          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-          className="bg-black/20 text-white border border-white/30 hover:bg-white/10 transition-all duration-300 px-3 py-1 rounded text-sm"
-        >
-          <Globe className="w-4 h-4 inline mr-1" />
-          {language === 'en' ? 'AR' : 'EN'}
-        </button>
-      </div>
+
       
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
@@ -99,7 +90,7 @@ export default function Shisha() {
           className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          <span className="text-base font-medium">Menu</span>
+          <span className="text-base font-medium">{t('menu')}</span>
         </button>
         
         <Link href="/">

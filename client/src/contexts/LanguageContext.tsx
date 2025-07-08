@@ -187,13 +187,13 @@ const translations = {
     'welcome': 'مرحباً بكم في مقهى أوك',
     'premium-experience': 'تجربة شرق أوسطية مميزة',
     
-    // Product Names - Beverages
-    'red-eye': 'ريد آي',
-    'v60': 'في ستين',
-    'chemex': 'كيمكس',
-    'flat-white': 'فلات وايت',
+    // Product Names - Beverages (Cultural Adaptations)
+    'red-eye': 'قهوة ريد آي',
+    'v60': 'قهوة مختصة في ٦٠',
+    'chemex': 'قهوة كيمكس',
+    'flat-white': 'قهوة فلات وايت',
     'espresso-macchiato': 'إسبريسو ماكياتو',
-    'marshmallow-hot-chocolate': 'شوكولاتة ساخنة بالمارشميلو',
+    'marshmallow-hot-chocolate': 'شوكولاتة ساخنة بالمارشملو',
     'iced-coffee': 'قهوة مثلجة',
     'cold-brew': 'قهوة باردة',
     'affogato': 'أفوجاتو',
