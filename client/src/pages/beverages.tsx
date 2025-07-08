@@ -40,9 +40,7 @@ export default function Beverages() {
               <Home className="w-4 h-4" />
             </button>
           </Link>
-          <button className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
-            <Share className="w-4 h-4" />
-          </button>
+
           <button className="w-8 h-8 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors">
             <Globe className="w-4 h-4" />
             <span className="ml-1 text-xs">EN</span>
@@ -50,7 +48,7 @@ export default function Beverages() {
         </div>
         
         <div className="flex items-center">
-          <img src={logoImage} alt="HyaQqabaz" className="h-8" />
+          <img src={logoImage} alt="The Oak Cafe" className="h-12 w-auto object-contain" />
         </div>
         
         <button 
