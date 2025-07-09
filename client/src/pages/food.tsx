@@ -63,9 +63,9 @@ export default function Food() {
   const currentProducts = foodProducts[selectedCategory] || [];
 
   return (
-    <div className="min-h-screen bg-gray-200 relative overflow-auto">
+    <div className="min-h-screen bg-black text-white relative overflow-auto">
       {/* Top Navigation */}
-      <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
+      <div className="bg-black px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/">
             <button className="w-10 h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
@@ -83,7 +83,7 @@ export default function Food() {
       </div>
 
       {/* Secondary Navigation */}
-      <div className="bg-gray-200 px-6 pb-4 flex items-center justify-between">
+      <div className="bg-black px-6 pb-4 flex items-center justify-between">
         <button 
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
@@ -93,7 +93,7 @@ export default function Food() {
         </button>
         
         <div className="flex items-center gap-4">
-          <h1 className="text-xl font-bold text-warm-brown" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+          <h1 className="text-3xl font-bold text-white" dir={language === 'ar' ? 'rtl' : 'ltr'}>
             {t('food-menu')}
           </h1>
           
@@ -185,8 +185,8 @@ export default function Food() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {currentProducts.map((product) => (
             <Link key={product.id} href={`/product/${product.id}`}>
-              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group hover:scale-105">
-                <div className="aspect-square bg-gray-100 overflow-hidden relative">
+              <div className="bg-gray-900 border border-gray-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group hover:scale-105">
+                <div className="aspect-square bg-gray-800 overflow-hidden relative">
                   <img 
                     src={product.image} 
                     alt={product.name}
@@ -196,20 +196,20 @@ export default function Food() {
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 group-hover:text-warm-brown transition-colors" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                  <h3 className="font-bold text-white text-lg mb-3 line-clamp-2 group-hover:text-golden transition-colors" dir={language === 'ar' ? 'rtl' : 'ltr'}>
                     {product.nameKey ? t(product.nameKey) : product.name}
                   </h3>
                   
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                  <p className="text-gray-300 text-sm mb-4 line-clamp-2" dir={language === 'ar' ? 'rtl' : 'ltr'}>
                     {product.descriptionKey ? t(product.descriptionKey) : product.description}
                   </p>
                   
                   <div className="flex items-center justify-between">
-                    <div className="text-warm-brown font-bold text-xl">
+                    <div className="text-golden font-bold text-xl">
                       {product.price}
                     </div>
                     
-                    <div className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
+                    <div className="bg-gray-800 text-gray-300 px-3 py-1 rounded-full text-xs font-medium">
                       {t(product.category)}
                     </div>
                   </div>
