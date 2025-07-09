@@ -33,11 +33,11 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     scene.background = new THREE.Color(0xf5f5f5);
     sceneRef.current = scene;
 
-    // Setup camera with better perspective
+    // Setup camera with better perspective - closer and more zoomed in
     const width = inline ? canvasRef.current.clientWidth : 600;
     const height = inline ? canvasRef.current.clientHeight : 500;
-    const camera = new THREE.PerspectiveCamera(50, width/height, 0.1, 1000);
-    camera.position.set(4, 3, 6);
+    const camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1000);
+    camera.position.set(2, 4, 3); // Closer position with better top-down angle
     cameraRef.current = camera;
 
     // Setup renderer with premium settings
@@ -93,16 +93,17 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.3);
     scene.add(hemiLight);
 
-    // Setup orbit controls for better user interaction
+    // Setup orbit controls for better user interaction - closer zoom and better rotation
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
     controls.screenSpacePanning = false;
-    controls.minDistance = 2;
-    controls.maxDistance = 15;
-    controls.maxPolarAngle = Math.PI / 1.8;
+    controls.minDistance = 1.5; // Allow closer zoom
+    controls.maxDistance = 8;   // Reduce max distance for tighter view
+    controls.minPolarAngle = 0; // Allow full rotation from top
+    controls.maxPolarAngle = Math.PI; // Allow rotation to bottom too
     controls.autoRotate = autoRotate;
-    controls.autoRotateSpeed = 2.0;
+    controls.autoRotateSpeed = 1.5;
     controlsRef.current = controls;
 
     // Helper function to enhance materials
@@ -149,15 +150,19 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
           }
         });
         
-        // Center and scale model optimally
+        // Center and scale model optimally - bigger and more zoomed in
         const box = new THREE.Box3().setFromObject(model);
         const center = box.getCenter(new THREE.Vector3());
         const size = box.getSize(new THREE.Vector3());
         
         model.position.sub(center);
         const maxDim = Math.max(size.x, size.y, size.z);
-        const scale = 3.5 / maxDim; // Larger scale for better visibility
+        const scale = 4.5 / maxDim; // Much larger scale for better visibility
         model.scale.setScalar(scale);
+        
+        // Rotate model slightly for better initial view from above
+        model.rotation.x = -0.2; // Slight tilt to show depth
+        model.rotation.y = 0.3;  // Rotate to show interesting angle
         
         // Position slightly above ground for better presentation
         model.position.y += 0.5;
