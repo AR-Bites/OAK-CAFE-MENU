@@ -96,6 +96,9 @@ const translations = {
     'manakish-nabulsi-cheese': 'Manakish Nabulsi Cheese',
     'manakish-zaatar-vegetables': 'Manakish Zaatar Vegetables',
     'marshmallow-chocolate': 'Marshmallow Chocolate',
+    'turkey-croissant': 'Turkey Croissant',
+    'manakish-mix-cheese': 'Manakish Mix Cheese',
+    'manakish-molasses-tahini': 'Manakish Molasses Tahini',
     
     // Product Descriptions
     'red-eye-desc': 'Strong coffee with espresso shot',
@@ -116,6 +119,9 @@ const translations = {
     'manakish-nabulsi-cheese-desc': 'Authentic Nabulsi cheese manakish',
     'manakish-zaatar-vegetables-desc': 'Zaatar manakish with fresh vegetables',
     'marshmallow-chocolate-desc': 'Rich hot chocolate with marshmallows',
+    'turkey-croissant-desc': 'Delicious turkey croissant with special filling',
+    'manakish-mix-cheese-desc': 'Delicious mixed cheese manakish',
+    'manakish-molasses-tahini-desc': 'Traditional molasses and tahini manakish',
     'oak-seasonal-juice-desc': 'Our signature seasonal blend of the finest available fruits',
   },
   ar: {
@@ -195,6 +201,9 @@ const translations = {
     'manakish-nabulsi-cheese': 'مناقيش جبن نابلسي',
     'manakish-zaatar-vegetables': 'مناقيش زعتر وخضار',
     'marshmallow-chocolate': 'شوكولاتة مارشمالو',
+    'turkey-croissant': 'كرواسان تركي',
+    'manakish-mix-cheese': 'مناقيش جبن مشكل',
+    'manakish-molasses-tahini': 'مناقيش دبس وطحينة',
     
     // Product Descriptions
     'red-eye-desc': 'قهوة قوية مع جرعة إسبريسو',
@@ -215,6 +224,9 @@ const translations = {
     'manakish-nabulsi-cheese-desc': 'مناقيش جبن نابلسي أصيل',
     'manakish-zaatar-vegetables-desc': 'مناقيش زعتر مع الخضار الطازجة',
     'marshmallow-chocolate-desc': 'شوكولاتة ساخنة غنية مع المارشمالو',
+    'turkey-croissant-desc': 'كرواسان تركي لذيذ بالحشوة المميزة',
+    'manakish-mix-cheese-desc': 'مناقيش جبن مشكل لذيذة',
+    'manakish-molasses-tahini-desc': 'مناقيش دبس وطحينة تقليدية',
     'oak-seasonal-juice-desc': 'مزيجنا الموسمي المميز من أطيب الفواكه المتوفرة',
   }
 };
