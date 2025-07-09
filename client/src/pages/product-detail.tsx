@@ -134,7 +134,10 @@ export default function ProductDetail() {
   const productImages = [product.image]; // In real app, would have multiple images
   
   // Get 3D model path
-  const modelPath = getModelPath(product.nameKey || product.name.toLowerCase().replace(/\s+/g, '-'));
+  const modelKey = product.nameKey || product.name.toLowerCase().replace(/\s+/g, '-');
+  console.log('Product:', product.name, 'ModelKey:', modelKey);
+  const modelPath = getModelPath(modelKey);
+  console.log('ModelPath:', modelPath);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
