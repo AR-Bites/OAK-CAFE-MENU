@@ -174,7 +174,7 @@ export default function Food() {
 
       <div className="flex">
         {/* Sidebar */}
-        <div className={`fixed left-0 top-0 h-full bg-warm-brown text-white z-50 transition-transform duration-300 ${
+        <div className={`fixed left-0 top-0 h-full bg-warm-brown text-white z-[9999] transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } w-64`}>
           <div className="p-6 pt-20">
@@ -204,7 +204,7 @@ export default function Food() {
         {/* Overlay */}
         {sidebarOpen && (
           <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-40"
+            className="fixed inset-0 bg-black bg-opacity-50 z-[9998]"
             onClick={() => setSidebarOpen(false)}
           />
         )}

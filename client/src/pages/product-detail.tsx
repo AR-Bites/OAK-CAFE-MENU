@@ -432,7 +432,7 @@ export default function ProductDetail() {
       )}
       
       {/* Sidebar */}
-      <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-[9999] ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="p-6 border-b border-opacity-20 border-white">
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold luxury-font">
