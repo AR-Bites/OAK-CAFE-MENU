@@ -457,10 +457,7 @@ const translations = {
     'chicken-sandwich': 'ساندويش دجاج',
     'chicken-sandwich-desc': 'ساندويش دجاج مشوي مع خضار طازجة وصلصة خاصة',
     'eggs-of-your-choice-desc': 'بيض طازج محضر كما تشاء تماماً',
-    'halloumi-croissant': 'كرواسان حلومي',
-    'halloumi-croissant-desc': 'كرواسان بالزبدة محشو بجبنة الحلومي المشوية',
-    'tuna-sandwich': 'ساندويش تونة',
-    'tuna-sandwich-desc': 'ساندويش سلطة تونة طازجة مع خضار مقرمشة',
+
     'oak-sandwich': 'ساندويش أوك',
     'oak-sandwich-desc': 'ساندويشنا المميز بمكونات فاخرة',
     'shawarma-meat': 'شاورما لحمة',
@@ -474,10 +471,7 @@ const translations = {
     'pizza-margherita-desc': 'بيتزا إيطالية كلاسيكية بالموزاريلا الطازجة والطماطم والريحان',
     'chicken-bbq-pizza': 'بيتزا دجاج باربكيو',
     'chicken-bbq-pizza-desc': 'بيتزا دجاج بالباربكيو مع قطع الدجاج الطرية وصلصة الباربكيو',
-    'turkish-coffee-single': 'قهوة تركية مفردة',
-    'turkish-coffee-single-desc': 'قهوة تركية تقليدية محضرة في إبريق نحاسي أصيل',
-    'double-espresso': 'إسبريسو مضاعف',
-    'double-espresso-desc': 'جرعة مضاعفة من الإسبريسو الغني لتجربة القهوة المثلى',
+
     'grilled-cheese': 'جبن مشوي',
     'grilled-cheese-desc': 'ساندويش جبن مشوي ذهبي مع جبن مذاب وخبز مقرمش',
     'seafood-pasta': 'باستا مأكولات بحرية',
@@ -527,7 +521,6 @@ const translations = {
     'category-premium': 'بريميوم',
     'category-regular': 'عادي',
     'category-special': 'خاص',
-    'food-menu': 'قائمة الطعام',
     'beverages-menu': 'قائمة المشروبات',
     
     // Missing Food Items in Arabic
@@ -568,18 +561,8 @@ const translations = {
     'ice-cream-strawberry': 'آيس كريم فراولة',
     'ice-cream-strawberry-desc': 'آيس كريم فراولة طازج مع قطع الفاكهة الحقيقية',
     'category-appetizers': 'المقبلات',
-    'appetizers': 'المقبلات',
-    'main-course': 'الأطباق الرئيسية',
-    'seafood-pasta': 'باستا بحرية',
-    'seafood-pasta-desc': 'باستا طازجة مع المأكولات البحرية المشكلة بصلصة الطماطم',
-    'spaghetti-bolognese': 'سباغيتي بولونيز',
-    'spaghetti-bolognese-desc': 'باستا إيطالية كلاسيكية مع صلصة اللحم الغنية',
-    'lasagna': 'لازانيا',
-    'lasagna-desc': 'باستا طبقات تقليدية مع صلصة اللحم والجبن',
-    'related-products': 'المنتجات ذات الصلة',
-    'drinks-menu': 'قائمة المشروبات',
-    'food-menu': 'قائمة الطعام',
-    'shisha-menu': 'قائمة الشيشة',
+
+
     'regular-shisha': 'شيشة عادية',
     'premium-shisha': 'شيشة مميزة',
     'special-shisha': 'شيشة خاصة',
@@ -750,6 +733,7 @@ const translations = {
     'lemon-mint-juice-desc': 'عصير ليمون طازج مع النعناع',
     'mac-and-cheese-desc': 'معكرونة بالجبن الكريمي',
     'manakish-falafel-desc': 'مناقيش فلافل تقليدية',
+    'marshmallow-chocolate-desc': 'شوكولاتة ساخنة غنية مع المارشمالو',
     'manakish-mix-cheese-desc': 'مناقيش جبن مشكل لذيذة',
     'manakish-molasses-tahini-desc': 'مناقيش دبس وطحينة تقليدية',
     'manakish-nabulsi-cheese-desc': 'مناقيش جبن نابلسي أصيل',
@@ -759,7 +743,6 @@ const translations = {
     'orange-juice-desc': 'عصير برتقال طازج معصور',
     'pomegranate-juice-desc': 'عصير رمان طازج مليء بمضادات الأكسدة',
     'turkey-croissant-desc': 'كرواسان تركي لذيذ بالحشوة المميزة',
-    'marshmallow-chocolate-desc': 'شوكولاتة ساخنة غنية مع المارشمالو',
     'oak-seasonal-juice-desc': 'مزيجنا الموسمي المميز من أطيب الفواكه المتوفرة',
     
     // Product Names - Food (Arabic - unique keys)
