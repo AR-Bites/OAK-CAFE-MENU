@@ -4,6 +4,7 @@ import { Link, useLocation, useRoute } from "wouter";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
+import { allProducts } from '../data/fullMenu';
 
 const getBeverageCategories = (t: (key: string) => string) => [
   { id: 'hot-drinks', label: t('hot-drinks'), icon: Coffee },
@@ -17,65 +18,22 @@ const getBeverageCategories = (t: (key: string) => string) => [
   { id: 'iced-tea', label: t('iced-tea'), icon: Leaf },
 ];
 
-const beverageProducts = {
-  'hot-drinks': [
-    { id: 101, name: 'Red Eye', nameKey: 'red-eye', descriptionKey: 'red-eye-desc', description: 'Strong coffee with espresso shot', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 102, name: 'V60 / CHEMEX', nameKey: 'v60', descriptionKey: 'v60-desc', description: 'Pour-over specialty coffee', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 103, name: 'Flat White', nameKey: 'flat-white', descriptionKey: 'flat-white-desc', description: 'Smooth espresso with steamed milk and minimal foam', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 104, name: 'Espresso Macchiato', nameKey: 'espresso-macchiato', descriptionKey: 'espresso-macchiato-desc', description: 'Espresso with steamed milk foam', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 105, name: 'Marshmallow Hot Chocolate', nameKey: 'marshmallow-hot-chocolate', descriptionKey: 'marshmallow-hot-chocolate-desc', description: 'Rich hot chocolate with marshmallows', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 106, name: 'Turkish Coffee Single', nameKey: 'turkish-coffee-single', descriptionKey: 'turkish-coffee-single-desc', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 111, name: 'Double Espresso', nameKey: 'double-espresso', descriptionKey: 'double-espresso-desc', price: '2.75 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 112, name: 'Cappuccino', nameKey: 'cappuccino', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 113, name: 'Cortado', nameKey: 'cortado', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 114, name: 'Latte', nameKey: 'latte', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 115, name: 'Americano', nameKey: 'americano', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-    { id: 116, name: 'Turkish Coffee Double', nameKey: 'turkish-coffee-double', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'hot-drinks' },
-  ],
-  'cold-coffee': [
-    { id: 107, name: 'Iced Caramel Macchiato', nameKey: 'iced-caramel-macchiato', price: '3.95 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
-    { id: 108, name: 'Cold Brew', nameKey: 'cold-brew', price: '5.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
-    { id: 117, name: 'Iced Dark Mocha', nameKey: 'iced-dark-mocha', price: '3.85 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
-    { id: 118, name: 'Iced Americano', nameKey: 'iced-americano', price: '3.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'cold-coffee' },
-  ],
-  'fresh-juice': [
-    { id: 109, name: 'The Oak Seasonal Fresh Juice', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice', nameKey: 'oak-seasonal-juice', descriptionKey: 'oak-seasonal-juice-desc' },
-    { id: 110, name: 'Pomegranate', nameKey: 'pomegranate', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
-    { id: 119, name: 'Mango Mint', nameKey: 'mango-mint', price: '4.90 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
-    { id: 120, name: 'Orange Juice', nameKey: 'orange-juice', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'fresh-juice' },
-  ],
-  'soft-drinks': [
-    { id: 21, name: 'Coca Cola', nameKey: 'coca-cola', price: '2.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
-    { id: 22, name: 'Sprite', nameKey: 'sprite', price: '2.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
-    { id: 23, name: 'Red Bull', nameKey: 'red-bull', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
-    { id: 24, name: 'Perrier', price: '3.60 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'soft-drinks' },
-  ],
-  'frappe': [
-    { id: 121, name: 'Vanilla Frappe', price: '4.25 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'frappe' },
-    { id: 122, name: 'Chocolate Frappe', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'frappe' },
-    { id: 123, name: 'Caramel Frappe', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'frappe' },
-  ],
-  'milkshake': [
-    { id: 124, name: 'Strawberry Milkshake', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'milkshake' },
-    { id: 125, name: 'Chocolate Milkshake', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'milkshake' },
-    { id: 126, name: 'Vanilla Milkshake', price: '4.00 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'milkshake' },
-  ],
-  'smoothies': [
-    { id: 127, name: 'Berry Smoothie', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'smoothies' },
-    { id: 128, name: 'Tropical Smoothie', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'smoothies' },
-    { id: 129, name: 'Green Smoothie', price: '5.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'smoothies' },
-  ],
-  'mojito': [
-    { id: 130, name: 'Classic Mojito', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'mojito' },
-    { id: 131, name: 'Berry Mojito', price: '5.75 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'mojito' },
-    { id: 132, name: 'Passion Fruit Mojito', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'mojito' },
-  ],
-  'iced-tea': [
-    { id: 133, name: 'Classic Iced Tea', price: '3.00 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'iced-tea' },
-    { id: 134, name: 'Lemon Iced Tea', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'iced-tea' },
-    { id: 135, name: 'Peach Iced Tea', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'beverage', category: 'iced-tea' },
-  ]
+// Group beverage products by category
+const getBeverageProductsByCategory = () => {
+  const beverageItems = allProducts.filter(product => product.type === 'beverage');
+  const categories: { [key: string]: any[] } = {};
+  
+  beverageItems.forEach(item => {
+    if (!categories[item.category]) {
+      categories[item.category] = [];
+    }
+    categories[item.category].push(item);
+  });
+  
+  return categories;
 };
+
+const beverageProducts = getBeverageProductsByCategory();
 
 export default function Beverages() {
   const [selectedCategory, setSelectedCategory] = useState('hot-drinks');
@@ -86,7 +44,6 @@ export default function Beverages() {
   const beverageCategories = getBeverageCategories(t);
 
   useEffect(() => {
-    // Use window location search for URL parameters
     const searchParams = window.location.search;
     const urlParams = new URLSearchParams(searchParams);
     const categoryParam = urlParams.get('category');
@@ -102,10 +59,10 @@ export default function Beverages() {
     setSidebarOpen(false);
   };
 
+  const currentProducts = beverageProducts[selectedCategory] || [];
+
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
-
-      
       {/* Top Navigation */}
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
@@ -114,20 +71,14 @@ export default function Beverages() {
               <Home className="w-5 h-5" />
             </button>
           </Link>
-
+          <LanguageToggle />
         </div>
         
         <div className="bg-white px-3 py-1 rounded-full shadow-lg">
-          <img src={logoImage} alt="HyaQqabaz" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
+          <img src={logoImage} alt="The Oak Cafe" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
         </div>
         
-        <button 
-          onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-          className="text-gold-primary hover:text-gold-secondary transition-colors duration-300 flex items-center gap-2"
-        >
-          <Globe className="w-4 h-4" />
-          <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
-        </button>
+        <div className="w-20"></div>
       </div>
 
       {/* Secondary Navigation */}
@@ -136,94 +87,143 @@ export default function Beverages() {
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
         >
-          {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          <span className="text-base font-medium">{t('menu')}</span>
+          <Menu className="w-5 h-5" />
+          <span className="text-sm font-medium">{t('menu')}</span>
         </button>
         
-        <Link href="/">
-          <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-            <ArrowLeft className="w-6 h-6" />
+        <div className="flex items-center gap-4">
+          <h1 className="text-xl font-bold text-warm-brown" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+            {t('beverages-menu')}
+          </h1>
+          
+          <button className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md">
+            <Share className="w-5 h-5" />
+            <span className="text-sm font-medium">{t('share')}</span>
           </button>
-        </Link>
+        </div>
       </div>
 
-      {/* Main Content */}
-      <div className="flex">
-        {/* Sidebar */}
-        <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-          <div className="p-6 border-b border-opacity-20 border-white">
-            <div className="flex items-center justify-between">
-              <h2 className="text-xl font-bold luxury-font">{t('drinks-menu')}</h2>
-              <button onClick={() => setSidebarOpen(false)} className="text-white hover:text-gray-300">
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
-          
-          <nav className="p-6">
-            {beverageCategories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <button
-                  key={category.id}
-                  onClick={() => handleCategoryChange(category.id)}
-                  className={`w-full text-left px-4 py-4 rounded-lg mb-3 flex items-center gap-4 transition-colors ${
-                    selectedCategory === category.id 
-                      ? 'bg-white bg-opacity-20' 
-                      : 'hover:bg-white hover:bg-opacity-10'
-                  }`}
+      {/* Sidebar */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          <div className="bg-warm-brown w-80 h-full shadow-xl flex flex-col">
+            <div className="p-6 border-b border-white/20">
+              <div className="flex items-center justify-between text-white">
+                <h2 className="text-xl font-bold">{t('categories')}</h2>
+                <button 
+                  onClick={() => setSidebarOpen(false)}
+                  className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
-                  <IconComponent className="w-5 h-5" />
-                  <span className="text-sm font-medium">{t(category.id)}</span>
+                  <X className="w-5 h-5" />
                 </button>
-              );
-            })}
-          </nav>
-        </div>
-
-        {/* Overlay */}
-        {sidebarOpen && (
-          <div 
-            className="fixed inset-0 bg-black bg-opacity-50 z-10"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-
-        {/* Content Area */}
-        <div className="flex-1 p-8">
-          {/* Breadcrumb */}
-          <div className="flex items-center gap-2 text-sm text-gray-600 mb-6 bg-white px-4 py-2 rounded-lg shadow-sm w-fit">
-            <Home className="w-4 h-4" />
-            <span>/</span>
-            <span className="text-gray-800 font-bold text-lg">
-              {selectedCategory ? t(`category-${selectedCategory}`) : t('beverages-menu')}
-            </span>
-          </div>
-
-          {/* Page Title */}
-          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{beverageCategories.find(cat => cat.id === selectedCategory)?.label || 'HOT DRINKS'}</h1>
-
-          {/* Product Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
-            {(beverageProducts[selectedCategory as keyof typeof beverageProducts] || beverageProducts['hot-drinks']).map((product) => (
-              <Link key={product.id} href={`/product/${product.id}`}>
-                <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
-                  <div className="aspect-square bg-black relative">
-                    <img 
-                      src={product.image} 
-                      alt={product.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="p-3 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{t(product.nameKey) || product.name}</h3>
-                    <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
+              </div>
+            </div>
+            
+            <div className="flex-1 p-6 space-y-3 overflow-y-auto">
+              <Link href="/beverages" className="block">
+                <div className="bg-white/20 p-4 rounded-lg border-2 border-white/30">
+                  <div className="flex items-center gap-3 text-white">
+                    <Coffee className="w-6 h-6" />
+                    <span className="font-medium">{t('beverages')}</span>
                   </div>
                 </div>
               </Link>
-            ))}
+              
+              <Link href="/food" className="block">
+                <div className="bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-colors">
+                  <div className="flex items-center gap-3 text-white">
+                    <Leaf className="w-6 h-6" />
+                    <span className="font-medium">{t('food')}</span>
+                  </div>
+                </div>
+              </Link>
+              
+              <Link href="/shisha" className="block">
+                <div className="bg-white/10 p-4 rounded-lg hover:bg-white/20 transition-colors">
+                  <div className="flex items-center gap-3 text-white">
+                    <Droplets className="w-6 h-6" />
+                    <span className="font-medium">{t('shisha')}</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
           </div>
+          
+          <div 
+            className="flex-1 bg-black/20"
+            onClick={() => setSidebarOpen(false)}
+          />
         </div>
+      )}
+
+      {/* Category Navigation */}
+      <div className="px-6 py-4">
+        <div className="flex gap-3 overflow-x-auto pb-2">
+          {beverageCategories.map((category) => {
+            const Icon = category.icon;
+            return (
+              <button
+                key={category.id}
+                onClick={() => handleCategoryChange(category.id)}
+                className={`flex-shrink-0 flex items-center gap-3 px-6 py-3 rounded-full transition-all duration-300 ${
+                  selectedCategory === category.id
+                    ? 'bg-warm-brown text-white shadow-lg scale-105'
+                    : 'bg-white text-gray-700 hover:bg-gray-50 hover:scale-102 shadow-md'
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+                <span className="font-medium text-sm">{category.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Products Grid */}
+      <div className="px-6 pb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {currentProducts.map((product) => (
+            <Link key={product.id} href={`/product/${product.id}`}>
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group hover:scale-105">
+                <div className="aspect-square bg-gray-100 overflow-hidden relative">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-900 text-lg mb-3 line-clamp-2 group-hover:text-warm-brown transition-colors" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                    {product.nameKey ? t(product.nameKey) : product.name}
+                  </h3>
+                  
+                  <p className="text-gray-600 text-sm mb-4 line-clamp-2" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+                    {product.descriptionKey ? t(product.descriptionKey) : product.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="text-warm-brown font-bold text-xl">
+                      {product.price}
+                    </div>
+                    
+                    <div className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs font-medium">
+                      {t(product.category)}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+        
+        {currentProducts.length === 0 && (
+          <div className="text-center py-12">
+            <div className="text-gray-400 text-lg mb-2">{t('no-products-found')}</div>
+            <div className="text-gray-500 text-sm">{t('try-different-category')}</div>
+          </div>
+        )}
       </div>
     </div>
   );
