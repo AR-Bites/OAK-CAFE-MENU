@@ -65,7 +65,7 @@ const foodProducts = {
     { id: 302, name: 'Strawberry Ice Cream', nameKey: 'ice-cream-strawberry', descriptionKey: 'ice-cream-strawberry-desc', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1488900128323-21503983a07e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
   ],
   'sandwiches': [
-    { id: 225, name: 'OAK Beef Burger', nameKey: 'oak-beef-burger', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
+    { id: 225, name: 'OAK Beef Burger', nameKey: 'oak-beef-burger', descriptionKey: 'oak-beef-burger-desc', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
     { id: 226, name: 'The Oak Sandwich', nameKey: 'oak-sandwich', descriptionKey: 'oak-sandwich-desc', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
     { id: 227, name: 'Shawarma Meat', nameKey: 'shawarma-meat', descriptionKey: 'shawarma-meat-desc', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1529006557810-274b9b2fc783?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
     { id: 228, name: 'Crispy Chicken Burger', nameKey: 'crispy-chicken-burger', descriptionKey: 'crispy-chicken-burger-desc', price: '6.50 JD', image: 'https://images.unsplash.com/photo-1553979459-d2229ba7433a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'sandwiches' },
@@ -77,15 +77,15 @@ const foodProducts = {
     { id: 32, name: 'Lasagna', nameKey: 'lasagna', descriptionKey: 'lasagna-desc', price: '9.00 JD', image: 'https://images.unsplash.com/photo-1574894709920-11b28e7367e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'italian' },
   ],
   'salads': [
-    { id: 33, name: 'Chef Salad', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
-    { id: 34, name: 'Greek Salad', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1544726135-e4b4a4b0a2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
-    { id: 35, name: 'Caesar Salad', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
-    { id: 36, name: 'Smoked Salmon Salad', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 33, name: 'Chef Salad', nameKey: 'chef-salad', descriptionKey: 'chef-salad-desc', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 34, name: 'Greek Salad', nameKey: 'greek-salad', descriptionKey: 'greek-salad-desc', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1544726135-e4b4a4b0a2b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 35, name: 'Caesar Salad', nameKey: 'caesar-salad', descriptionKey: 'caesar-salad-desc', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
+    { id: 36, name: 'Smoked Salmon Salad', nameKey: 'smoked-salmon-salad', descriptionKey: 'smoked-salmon-salad-desc', price: '7.50 JD', image: 'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'salads' },
   ],
   'soup': [
-    { id: 37, name: 'Mushroom Soup', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
-    { id: 38, name: 'Seafood Soup', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1519707456040-8be4aa1d7b80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
-    { id: 39, name: 'Corn Soup', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
+    { id: 37, name: 'Mushroom Soup', nameKey: 'mushroom-soup', descriptionKey: 'mushroom-soup-desc', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
+    { id: 38, name: 'Seafood Soup', nameKey: 'seafood-soup', descriptionKey: 'seafood-soup-desc', price: '4.75 JD', image: 'https://images.unsplash.com/photo-1519707456040-8be4aa1d7b80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
+    { id: 39, name: 'Corn Soup', nameKey: 'corn-soup', descriptionKey: 'corn-soup-desc', price: '3.75 JD', image: 'https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'soup' },
   ]
 };
 
