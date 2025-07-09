@@ -28,9 +28,8 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
 
     // Setup Three.js scene
     const scene = new THREE.Scene();
-    // Premium warm lighting environment
-    scene.background = new THREE.Color(0x2a2a2a);
-    scene.fog = new THREE.Fog(0x2a2a2a, 10, 50);
+    // Elegant neutral background
+    scene.background = new THREE.Color(0xf5f5f5);
     sceneRef.current = scene;
 
     // Setup camera with better perspective
@@ -112,9 +111,13 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
         
         // Enhance food colors to look more appetizing
         if (material.color) {
-          material.color.multiplyScalar(1.3); // Boost saturation
+          material.color.multiplyScalar(1.4); // Boost saturation significantly
           material.color.convertSRGBToLinear();
         }
+        
+        // Make materials more vibrant
+        material.emissive = new THREE.Color(0x111111);
+        material.emissiveIntensity = 0.05;
       }
     }
 
@@ -194,20 +197,20 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
   }, [isOpen, modelPath, autoRotate]);
 
   const handleZoomIn = () => {
-    if (controlsRef.current) {
-      const newZoom = Math.min(zoom * 1.2, 3);
-      setZoom(newZoom);
-      controlsRef.current.dollyIn(1.2);
-      controlsRef.current.update();
+    if (cameraRef.current) {
+      const direction = new THREE.Vector3();
+      cameraRef.current.getWorldDirection(direction);
+      cameraRef.current.position.addScaledVector(direction, 0.5);
+      setZoom(Math.min(zoom * 1.2, 3));
     }
   };
 
   const handleZoomOut = () => {
-    if (controlsRef.current) {
-      const newZoom = Math.max(zoom / 1.2, 0.5);
-      setZoom(newZoom);
-      controlsRef.current.dollyOut(1.2);
-      controlsRef.current.update();
+    if (cameraRef.current) {
+      const direction = new THREE.Vector3();
+      cameraRef.current.getWorldDirection(direction);
+      cameraRef.current.position.addScaledVector(direction, -0.5);
+      setZoom(Math.max(zoom / 1.2, 0.5));
     }
   };
 
@@ -223,92 +226,105 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
-      <div className="relative bg-gradient-to-br from-gray-900 to-black rounded-2xl overflow-hidden shadow-2xl border border-gray-700">
-        {/* Header */}
-        <div className="bg-gradient-to-r from-warm-brown to-amber-600 px-6 py-4 flex items-center justify-between">
-          <div>
-            <h2 className="text-xl font-bold text-white">{productName}</h2>
-            <p className="text-amber-100 text-sm">Interactive 3D Model</p>
+    <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
+      <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-200 max-w-5xl w-full">
+        {/* Elegant Header */}
+        <div className="bg-gradient-to-r from-amber-600 via-orange-500 to-red-500 px-8 py-6">
+          <div className="flex items-center justify-between">
+            <div className="text-white">
+              <h1 className="text-2xl font-bold luxury-font tracking-wide">{productName}</h1>
+              <p className="text-amber-100 text-base font-medium">Interactive 3D Experience</p>
+            </div>
+            <button
+              onClick={onClose}
+              className="text-white hover:text-amber-200 transition-all duration-200 p-3 rounded-full hover:bg-white hover:bg-opacity-20 hover:scale-110"
+            >
+              <X className="w-6 h-6" />
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="text-white hover:text-amber-200 transition-colors p-2 rounded-full hover:bg-black hover:bg-opacity-20"
-          >
-            <X className="w-6 h-6" />
-          </button>
         </div>
 
-        {/* 3D Viewer */}
-        <div className="relative">
+        {/* Premium 3D Viewer */}
+        <div className="relative bg-gradient-to-br from-gray-50 to-gray-100">
           <canvas 
             ref={canvasRef} 
-            className="w-[800px] h-[600px] block"
-            style={{ background: 'linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)' }}
+            className="w-full h-[600px] block"
+            style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%)' }}
           />
           
           {/* Loading Overlay */}
           {loading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 backdrop-blur-sm">
               <div className="text-center">
-                <div className="w-16 h-16 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-white font-medium">Loading 3D Model...</p>
-                <p className="text-gray-300 text-sm">Please wait while we prepare your dish</p>
+                <div className="w-20 h-20 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+                <h3 className="text-gray-800 font-bold text-lg mb-2">Loading Your Dish</h3>
+                <p className="text-gray-600 text-sm">Preparing the perfect 3D experience...</p>
               </div>
             </div>
           )}
 
-          {/* Controls Overlay */}
-          <div className="absolute top-4 left-4 flex flex-col gap-2">
+          {/* Sleek Controls */}
+          <div className="absolute top-6 left-6 flex flex-col gap-3">
             <button
               onClick={() => setAutoRotate(!autoRotate)}
-              className={`p-3 rounded-full transition-all shadow-lg ${
+              className={`p-4 rounded-2xl transition-all duration-200 shadow-lg backdrop-blur-sm ${
                 autoRotate 
-                  ? 'bg-amber-500 text-white hover:bg-amber-600' 
-                  : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                  ? 'bg-amber-500 text-white hover:bg-amber-600 hover:scale-105' 
+                  : 'bg-white bg-opacity-90 text-gray-700 hover:bg-opacity-100 hover:scale-105'
               }`}
-              title={autoRotate ? 'Stop Rotation' : 'Start Rotation'}
+              title={autoRotate ? 'Stop Auto-Rotation' : 'Start Auto-Rotation'}
             >
-              {autoRotate ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
+              {autoRotate ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
             </button>
             <button
               onClick={handleZoomIn}
-              className="p-3 bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600 transition-all shadow-lg"
+              className="p-4 bg-white bg-opacity-90 text-gray-700 rounded-2xl hover:bg-opacity-100 hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm"
               title="Zoom In"
             >
-              <ZoomIn className="w-5 h-5" />
+              <ZoomIn className="w-6 h-6" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-3 bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600 transition-all shadow-lg"
+              className="p-4 bg-white bg-opacity-90 text-gray-700 rounded-2xl hover:bg-opacity-100 hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm"
               title="Zoom Out"
             >
-              <ZoomOut className="w-5 h-5" />
+              <ZoomOut className="w-6 h-6" />
             </button>
             <button
               onClick={handleReset}
-              className="p-3 bg-gray-700 text-gray-300 rounded-full hover:bg-gray-600 transition-all shadow-lg"
+              className="p-4 bg-white bg-opacity-90 text-gray-700 rounded-2xl hover:bg-opacity-100 hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm"
               title="Reset View"
             >
-              <RotateCcw className="w-5 h-5" />
+              <RotateCcw className="w-6 h-6" />
             </button>
           </div>
 
-          {/* Info Panel */}
-          <div className="absolute bottom-4 right-4 bg-black bg-opacity-70 rounded-lg p-3 text-white">
-            <p className="text-sm font-medium mb-1">🖱️ Click & drag to rotate</p>
-            <p className="text-sm opacity-75">🔍 Scroll to zoom</p>
+          {/* Elegant Instructions */}
+          <div className="absolute bottom-6 right-6 bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
+            <div className="text-gray-700 text-sm font-medium space-y-1">
+              <p className="flex items-center gap-2">
+                <span className="text-amber-500">🖱️</span>
+                <span>Drag to rotate view</span>
+              </p>
+              <p className="flex items-center gap-2">
+                <span className="text-amber-500">🔍</span>
+                <span>Scroll to zoom in/out</span>
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Footer */}
-        <div className="bg-gray-800 px-6 py-3 flex items-center justify-between">
-          <div className="text-gray-300 text-sm">
-            Premium 3D visualization powered by Three.js
-          </div>
-          <div className="flex gap-2">
-            <span className="text-xs bg-green-600 text-white px-2 py-1 rounded">HD Quality</span>
-            <span className="text-xs bg-blue-600 text-white px-2 py-1 rounded">Interactive</span>
+        {/* Premium Footer */}
+        <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-8 py-4">
+          <div className="flex items-center justify-between">
+            <div className="text-gray-300 font-medium">
+              Premium 3D Visualization Experience
+            </div>
+            <div className="flex gap-3">
+              <span className="text-xs bg-emerald-500 text-white px-3 py-1 rounded-full font-medium">Ultra HD</span>
+              <span className="text-xs bg-blue-500 text-white px-3 py-1 rounded-full font-medium">Interactive</span>
+              <span className="text-xs bg-purple-500 text-white px-3 py-1 rounded-full font-medium">Real-time</span>
+            </div>
           </div>
         </div>
       </div>
