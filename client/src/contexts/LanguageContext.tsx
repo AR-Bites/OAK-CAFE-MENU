@@ -424,7 +424,7 @@ const translations = {
     'ice-cream-chocolate-desc': 'Rich chocolate ice cream',
     'ice-cream-strawberry-desc': 'Fresh strawberry ice cream',
     'tiramisu-desc': 'Classic Italian dessert with coffee and mascarpone',
-    'oak-beef-burger-desc': 'Our signature beef burger with premium ingredients',
+
     'oak-sandwich-desc': 'The Oak special sandwich with unique combination of flavors',
     'shawarma-meat-desc': 'Traditional Middle Eastern meat shawarma',
     'crispy-chicken-burger-desc': 'Crispy fried chicken burger with fresh toppings',
@@ -871,7 +871,7 @@ const translations = {
     'ice-cream-chocolate-desc': 'آيس كريم شوكولاتة غني',
     'ice-cream-strawberry-desc': 'آيس كريم فراولة طازج',
     'tiramisu-desc': 'حلوى إيطالية كلاسيكية مع القهوة والماسكاربوني',
-    'oak-beef-burger-desc': 'برجر لحم البقر المميز مع مكونات فاخرة',
+
 
 
 

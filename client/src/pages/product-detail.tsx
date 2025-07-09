@@ -232,65 +232,65 @@ export default function ProductDetail() {
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
-      {/* Top Navigation */}
-      <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+      {/* Top Navigation - Mobile Optimized */}
+      <div className="bg-gray-200 px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+        <div className="flex items-center gap-2 sm:gap-4">
           <Link href="/">
-            <button className="w-10 h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-              <Home className="w-5 h-5" />
+            <button className="w-8 h-8 sm:w-10 sm:h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
+              <Home className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </Link>
           <button 
             onClick={() => setLanguage(language === 'en' ? 'ar' : 'en')}
-            className="bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-md"
+            className="bg-warm-brown text-white px-3 py-2 sm:px-4 sm:py-2 rounded-full flex items-center gap-1 sm:gap-2 hover:bg-opacity-80 transition-colors shadow-md"
           >
-            <Globe className="w-4 h-4" />
-            <span className="text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
+            <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="text-xs sm:text-sm font-medium">{language === 'en' ? 'AR' : 'EN'}</span>
           </button>
         </div>
         
-        <div className="bg-white px-3 py-1 rounded-full shadow-lg">
-          <img src={logoImage} alt="HyaQqabaz" className="h-16 w-auto object-contain filter brightness-100 contrast-125" />
+        <div className="bg-white px-2 py-1 sm:px-3 sm:py-1 rounded-full shadow-lg">
+          <img src={logoImage} alt="HyaQqabaz" className="h-12 sm:h-16 w-auto object-contain filter brightness-100 contrast-125" />
         </div>
         
-        <div className="w-20"></div>
+        <div className="w-16 sm:w-20"></div>
       </div>
 
-      {/* Secondary Navigation */}
-      <div className="bg-gray-200 px-6 pb-4 flex items-center justify-between">
+      {/* Secondary Navigation - Mobile Optimized */}
+      <div className="bg-gray-200 px-4 sm:px-6 pb-3 sm:pb-4 flex items-center justify-between">
         <button 
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
+          className="bg-warm-brown text-white px-4 py-2 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 sm:gap-3 hover:bg-opacity-80 transition-colors shadow-md"
         >
-          {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          <span className="text-base font-medium">{t('menu')}</span>
+          {sidebarOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
+          <span className="text-sm sm:text-base font-medium">{t('menu')}</span>
         </button>
         
         <Link href={product.type === 'food' ? `/food?category=${product.category}` : product.type === 'shisha' ? `/shisha?category=${product.category}` : `/beverages?category=${product.category}`}>
-          <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-            <ArrowLeft className="w-6 h-6" />
+          <button className="w-10 h-10 sm:w-12 sm:h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
+            <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
           </button>
         </Link>
       </div>
 
-      {/* Breadcrumb */}
-      <div className="px-8 py-4">
-        <div className="flex items-center gap-2 text-sm text-gray-600 bg-gray-300 px-4 py-2 rounded-lg w-fit">
-          <Home className="w-4 h-4" />
+      {/* Breadcrumb - Mobile Optimized */}
+      <div className="px-4 sm:px-8 py-3 sm:py-4">
+        <div className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm text-gray-600 bg-gray-300 px-3 sm:px-4 py-2 rounded-lg w-fit">
+          <Home className="w-3 h-3 sm:w-4 sm:h-4" />
           <span>/</span>
-          <span className="text-gray-800 font-bold text-lg">
+          <span className="text-gray-800 font-bold text-sm sm:text-lg truncate max-w-[120px] sm:max-w-none">
             {t(`category-${product.category}`) || product.category.toUpperCase().replace('-', ' ')}
           </span>
           <span>/</span>
-          <span className="text-gray-800 font-medium">{t(product.nameKey) || product.name}</span>
+          <span className="text-gray-800 font-medium truncate max-w-[100px] sm:max-w-none">{t(product.nameKey) || product.name}</span>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="px-8 pb-8">
+      {/* Main Content - Mobile Optimized */}
+      <div className="px-4 sm:px-8 pb-6 sm:pb-8">
         {/* Product Image/3D Viewer */}
-        <div className="relative bg-black rounded-lg overflow-hidden mb-8 max-w-4xl mx-auto">
-          <div className="aspect-video relative">
+        <div className="relative bg-black rounded-lg overflow-hidden mb-6 sm:mb-8 max-w-4xl mx-auto">
+          <div className="aspect-[4/3] sm:aspect-video relative">
             {!show3D ? (
               <>
                 <img 
@@ -359,39 +359,39 @@ export default function ProductDetail() {
           </div>
         </div>
 
-        {/* Product Info */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        {/* Product Info - Mobile Optimized */}
+        <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 px-2">
           {/* Decorative Line */}
-          <div className="flex items-center justify-center mb-4">
-            <div className="h-px bg-gray-400 w-16"></div>
-            <div className="w-0 h-0 border-l-4 border-r-4 border-b-4 border-transparent border-b-gray-600 mx-2"></div>
-            <div className="h-px bg-gray-400 w-16"></div>
+          <div className="flex items-center justify-center mb-3 sm:mb-4">
+            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
+            <div className="w-0 h-0 border-l-3 border-r-3 border-b-3 sm:border-l-4 sm:border-r-4 sm:border-b-4 border-transparent border-b-gray-600 mx-2"></div>
+            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
           </div>
           
-          <h1 className="text-4xl font-bold luxury-font text-gray-800 mb-4">{t(product.nameKey) || product.name}</h1>
-          <p className="text-2xl font-bold text-gray-800 mb-6">{product.price}</p>
+          <h1 className="text-2xl sm:text-4xl font-bold luxury-font text-gray-800 mb-3 sm:mb-4 leading-tight">{t(product.nameKey) || product.name}</h1>
+          <p className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">{product.price}</p>
           
           {/* Decorative Line */}
-          <div className="flex items-center justify-center mb-6">
-            <div className="h-px bg-gray-400 w-16"></div>
-            <div className="w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-gray-600 mx-2"></div>
-            <div className="h-px bg-gray-400 w-16"></div>
+          <div className="flex items-center justify-center mb-4 sm:mb-6">
+            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
+            <div className="w-0 h-0 border-l-3 border-r-3 border-t-3 sm:border-l-4 sm:border-r-4 sm:border-t-4 border-transparent border-t-gray-600 mx-2"></div>
+            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
           </div>
           
-          <p className="text-lg text-gray-700 leading-relaxed">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
+          <p className="text-base sm:text-lg text-gray-700 leading-relaxed px-2 sm:px-0">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
         </div>
 
-        {/* Related Products */}
+        {/* Related Products - Mobile Optimized */}
         {relatedProducts.length > 0 && (
-          <div className="mt-8 px-4">
-            <h2 className="text-xl font-bold text-center text-gray-800 mb-6 luxury-font">{t('related-products')}</h2>
+          <div className="mt-6 sm:mt-8 px-2 sm:px-4">
+            <h2 className="text-lg sm:text-xl font-bold text-center text-gray-800 mb-4 sm:mb-6 luxury-font">{t('related-products')}</h2>
             
             {/* Related Products Compact Horizontal Scroll */}
             <div className="relative">
-              <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+              <div className="flex gap-2 sm:gap-3 overflow-x-auto pb-3 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {relatedProducts.map((relatedProduct) => (
                   <Link key={relatedProduct.id} href={`/product/${relatedProduct.id}`}>
-                    <div className="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105">
+                    <div className="flex-shrink-0 w-40 sm:w-48 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105">
                       <div className="aspect-[4/3] bg-black relative">
                         <img 
                           src={relatedProduct.image} 
@@ -399,22 +399,22 @@ export default function ProductDetail() {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="p-3 text-center bg-warm-brown text-white">
-                        <h3 className="font-bold text-sm mb-1 luxury-font truncate">
+                      <div className="p-2 sm:p-3 text-center bg-warm-brown text-white">
+                        <h3 className="font-bold text-xs sm:text-sm mb-1 luxury-font truncate">
                           {t(relatedProduct.nameKey) || relatedProduct.name}
                         </h3>
-                        <p className="text-yellow-300 font-bold text-sm">{relatedProduct.price}</p>
+                        <p className="text-yellow-300 font-bold text-xs sm:text-sm">{relatedProduct.price}</p>
                       </div>
                     </div>
                   </Link>
                 ))}
               </div>
               
-              {/* Navigation dots - smaller */}
-              <div className="flex justify-center mt-3 gap-1">
-                <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+              {/* Navigation dots - smaller for mobile */}
+              <div className="flex justify-center mt-2 sm:mt-3 gap-1">
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-800 rounded-full"></div>
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full"></div>
+                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-gray-400 rounded-full"></div>
               </div>
             </div>
           </div>
