@@ -116,20 +116,20 @@ export default function Home() {
           />
         </div>
         
-        {/* Category Icons Bottom */}
-        <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-8">
+        {/* Category Icons Bottom - Much Bigger for Mobile */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 sm:gap-8">
           {categories.map((category) => {
             const IconComponent = category.icon;
             return (
               <div 
                 key={category.id}
-                className="category-icon cursor-pointer"
+                className="category-icon cursor-pointer touch-manipulation"
                 onClick={() => handleCategorySelect(category.id)}
               >
-                <div className="icon-bg w-16 h-16 rounded-full bg-warm-brown flex items-center justify-center mb-2 transition-all duration-300">
-                  <IconComponent className="text-white text-xl w-6 h-6" />
+                <div className="icon-bg w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 rounded-full bg-warm-brown flex items-center justify-center mb-3 transition-all duration-300 hover:scale-110 active:scale-95 shadow-2xl">
+                  <IconComponent className="text-white w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" />
                 </div>
-                <p className="gold-primary text-sm font-medium text-center">{category.label}</p>
+                <span className="text-white text-base sm:text-lg md:text-xl font-bold block text-center bg-black bg-opacity-30 px-4 py-2 rounded-full shadow-lg backdrop-blur-sm">{category.label}</span>
               </div>
             );
           })}

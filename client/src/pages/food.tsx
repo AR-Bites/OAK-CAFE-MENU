@@ -124,8 +124,8 @@ export default function Food() {
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/">
-            <button className="w-10 h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-              <Home className="w-5 h-5" />
+            <button className="w-12 h-12 sm:w-14 sm:h-14 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation">
+              <Home className="w-6 h-6 sm:w-7 sm:h-7" />
             </button>
           </Link>
 
@@ -148,15 +148,15 @@ export default function Food() {
       <div className="bg-gray-200 px-6 pb-4 flex items-center justify-between">
         <button 
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
+          className="bg-warm-brown text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full flex items-center gap-3 hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation"
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           <span className="text-base font-medium">{t('menu')}</span>
         </button>
         
         <Link href="/">
-          <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-            <ArrowLeft className="w-6 h-6" />
+          <button className="w-14 h-14 sm:w-16 sm:h-16 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation">
+            <ArrowLeft className="w-7 h-7 sm:w-8 sm:h-8" />
           </button>
         </Link>
       </div>
@@ -214,11 +214,11 @@ export default function Food() {
           {/* Page Title */}
           <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{foodCategories.find(cat => cat.id === selectedCategory)?.label || 'BREAKFAST'}</h1>
 
-          {/* Product Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
+          {/* Product Grid - Mobile Optimized */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 max-w-7xl mx-auto">
             {currentProducts.map((product) => (
               <Link key={product.id} href={`/product/${product.id}`}>
-                <div className="product-card bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-shadow">
+                <div className="product-card bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl active:scale-95 transition-all duration-300 touch-manipulation">
                   <div className="aspect-square bg-black relative">
                     <img 
                       src={product.image} 
@@ -226,9 +226,9 @@ export default function Food() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="p-3 text-center bg-warm-brown text-white">
-                    <h3 className="font-bold text-sm mb-1 luxury-font truncate">{t(product.nameKey) || product.name}</h3>
-                    <p className="text-yellow-300 font-bold text-sm">{product.price}</p>
+                  <div className="p-4 sm:p-6 text-center bg-warm-brown text-white">
+                    <h3 className="font-bold text-base sm:text-lg mb-2 luxury-font">{t(product.nameKey) || product.name}</h3>
+                    <p className="text-yellow-300 font-bold text-lg sm:text-xl">{product.price}</p>
                   </div>
                 </div>
               </Link>

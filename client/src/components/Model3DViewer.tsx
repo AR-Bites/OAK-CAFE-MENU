@@ -104,6 +104,13 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     controls.maxPolarAngle = Math.PI; // Allow rotation to bottom too
     controls.autoRotate = autoRotate;
     controls.autoRotateSpeed = 1.5;
+    // Improve mobile touch controls
+    controls.enablePan = true;
+    controls.enableZoom = true;
+    controls.enableRotate = true;
+    controls.rotateSpeed = 0.8; // Smoother rotation on mobile
+    controls.zoomSpeed = 1.2;   // Better zoom sensitivity
+    controls.panSpeed = 0.8;    // Smoother panning
     controlsRef.current = controls;
 
     // Helper function to enhance materials
@@ -252,21 +259,21 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
           </div>
         )}
 
-        {/* Simple Controls for inline */}
-        <div className="absolute top-4 left-4 flex gap-2">
+        {/* Mobile-Optimized Controls for inline */}
+        <div className="absolute top-2 left-2 flex gap-1 sm:gap-2">
           <button
             onClick={handleZoomIn}
-            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+            className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
             title="Zoom In"
           >
-            <ZoomIn className="w-5 h-5" />
+            <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
           <button
             onClick={handleZoomOut}
-            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+            className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
             title="Zoom Out"
           >
-            <ZoomOut className="w-5 h-5" />
+            <ZoomOut className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
         </div>
       </div>
@@ -305,21 +312,21 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
             </div>
           )}
 
-          {/* Simple Controls */}
-          <div className="absolute top-4 right-4 flex gap-2">
+          {/* Mobile-Optimized Controls */}
+          <div className="absolute top-2 right-2 flex gap-1 sm:gap-2">
             <button
               onClick={handleZoomIn}
-              className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+              className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
               title="Zoom In"
             >
-              <ZoomIn className="w-5 h-5" />
+              <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+              className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
               title="Zoom Out"
             >
-              <ZoomOut className="w-5 h-5" />
+              <ZoomOut className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>

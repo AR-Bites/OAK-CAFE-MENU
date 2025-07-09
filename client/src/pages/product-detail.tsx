@@ -236,8 +236,8 @@ export default function ProductDetail() {
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/">
-            <button className="w-10 h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-              <Home className="w-5 h-5" />
+            <button className="w-12 h-12 sm:w-14 sm:h-14 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation">
+              <Home className="w-6 h-6 sm:w-7 sm:h-7" />
             </button>
           </Link>
           <button 
@@ -260,15 +260,15 @@ export default function ProductDetail() {
       <div className="bg-gray-200 px-6 pb-4 flex items-center justify-between">
         <button 
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="bg-warm-brown text-white px-6 py-3 rounded-full flex items-center gap-3 hover:bg-opacity-80 transition-colors shadow-md"
+          className="bg-warm-brown text-white px-6 py-3 sm:px-8 sm:py-4 rounded-full flex items-center gap-3 hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation"
         >
           {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           <span className="text-base font-medium">{t('menu')}</span>
         </button>
         
         <Link href={product.type === 'food' ? `/food?category=${product.category}` : product.type === 'shisha' ? `/shisha?category=${product.category}` : `/beverages?category=${product.category}`}>
-          <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-            <ArrowLeft className="w-6 h-6" />
+          <button className="w-14 h-14 sm:w-16 sm:h-16 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation">
+            <ArrowLeft className="w-7 h-7 sm:w-8 sm:h-8" />
           </button>
         </Link>
       </div>
@@ -322,14 +322,14 @@ export default function ProductDetail() {
                   <span className="text-sm font-medium text-gray-800">{(t(product.nameKey) || product.name).toLowerCase()}</span>
                 </div>
                 
-                {/* 3D View Button */}
+                {/* 3D View Button - Mobile Optimized */}
                 {modelPath && (
                   <button 
                     onClick={() => setShow3D(true)}
-                    className="absolute top-4 right-4 bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-lg"
+                    className="absolute top-4 right-4 bg-warm-brown text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 hover:bg-opacity-80 active:scale-95 transition-all shadow-lg touch-manipulation"
                   >
-                    <Eye className="w-4 h-4" />
-                    <span className="text-sm font-medium">3D View</span>
+                    <Eye className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span className="text-sm sm:text-base font-medium">3D View</span>
                   </button>
                 )}
               </>
@@ -346,13 +346,13 @@ export default function ProductDetail() {
                   />
                 </div>
                 
-                {/* Back to Photo Button */}
+                {/* Back to Photo Button - Mobile Optimized */}
                 <button 
                   onClick={() => setShow3D(false)}
-                  className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-90 transition-colors shadow-lg"
+                  className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-3 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 hover:bg-opacity-90 active:scale-95 transition-all shadow-lg touch-manipulation"
                 >
-                  <ArrowLeft className="w-4 h-4" />
-                  <span className="text-sm font-medium">Back to Photo</span>
+                  <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <span className="text-sm sm:text-base font-medium">Back to Photo</span>
                 </button>
               </>
             )}
@@ -391,7 +391,7 @@ export default function ProductDetail() {
               <div className="flex gap-3 overflow-x-auto pb-3 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {relatedProducts.map((relatedProduct) => (
                   <Link key={relatedProduct.id} href={`/product/${relatedProduct.id}`}>
-                    <div className="flex-shrink-0 w-48 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg transition-all duration-200 hover:scale-105">
+                    <div className="flex-shrink-0 w-56 sm:w-64 bg-white rounded-lg shadow-md overflow-hidden cursor-pointer hover:shadow-lg active:scale-95 transition-all duration-200 touch-manipulation">
                       <div className="aspect-[4/3] bg-black relative">
                         <img 
                           src={relatedProduct.image} 

@@ -163,8 +163,8 @@ export default function Beverages() {
       <div className="bg-gray-200 px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <Link href="/">
-            <button className="w-10 h-10 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-              <Home className="w-5 h-5" />
+            <button className="w-12 h-12 sm:w-14 sm:h-14 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation">
+              <Home className="w-6 h-6 sm:w-7 sm:h-7" />
             </button>
           </Link>
 
@@ -194,8 +194,8 @@ export default function Beverages() {
         </button>
         
         <Link href="/">
-          <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
-            <ArrowLeft className="w-6 h-6" />
+          <button className="w-14 h-14 sm:w-16 sm:h-16 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 active:scale-95 transition-all shadow-md touch-manipulation">
+            <ArrowLeft className="w-7 h-7 sm:w-8 sm:h-8" />
           </button>
         </Link>
       </div>
