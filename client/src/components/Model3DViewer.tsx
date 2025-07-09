@@ -33,7 +33,7 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
     sceneRef.current = scene;
 
     // Setup camera with better perspective
-    const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(50, 600/500, 0.1, 1000);
     camera.position.set(4, 3, 6);
     cameraRef.current = camera;
 
@@ -44,7 +44,7 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
       alpha: true,
       powerPreference: "high-performance"
     });
-    renderer.setSize(800, 600);
+    renderer.setSize(600, 500);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -226,105 +226,53 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-95 z-50 flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-gray-200 max-w-5xl w-full">
-        {/* Elegant Header */}
-        <div className="bg-gradient-to-r from-amber-600 via-orange-500 to-red-500 px-8 py-6">
-          <div className="flex items-center justify-between">
-            <div className="text-white">
-              <h1 className="text-2xl font-bold luxury-font tracking-wide">{productName}</h1>
-              <p className="text-amber-100 text-base font-medium">Interactive 3D Experience</p>
-            </div>
-            <button
-              onClick={onClose}
-              className="text-white hover:text-amber-200 transition-all duration-200 p-3 rounded-full hover:bg-white hover:bg-opacity-20 hover:scale-110"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
+    <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center">
+      <div className="relative bg-white rounded-lg overflow-hidden shadow-2xl max-w-2xl w-full mx-4">
+        {/* Simple Header */}
+        <div className="bg-warm-brown px-6 py-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">{productName}</h2>
+          <button
+            onClick={onClose}
+            className="text-white hover:text-amber-200 transition-colors p-2 rounded-full hover:bg-black hover:bg-opacity-20"
+          >
+            <X className="w-5 h-5" />
+          </button>
         </div>
 
-        {/* Premium 3D Viewer */}
-        <div className="relative bg-gradient-to-br from-gray-50 to-gray-100">
+        {/* 3D Viewer */}
+        <div className="relative">
           <canvas 
             ref={canvasRef} 
-            className="w-full h-[600px] block"
+            className="w-full h-[500px] block"
             style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%)' }}
           />
           
           {/* Loading Overlay */}
           {loading && (
-            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 backdrop-blur-sm">
+            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90">
               <div className="text-center">
-                <div className="w-20 h-20 border-4 border-amber-500 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-                <h3 className="text-gray-800 font-bold text-lg mb-2">Loading Your Dish</h3>
-                <p className="text-gray-600 text-sm">Preparing the perfect 3D experience...</p>
+                <div className="w-12 h-12 border-4 border-warm-brown border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                <p className="text-gray-700 font-medium">Loading...</p>
               </div>
             </div>
           )}
 
-          {/* Sleek Controls */}
-          <div className="absolute top-6 left-6 flex flex-col gap-3">
-            <button
-              onClick={() => setAutoRotate(!autoRotate)}
-              className={`p-4 rounded-2xl transition-all duration-200 shadow-lg backdrop-blur-sm ${
-                autoRotate 
-                  ? 'bg-amber-500 text-white hover:bg-amber-600 hover:scale-105' 
-                  : 'bg-white bg-opacity-90 text-gray-700 hover:bg-opacity-100 hover:scale-105'
-              }`}
-              title={autoRotate ? 'Stop Auto-Rotation' : 'Start Auto-Rotation'}
-            >
-              {autoRotate ? <Pause className="w-6 h-6" /> : <Play className="w-6 h-6" />}
-            </button>
+          {/* Simple Controls */}
+          <div className="absolute top-4 right-4 flex gap-2">
             <button
               onClick={handleZoomIn}
-              className="p-4 bg-white bg-opacity-90 text-gray-700 rounded-2xl hover:bg-opacity-100 hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm"
+              className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
               title="Zoom In"
             >
-              <ZoomIn className="w-6 h-6" />
+              <ZoomIn className="w-5 h-5" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-4 bg-white bg-opacity-90 text-gray-700 rounded-2xl hover:bg-opacity-100 hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm"
+              className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
               title="Zoom Out"
             >
-              <ZoomOut className="w-6 h-6" />
+              <ZoomOut className="w-5 h-5" />
             </button>
-            <button
-              onClick={handleReset}
-              className="p-4 bg-white bg-opacity-90 text-gray-700 rounded-2xl hover:bg-opacity-100 hover:scale-105 transition-all duration-200 shadow-lg backdrop-blur-sm"
-              title="Reset View"
-            >
-              <RotateCcw className="w-6 h-6" />
-            </button>
-          </div>
-
-          {/* Elegant Instructions */}
-          <div className="absolute bottom-6 right-6 bg-white bg-opacity-90 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-lg">
-            <div className="text-gray-700 text-sm font-medium space-y-1">
-              <p className="flex items-center gap-2">
-                <span className="text-amber-500">🖱️</span>
-                <span>Drag to rotate view</span>
-              </p>
-              <p className="flex items-center gap-2">
-                <span className="text-amber-500">🔍</span>
-                <span>Scroll to zoom in/out</span>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Premium Footer */}
-        <div className="bg-gradient-to-r from-gray-800 to-gray-900 px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="text-gray-300 font-medium">
-              Premium 3D Visualization Experience
-            </div>
-            <div className="flex gap-3">
-              <span className="text-xs bg-emerald-500 text-white px-3 py-1 rounded-full font-medium">Ultra HD</span>
-              <span className="text-xs bg-blue-500 text-white px-3 py-1 rounded-full font-medium">Interactive</span>
-              <span className="text-xs bg-purple-500 text-white px-3 py-1 rounded-full font-medium">Real-time</span>
-            </div>
           </div>
         </div>
       </div>
