@@ -20,8 +20,6 @@ const getFoodCategories = (t: (key: string) => string) => [
 const foodProducts = {
   'breakfast': [
     { id: 201, name: 'Eggs of Your Choice', nameKey: 'eggs-of-your-choice', descriptionKey: 'eggs-of-your-choice-desc', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 202, name: 'Hash Brown', nameKey: 'hash-brown', descriptionKey: 'hash-brown-desc', price: '3.50 JD', image: 'https://images.unsplash.com/photo-1605098893544-fb6e9fd71b56?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
-    { id: 203, name: 'Mac and Cheese', nameKey: 'mac-and-cheese', descriptionKey: 'mac-and-cheese-desc', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1543826173-7ad31f7659f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
     { id: 204, name: 'Halloumi Croissant', nameKey: 'halloumi-croissant', descriptionKey: 'halloumi-croissant-desc', price: '5.50 JD', image: 'https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
     { id: 205, name: 'Tuna Sandwich', nameKey: 'tuna-sandwich', descriptionKey: 'tuna-sandwich-desc', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
     { id: 211, name: 'Manageesh Labaneh and Rocca', nameKey: 'manakish-labneh-rocca', descriptionKey: 'manakish-labneh-rocca-desc', price: '3.25 JD', image: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'breakfast' },
@@ -47,6 +45,7 @@ const foodProducts = {
     { id: 18, name: 'Mexican Nachos', nameKey: 'mexican-nachos', descriptionKey: 'mexican-nachos-desc', price: '8.00 JD', image: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
     { id: 19, name: 'Dynamite Shrimp', nameKey: 'dynamite-shrimp', descriptionKey: 'dynamite-shrimp-desc', price: '8.50 JD', image: 'https://images.unsplash.com/photo-1565299585323-38174c9d1bb4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
     { id: 20, name: 'Chicken Dynamite', nameKey: 'chicken-dynamite', descriptionKey: 'chicken-dynamite-desc', price: '6.00 JD', image: 'https://images.unsplash.com/photo-1608039829572-78524f79c4c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
+    { id: 202, name: 'Mac and Cheese', nameKey: 'mac-and-cheese', descriptionKey: 'mac-and-cheese-desc', price: '4.50 JD', image: 'https://images.unsplash.com/photo-1543826173-7ad31f7659f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'appetizers' },
   ],
   'desserts': [
     { id: 21, name: 'San Sebastian Cake', nameKey: 'san-sebastian-cake', descriptionKey: 'san-sebastian-cake-desc', price: '4.25 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'food', category: 'desserts' },
