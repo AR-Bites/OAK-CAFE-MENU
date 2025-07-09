@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap, Flame, Crown, Star } from "lucide-react";
+import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap, Flame, Crown, Star, Eye } from "lucide-react";
 import { Link, useParams } from "wouter";
 import { useLanguage } from '@/contexts/LanguageContext';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
+import Model3DViewer from '../components/Model3DViewer';
+import { getModelPath, isGLTFModel } from '../utils/modelMapping';
 
 // All products with unique IDs
 const allProducts = [
@@ -117,6 +119,7 @@ export default function ProductDetail() {
   const productId = parseInt(params.id || '1');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [modelViewerOpen, setModelViewerOpen] = useState(false);
   const { t, language, setLanguage } = useLanguage();
 
   const product = allProducts.find(p => p.id === productId) || allProducts[0];
@@ -127,6 +130,9 @@ export default function ProductDetail() {
     .slice(0, 6); // Limit to 6 related products
 
   const productImages = [product.image]; // In real app, would have multiple images
+  
+  // Get 3D model path
+  const modelPath = getModelPath(product.nameKey || product.name.toLowerCase().replace(/\s+/g, '-'));
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
@@ -225,6 +231,17 @@ export default function ProductDetail() {
             <div className="absolute bottom-4 right-4 bg-white px-3 py-1 rounded">
               <span className="text-sm font-medium text-gray-800">{(t(product.nameKey) || product.name).toLowerCase()}</span>
             </div>
+            
+            {/* 3D Model Button */}
+            {modelPath && (
+              <button 
+                onClick={() => setModelViewerOpen(true)}
+                className="absolute top-4 right-4 bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-lg"
+              >
+                <Eye className="w-4 h-4" />
+                <span className="text-sm font-medium">3D View</span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -289,6 +306,16 @@ export default function ProductDetail() {
           </div>
         )}
       </div>
+      
+      {/* 3D Model Viewer */}
+      {modelPath && (
+        <Model3DViewer
+          modelPath={modelPath}
+          productName={t(product.nameKey) || product.name}
+          isOpen={modelViewerOpen}
+          onClose={() => setModelViewerOpen(false)}
+        />
+      )}
       
       {/* Sidebar */}
       <div className={`fixed left-0 top-0 h-full w-72 bg-warm-brown text-white transform transition-transform duration-300 z-20 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
