@@ -126,7 +126,7 @@ const foodProducts = {
 };
 
 export default function Food() {
-  const [selectedCategory, setSelectedCategory] = useState('breakfast');
+  const [selectedCategory, setSelectedCategory] = useState('appetizers');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [location, setLocation] = useLocation();
   const { t, language, setLanguage } = useLanguage();
@@ -150,7 +150,7 @@ export default function Food() {
     setSidebarOpen(false);
   };
 
-  const currentProducts = foodProducts[selectedCategory as keyof typeof foodProducts] || foodProducts['breakfast'];
+  const currentProducts = foodProducts[selectedCategory as keyof typeof foodProducts] || foodProducts['appetizers'];
 
   return (
     <div className="min-h-screen bg-gray-200 relative overflow-auto">
@@ -248,7 +248,7 @@ export default function Food() {
         {/* Main Content */}
         <div className="flex-1 px-8 py-8">
           {/* Page Title */}
-          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{foodCategories.find(cat => cat.id === selectedCategory)?.label || 'BREAKFAST'}</h1>
+          <h1 className="text-3xl font-bold text-center text-gray-800 mb-12 luxury-font">{t(`category-${selectedCategory}`) || t('appetizers')}</h1>
 
           {/* Product Grid */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 max-w-7xl mx-auto">
