@@ -2,21 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Performance optimizations */
+/* AGGRESSIVE Performance optimizations for smooth mobile */
 * {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   will-change: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Smooth hardware-accelerated animations */
-.product-card, .category-icon, button {
+/* Force hardware acceleration on category buttons */
+.category-icon, .icon-bg {
+  -webkit-transform: translateZ(0) !important;
+  transform: translateZ(0) !important;
+  -webkit-backface-visibility: hidden !important;
+  backface-visibility: hidden !important;
+  will-change: transform !important;
+  -webkit-transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+}
+
+/* Ultra-smooth button interactions */
+.product-card, button {
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-transition: transform 0.2s ease-out;
-  transition: transform 0.2s ease-out;
+  -webkit-transition: transform 0.15s ease-out;
+  transition: transform 0.15s ease-out;
 }
 
 /* Optimize touch interactions */
@@ -25,6 +38,7 @@
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 :root {
