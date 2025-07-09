@@ -40,32 +40,58 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     camera.position.set(2, 4, 3); // Closer position with better top-down angle
     cameraRef.current = camera;
 
-    // Setup renderer optimized for performance
+    // Setup renderer with premium settings
     const renderer = new THREE.WebGLRenderer({ 
       canvas: canvasRef.current,
-      antialias: false, // Disable for better performance
+      antialias: true,
       alpha: true,
       powerPreference: "high-performance"
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Reduced for better performance
-    renderer.shadowMap.enabled = false; // Disable shadows for performance
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
     rendererRef.current = renderer;
 
-    // Simplified lighting for better performance
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+    // Premium studio lighting setup
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
-    // Single key light
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
-    keyLight.position.set(5, 5, 5);
+    // Key light (main)
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
+    keyLight.position.set(8, 10, 5);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.camera.near = 0.5;
+    keyLight.shadow.camera.far = 500;
     scene.add(keyLight);
 
-    // Single fill light
-    const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    fillLight.position.set(-3, 3, -3);
+    // Fill light (softer, from opposite side)
+    const fillLight = new THREE.DirectionalLight(0xfff5e6, 0.8);
+    fillLight.position.set(-5, 5, -3);
     scene.add(fillLight);
+
+    // Rim light (back light for edge definition)
+    const rimLight = new THREE.DirectionalLight(0xe6f3ff, 0.6);
+    rimLight.position.set(0, 0, -10);
+    scene.add(rimLight);
+
+    // Warm accent lights
+    const spotLight1 = new THREE.SpotLight(0xffa500, 0.8, 30, Math.PI / 6, 0.3);
+    spotLight1.position.set(5, 8, 3);
+    scene.add(spotLight1);
+
+    const spotLight2 = new THREE.SpotLight(0xff6b35, 0.6, 25, Math.PI / 8, 0.4);
+    spotLight2.position.set(-3, 6, 4);
+    scene.add(spotLight2);
+
+    // Add subtle environment lighting
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.3);
+    scene.add(hemiLight);
 
     // Setup orbit controls for better user interaction - closer zoom and better rotation
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -77,14 +103,7 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     controls.minPolarAngle = 0; // Allow full rotation from top
     controls.maxPolarAngle = Math.PI; // Allow rotation to bottom too
     controls.autoRotate = autoRotate;
-    controls.autoRotateSpeed = 1.0; // Slower for better performance
-    // Optimize mobile touch controls
-    controls.enablePan = true;
-    controls.enableZoom = true;
-    controls.enableRotate = true;
-    controls.rotateSpeed = 1.0;
-    controls.zoomSpeed = 1.0;
-    controls.panSpeed = 1.0;
+    controls.autoRotateSpeed = 1.5;
     controlsRef.current = controls;
 
     // Helper function to enhance materials
@@ -113,27 +132,19 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       (gltf) => {
         const model = gltf.scene;
         
-        // Simplified material processing for performance
+        // Enhanced material processing for better visuals
         model.traverse((child) => {
           if (child instanceof THREE.Mesh) {
-            // Skip shadows for performance
-            child.castShadow = false;
-            child.receiveShadow = false;
+            // Enable shadows
+            child.castShadow = true;
+            child.receiveShadow = true;
             
-            // Basic material optimization
+            // Enhance materials
             if (child.material) {
               if (Array.isArray(child.material)) {
-                child.material.forEach(mat => {
-                  if (mat instanceof THREE.MeshStandardMaterial) {
-                    mat.metalness = 0.0;
-                    mat.roughness = 0.7;
-                  }
-                });
+                child.material.forEach(mat => enhanceMaterial(mat));
               } else {
-                if (child.material instanceof THREE.MeshStandardMaterial) {
-                  child.material.metalness = 0.0;
-                  child.material.roughness = 0.7;
-                }
+                enhanceMaterial(child.material);
               }
             }
           }
@@ -169,23 +180,16 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       }
     );
 
-    // Performance-optimized animation loop with throttling
-    let lastTime = 0;
-    const targetFPS = 30; // Lower FPS for better performance
-    const frameTime = 1000 / targetFPS;
-    
-    const animate = (currentTime: number) => {
-      if (currentTime - lastTime >= frameTime) {
-        if (controlsRef.current) {
-          controlsRef.current.autoRotate = autoRotate;
-          controlsRef.current.update();
-        }
-        renderer.render(scene, camera);
-        lastTime = currentTime;
+    // Enhanced animation loop
+    const animate = () => {
+      if (controlsRef.current) {
+        controlsRef.current.autoRotate = autoRotate;
+        controlsRef.current.update();
       }
+      renderer.render(scene, camera);
       animationRef.current = requestAnimationFrame(animate);
     };
-    animate(0);
+    animate();
 
     return () => {
       if (animationRef.current) {
@@ -248,21 +252,21 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
           </div>
         )}
 
-        {/* Mobile-Optimized Controls for inline */}
-        <div className="absolute top-2 left-2 flex gap-1 sm:gap-2">
+        {/* Simple Controls for inline */}
+        <div className="absolute top-4 left-4 flex gap-2">
           <button
             onClick={handleZoomIn}
-            className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
+            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
             title="Zoom In"
           >
-            <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5" />
+            <ZoomIn className="w-5 h-5" />
           </button>
           <button
             onClick={handleZoomOut}
-            className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
+            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
             title="Zoom Out"
           >
-            <ZoomOut className="w-4 h-4 sm:w-5 sm:h-5" />
+            <ZoomOut className="w-5 h-5" />
           </button>
         </div>
       </div>
@@ -301,21 +305,21 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
             </div>
           )}
 
-          {/* Mobile-Optimized Controls */}
-          <div className="absolute top-2 right-2 flex gap-1 sm:gap-2">
+          {/* Simple Controls */}
+          <div className="absolute top-4 right-4 flex gap-2">
             <button
               onClick={handleZoomIn}
-              className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
+              className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
               title="Zoom In"
             >
-              <ZoomIn className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ZoomIn className="w-5 h-5" />
             </button>
             <button
               onClick={handleZoomOut}
-              className="p-2 sm:p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 active:scale-95 transition-all shadow-lg touch-manipulation"
+              className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
               title="Zoom Out"
             >
-              <ZoomOut className="w-4 h-4 sm:w-5 sm:h-5" />
+              <ZoomOut className="w-5 h-5" />
             </button>
           </div>
         </div>
