@@ -39,6 +39,9 @@ export const modelMapping: Record<string, string> = {
   // Breakfast Items
   'hash-brown': '/models/hashBrown_1752057967753.glb',
   'mac-and-cheese': '/models/macAndCheese_1752071917275.glb',
+  'halloumi-croissant': '/models/halloumiSandwich_1752057967753.glb',  // Uses halloumi sandwich model
+  'french-toast': '/models/hashBrown_1752057967753.glb',  // Uses hash brown as close breakfast model
+  'pancakes': '/models/macAndCheese_1752071917275.glb',  // Uses mac and cheese as close model
   
   // Salads
   'halloumi-salad': '/models/hallomiSalad_1752057967761.glb',
