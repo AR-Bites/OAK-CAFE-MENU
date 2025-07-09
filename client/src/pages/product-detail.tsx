@@ -120,6 +120,7 @@ export default function ProductDetail() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [modelViewerOpen, setModelViewerOpen] = useState(false);
+  const [show3D, setShow3D] = useState(false);
   const { t, language, setLanguage } = useLanguage();
 
   const product = allProducts.find(p => p.id === productId) || allProducts[0];
@@ -201,47 +202,73 @@ export default function ProductDetail() {
 
       {/* Main Content */}
       <div className="px-8 pb-8">
-        {/* Product Image */}
+        {/* Product Image/3D Viewer */}
         <div className="relative bg-black rounded-lg overflow-hidden mb-8 max-w-4xl mx-auto">
           <div className="aspect-video relative">
-            <img 
-              src={productImages[currentImageIndex]} 
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
-            
-            {/* Image Navigation */}
-            {productImages.length > 1 && (
+            {!show3D ? (
               <>
+                <img 
+                  src={productImages[currentImageIndex]} 
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
+                
+                {/* Image Navigation */}
+                {productImages.length > 1 && (
+                  <>
+                    <button 
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white hover:bg-opacity-30 transition-colors"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button 
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white hover:bg-opacity-30 transition-colors"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
+                  </>
+                )}
+                
+                {/* Product Name Tag */}
+                <div className="absolute bottom-4 right-4 bg-white px-3 py-1 rounded">
+                  <span className="text-sm font-medium text-gray-800">{(t(product.nameKey) || product.name).toLowerCase()}</span>
+                </div>
+                
+                {/* 3D View Button */}
+                {modelPath && (
+                  <button 
+                    onClick={() => setShow3D(true)}
+                    className="absolute top-4 right-4 bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-lg"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span className="text-sm font-medium">3D View</span>
+                  </button>
+                )}
+              </>
+            ) : (
+              <>
+                {/* 3D Model Viewer in same frame */}
+                <div className="w-full h-full">
+                  <Model3DViewer
+                    modelPath={modelPath!}
+                    productName={t(product.nameKey) || product.name}
+                    isOpen={show3D}
+                    onClose={() => setShow3D(false)}
+                    inline={true}
+                  />
+                </div>
+                
+                {/* Back to Photo Button */}
                 <button 
-                  onClick={prevImage}
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white hover:bg-opacity-30 transition-colors"
+                  onClick={() => setShow3D(false)}
+                  className="absolute top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-90 transition-colors shadow-lg"
                 >
-                  <ChevronLeft className="w-5 h-5" />
-                </button>
-                <button 
-                  onClick={nextImage}
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center text-white hover:bg-opacity-30 transition-colors"
-                >
-                  <ChevronRight className="w-5 h-5" />
+                  <ArrowLeft className="w-4 h-4" />
+                  <span className="text-sm font-medium">Back to Photo</span>
                 </button>
               </>
-            )}
-            
-            {/* Product Name Tag */}
-            <div className="absolute bottom-4 right-4 bg-white px-3 py-1 rounded">
-              <span className="text-sm font-medium text-gray-800">{(t(product.nameKey) || product.name).toLowerCase()}</span>
-            </div>
-            
-            {/* 3D Model Button */}
-            {modelPath && (
-              <button 
-                onClick={() => setModelViewerOpen(true)}
-                className="absolute top-4 right-4 bg-warm-brown text-white px-4 py-2 rounded-full flex items-center gap-2 hover:bg-opacity-80 transition-colors shadow-lg"
-              >
-                <Eye className="w-4 h-4" />
-                <span className="text-sm font-medium">3D View</span>
-              </button>
             )}
           </div>
         </div>

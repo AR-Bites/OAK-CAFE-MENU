@@ -9,9 +9,10 @@ interface Model3DViewerProps {
   productName: string;
   isOpen: boolean;
   onClose: () => void;
+  inline?: boolean;
 }
 
-export default function Model3DViewer({ modelPath, productName, isOpen, onClose }: Model3DViewerProps) {
+export default function Model3DViewer({ modelPath, productName, isOpen, onClose, inline = false }: Model3DViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [loading, setLoading] = useState(true);
   const [autoRotate, setAutoRotate] = useState(true);
@@ -33,7 +34,9 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
     sceneRef.current = scene;
 
     // Setup camera with better perspective
-    const camera = new THREE.PerspectiveCamera(50, 600/500, 0.1, 1000);
+    const width = inline ? canvasRef.current.clientWidth : 600;
+    const height = inline ? canvasRef.current.clientHeight : 500;
+    const camera = new THREE.PerspectiveCamera(50, width/height, 0.1, 1000);
     camera.position.set(4, 3, 6);
     cameraRef.current = camera;
 
@@ -44,7 +47,7 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
       alpha: true,
       powerPreference: "high-performance"
     });
-    renderer.setSize(600, 500);
+    renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -224,6 +227,46 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose 
   };
 
   if (!isOpen) return null;
+
+  if (inline) {
+    return (
+      <div className="relative w-full h-full">
+        <canvas 
+          ref={canvasRef} 
+          className="w-full h-full block"
+          style={{ background: 'linear-gradient(135deg, #f5f5f5 0%, #e5e5e5 100%)' }}
+        />
+        
+        {/* Loading Overlay */}
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90">
+            <div className="text-center">
+              <div className="w-12 h-12 border-4 border-warm-brown border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-700 font-medium">Loading 3D Model...</p>
+            </div>
+          </div>
+        )}
+
+        {/* Simple Controls for inline */}
+        <div className="absolute top-4 left-4 flex gap-2">
+          <button
+            onClick={handleZoomIn}
+            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+            title="Zoom In"
+          >
+            <ZoomIn className="w-5 h-5" />
+          </button>
+          <button
+            onClick={handleZoomOut}
+            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
+            title="Zoom Out"
+          >
+            <ZoomOut className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center">
