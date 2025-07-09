@@ -266,7 +266,7 @@ export default function ProductDetail() {
           <span className="text-base font-medium">{t('menu')}</span>
         </button>
         
-        <Link href={product.type === 'food' ? '/food' : product.type === 'shisha' ? '/shisha' : '/beverages'}>
+        <Link href={product.type === 'food' ? `/food?category=${product.category}` : product.type === 'shisha' ? `/shisha?category=${product.category}` : `/beverages?category=${product.category}`}>
           <button className="w-12 h-12 bg-warm-brown rounded-full flex items-center justify-center text-white hover:bg-opacity-80 transition-colors shadow-md">
             <ArrowLeft className="w-6 h-6" />
           </button>

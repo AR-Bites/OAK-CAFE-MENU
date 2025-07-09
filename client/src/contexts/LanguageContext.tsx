@@ -52,6 +52,7 @@ const translations = {
     'mojito': 'MOJITO',
     'iced-tea': 'ICED TEA',
     'breakfast': 'BREAKFAST',
+    'category-breakfast': 'Breakfast',
     'pizza': 'PIZZA',
     'sandwiches': 'SANDWICHES',
     'italian': 'ITALIAN',
@@ -411,12 +412,7 @@ const translations = {
     'pizza-chicken-alfredo-desc': 'Pizza topped with chicken and creamy Alfredo sauce',
     'calzone-pizza-desc': 'Folded pizza filled with cheese and toppings',
     'pepperoni-desc': 'Classic pepperoni pizza with spicy salami',
-    'oak-steak-desc': 'Premium steak prepared to perfection',
-    'salmon-grill-desc': 'Grilled salmon with herbs and lemon',
-    'beef-steak-desc': 'Tender beef steak cooked to your preference',
-    'chicken-mushroom-desc': 'Grilled chicken with mushroom sauce',
-    'mexican-nachos-desc': 'Crispy tortilla chips with cheese and salsa',
-    'chicken-dynamite-desc': 'Spicy chicken bites with dynamite sauce',
+
 
     'turkey-omelette-croissant-desc': 'Flaky croissant with turkey and omelette',
     'avocado-omelette-desc': 'Healthy omelette with fresh avocado',
@@ -484,6 +480,7 @@ const translations = {
     'mojito': 'موهيتو',
     'iced-tea': 'الشاي المثلج',
     'breakfast': 'الإفطار',
+    'category-breakfast': 'الإفطار',
     'pizza': 'البيتزا',
     'sandwiches': 'الساندويتشات',
     'italian': 'الإيطالي',
@@ -842,12 +839,7 @@ const translations = {
     'pizza-chicken-alfredo-desc': 'بيتزا مغطاة بالدجاج وصلصة ألفريدو الكريمية',
     'calzone-pizza-desc': 'بيتزا مطوية محشوة بالجبن والطبقات',
     'pepperoni-desc': 'بيتزا بيبروني كلاسيكية مع سلامي حار',
-    'oak-steak-desc': 'ستيك فاخر محضر للكمال',
-    'salmon-grill-desc': 'سلمون مشوي بالأعشاب والليمون',
-    'beef-steak-desc': 'ستيك لحم طري مطبوخ حسب تفضيلك',
-    'chicken-mushroom-desc': 'دجاج مشوي مع صلصة الفطر',
-    'mexican-nachos-desc': 'رقائق تورتيلا مقرمشة مع الجبن والسالسا',
-    'chicken-dynamite-desc': 'قطع دجاج حارة مع صلصة ديناميت',
+
 
     'turkey-omelette-croissant-desc': 'كرواسون هش مع ديك رومي وأومليت',
     'avocado-omelette-desc': 'أومليت صحي مع أفوكادو طازج',
