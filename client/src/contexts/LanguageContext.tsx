@@ -768,7 +768,7 @@ const translations = {
     'club-sandwich-desc': 'ساندويش كلوب كلاسيكي مع الديك الرومي والبيكون والخس والطماطم',
     'chicken-sandwich-desc': 'ساندويش دجاج مشوي مع خضار طازجة وصلصة خاصة',
     'grilled-cheese-desc': 'ساندويش جبن مشوي ذهبي مع جبن مذاب وخبز مقرمش',
-
+    'oak-beef-burger-desc': 'برغر لحم بقري فاخر مع خضار طازجة وصلصتنا المميزة',
     'crispy-chicken-burger-desc': 'برغر دجاج مقلي مقرمش مع إضافات طازجة',
     'shawarma-meat-desc': 'شاورما شرق أوسطية تقليدية بلحم متبل',
     'oak-sandwich-desc': 'ساندويشنا المميز بمكونات فاخرة',
@@ -872,14 +872,6 @@ const translations = {
     'ice-cream-strawberry-desc': 'آيس كريم فراولة طازج',
     'tiramisu-desc': 'حلوى إيطالية كلاسيكية مع القهوة والماسكاربوني',
     'oak-beef-burger-desc': 'برجر لحم البقر المميز مع مكونات فاخرة',
-    'eggs-choice-desc': 'بيض طازج محضر حسب اختيارك',
-    'manageesh-labneh-rocca-desc': 'مناقيش تقليدية مع لبنة وجرجير',
-    'manageesh-zaatar-vegetables-desc': 'مناقيش زعتر تقليدية مع خضار طازجة',
-    'manageesh-nabulsi-cheese-desc': 'مناقيش تقليدية مع جبن نابلسي أصيل',
-    'manageesh-falafel-desc': 'مناقيش تقليدية مع فلافل مقرمشة',
-    'manageesh-mix-cheese-desc': 'مناقيش تقليدية مع أنواع جبن متنوعة',
-    'manageesh-molasses-tahini-desc': 'مناقيش حلوة مع دبس وطحينة',
-    'chips-dips-desc': 'رقائق مقرمشة مع تشكيلة غموس متنوعة',
 
 
 
