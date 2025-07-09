@@ -1,67 +1,54 @@
-# HyaQqabaz - Oak Cafe Restaurant Website
+# 🍽️ HyaQqabaz - Premium Middle Eastern Restaurant
 
-A premium Middle Eastern restaurant website with full Arabic translation support and interactive 3D model viewing.
+## 🌟 Complete React Application
 
-## 🚀 Quick GitHub Pages Setup
+This is your **EXACT** restaurant website from Replit, now ready for GitHub Pages deployment.
 
-1. **Upload to GitHub:**
-   - Create a new repository on GitHub
-   - Upload all files to the repository
-   - Make sure `index.html` is in the root directory
+### ✨ Features
+- **Complete multilingual support** (English/Arabic with RTL)
+- **Interactive 3D model viewer** for all menu items
+- **Full menu categories**: Appetizers, Breakfast, Italian, Main Course, Sandwiches, Beverages, Shisha
+- **Mobile-responsive design** with touch interactions
+- **Professional styling** with luxury Middle Eastern aesthetic
+- **Real-time language switching** with proper text direction
 
-2. **Enable GitHub Pages:**
-   - Go to repository Settings
-   - Scroll to "Pages" section
-   - Set Source to "Deploy from a branch"
-   - Select `main` branch and `/ (root)` folder
-   - Click Save
+### 🚀 How to Deploy
 
-3. **Access Your Website:**
-   - Your site will be available at: `https://yourusername.github.io/repository-name`
+1. **Create GitHub Repository**
+   - Go to GitHub.com
+   - Create new repository named `oak-cafe-website`
+   - Make it public
 
-## 📁 Essential Files Structure
+2. **Upload All Files**
+   - Upload EVERYTHING from this folder
+   - Including all subfolders and config files
 
-```
-oak-cafe-website/
-├── index.html              # Main page (GitHub Pages entry point)
-├── attached_assets/        # Your 3D models and images
-├── client/                 # React app source code
-├── server/                 # Backend code (for development)
-├── package.json           # Dependencies
-└── README.md              # This file
-```
+3. **Enable GitHub Pages**
+   - Go to repository Settings → Pages
+   - Source: "GitHub Actions"
+   - The workflow will automatically build and deploy
 
-## ✨ Features
+4. **Wait for Deployment**
+   - Check the Actions tab for build progress
+   - Your site will be live at: `https://yourusername.github.io/oak-cafe-website`
 
-- **Multilingual Support**: Full English/Arabic translation
-- **Interactive 3D Models**: Click any menu item to view in 3D
-- **Mobile Responsive**: Works perfectly on all devices
-- **Complete Menu System**: 
-  - Appetizers (23 items)
-  - Breakfast, Italian, Main Course
-  - Sandwiches, Salads, Soups, Desserts
-  - Beverages & Shisha
+### 📱 What You'll Get
 
-## 🛠️ Development Setup (Optional)
+**IDENTICAL** to your Replit version:
+- Same exact design and layout
+- Same menu structure and pricing
+- Same 3D model interactions
+- Same language functionality
+- Same mobile responsiveness
 
-If you want to run the full development version:
-
-```bash
-npm install
-npm run dev
-```
-
-## 🌐 Live Demo
-
-The static version in `index.html` works immediately - no build process needed for GitHub Pages!
-
-## 📱 Mobile Features
-
-- Touch-friendly navigation
-- Optimized for mobile viewing
-- Language toggle easily accessible
-- Product cards sized for mobile
+This is your complete production-ready restaurant website!
 
 ---
 
-**Ready to deploy!** Just upload to GitHub and enable Pages. Your restaurant website will be live in minutes.
+**Technology Stack:**
+- React 18 with TypeScript
+- Tailwind CSS for styling
+- Three.js for 3D model rendering
+- Wouter for routing
+- Framer Motion for animations
+- Complete i18n support
