@@ -361,24 +361,24 @@ export default function ProductDetail() {
 
         {/* Product Info - Mobile Optimized */}
         <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-12 px-2">
-          {/* Decorative Line */}
+          {/* Decorative Line with Triangle Arrow */}
           <div className="flex items-center justify-center mb-3 sm:mb-4">
-            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
-            <div className="w-0 h-0 border-l-3 border-r-3 border-b-3 sm:border-l-4 sm:border-r-4 sm:border-b-4 border-transparent border-b-gray-600 mx-2"></div>
-            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
+            <div className="h-px bg-gray-800 w-16 sm:w-24"></div>
+            <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-transparent border-b-gray-800 mx-3"></div>
+            <div className="h-px bg-gray-800 w-16 sm:w-24"></div>
           </div>
           
-          <h1 className="text-2xl sm:text-4xl font-bold luxury-font text-gray-800 mb-3 sm:mb-4 leading-tight">{t(product.nameKey) || product.name}</h1>
-          <p className="text-xl sm:text-2xl font-bold text-gray-800 mb-4 sm:mb-6">{product.price}</p>
+          <h1 className="text-2xl sm:text-3xl font-bold luxury-font text-gray-800 mb-2 sm:mb-3 leading-tight px-4">{t(product.nameKey) || product.name}</h1>
+          <p className="text-lg sm:text-xl font-bold text-gray-800 mb-3 sm:mb-4">{product.price}</p>
           
-          {/* Decorative Line */}
+          {/* Decorative Line with Triangle Arrow */}
           <div className="flex items-center justify-center mb-4 sm:mb-6">
-            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
-            <div className="w-0 h-0 border-l-3 border-r-3 border-t-3 sm:border-l-4 sm:border-r-4 sm:border-t-4 border-transparent border-t-gray-600 mx-2"></div>
-            <div className="h-px bg-gray-400 w-12 sm:w-16"></div>
+            <div className="h-px bg-gray-800 w-16 sm:w-24"></div>
+            <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-t-[8px] border-transparent border-t-gray-800 mx-3"></div>
+            <div className="h-px bg-gray-800 w-16 sm:w-24"></div>
           </div>
           
-          <p className="text-base sm:text-lg text-gray-700 leading-relaxed px-2 sm:px-0">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
+          <p className="text-sm sm:text-base text-gray-700 leading-relaxed px-4 sm:px-6 text-justify">{product.descriptionKey ? t(product.descriptionKey) : (product.description || t('product-description-fallback'))}</p>
         </div>
 
         {/* Related Products - Mobile Optimized */}
