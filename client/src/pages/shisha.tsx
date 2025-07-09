@@ -4,7 +4,6 @@ import { Link, useLocation } from "wouter";
 import { useLanguage } from '@/contexts/LanguageContext';
 import { LanguageToggle } from '@/components/LanguageToggle';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
-import { allProducts } from './product-detail';
 
 const getShishaCategories = (t: (key: string) => string) => [
   { id: 'regular', label: t('regular'), icon: Flame },
@@ -12,12 +11,23 @@ const getShishaCategories = (t: (key: string) => string) => [
   { id: 'special', label: t('special'), icon: Star },
 ];
 
-// Filter the complete menu to get only shisha items by category
-const getShishaProductsByCategory = (category: string) => {
-  return allProducts.filter(product => product.type === 'shisha' && product.category === category);
-};
-
-const shishaProducts = allProducts.filter(product => product.type === 'shisha');
+const shishaProducts = [
+  { id: 301, name: 'Sahem Gum Shisha', nameKey: 'regular', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 302, name: 'Lemon with Mint', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 303, name: 'Two Apple Fakher', price: '7.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'premium' },
+  { id: 304, name: 'Special Shisha', price: '17.15 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'special' },
+  { id: 311, name: 'Mazaya Love', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 312, name: 'Watermelon with Mint', price: '6.16 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 313, name: 'Grapes Shisha', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 314, name: 'Blueberry Shisha', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 315, name: 'Two Apples with Licorice', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 316, name: 'Cinnamon with Mint', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 317, name: 'Mastic Shisha', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 318, name: 'Gum and Mint', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 319, name: 'Two Apples Nakhleh', price: '7.15 JD', image: 'https://images.unsplash.com/photo-1571115764595-644a1f56a55c?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'premium' },
+  { id: 320, name: 'Mixed Fruit', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1544787219-7f47ccb76574?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+  { id: 321, name: 'Mixed Citrus Fruits', price: '6.15 JD', image: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300', type: 'shisha', category: 'regular' },
+];
 
 export default function Shisha() {
   const [selectedCategory, setSelectedCategory] = useState('regular');
