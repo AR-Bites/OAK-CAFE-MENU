@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap, Flame, Crown, Star, Eye } from "lucide-react";
-import { Link, useParams } from "wouter";
+import { ArrowLeft, Home, Share, Globe, Menu, X, ChevronLeft, ChevronRight, Coffee, Droplets, Snowflake, Zap, Flame, Crown, Star, Eye, Utensils, Leaf, ChefHat, Sunrise, Sandwich, Pizza, Wheat, Apple, Grape } from "lucide-react";
+import { Link, useLocation } from "wouter";
 import { useLanguage } from '@/contexts/LanguageContext';
 import logoImage from "@assets/oakCafeLogo_1752004813012.png";
 import Model3DViewer from '../components/Model3DViewer';
@@ -301,6 +301,11 @@ const allProducts = [
   // 🏆 Complete Food Menu: Breakfast, Appetizers, Salads, Sandwiches, Pizza, Pasta, Main Course, Desserts, Soup
   // 🏆 Complete Shisha Menu: All authentic flavors with correct pricing from user's menu file
 ];
+
+const products = allProducts;
+
+// Export the complete menu for use in other components
+export { allProducts };
 
 export default function ProductDetail() {
   const { t } = useLanguage();
