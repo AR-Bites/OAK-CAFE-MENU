@@ -738,17 +738,7 @@ const translations = {
     'perrier-desc': 'مياه فوارة فاخرة',
     'mineral-water-desc': 'مياه معدنية طبيعية',
     
-    // Missing Arabic Descriptions for all other products
-    'double-espresso-desc': 'جرعة مضاعفة من الإسبريسو الغني للحصول على تجربة قهوة مثلى',
-    'cappuccino-desc': 'قهوة إيطالية كلاسيكية مع الحليب المبخر والرغوة',
-    'cortado-desc': 'قهوة إسبانية مع أجزاء متساوية من الإسبريسو والحليب المبخر',
-    'latte-desc': 'قهوة كريمية مع الإسبريسو والحليب المبخر',
-    'americano-desc': 'قهوة سوداء كلاسيكية مصنوعة من الإسبريسو والماء الساخن',
-    'turkish-coffee-single-desc': 'قهوة تركية تقليدية محضرة في إناء نحاسي أصيل',
-    'iced-caramel-macchiato-desc': 'إسبريسو مثلج مع شراب الفانيلا والحليب المبخر وصوص الكراميل',
-    'iced-dark-mocha-desc': 'قهوة باردة مع الشوكولاتة الداكنة والثلج',
-    'cold-brew-desc': 'قهوة ناعمة مخمرة ببطء تقدم على الثلج للحصول على أقصى نكهة',
-    'iced-americano-desc': 'قهوة سوداء باردة مصنوعة من الإسبريسو والماء البارد',
+
     
     // CRITICAL MISSING KEYS - Adding ALL missing description translations
     'avocado-omelette-desc': 'أومليت أفوكادو طازج مع البيض المخفوق',
