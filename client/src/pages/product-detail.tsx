@@ -135,6 +135,9 @@ export default function ProductDetail() {
   // Get 3D model path
   const modelKey = product.nameKey || product.name.toLowerCase().replace(/\s+/g, '-');
   const modelPath = getModelPath(modelKey);
+  
+  // Debug logging for model mapping
+  console.log('Product:', product.name, 'ID:', product.id, 'Key:', modelKey, 'ModelPath:', modelPath);
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % productImages.length);

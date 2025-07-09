@@ -108,19 +108,19 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     // Helper function to enhance materials
     function enhanceMaterial(material: THREE.Material) {
       if (material instanceof THREE.MeshStandardMaterial) {
-        material.metalness = 0.1;
-        material.roughness = 0.4;
-        material.envMapIntensity = 1.2;
+        material.metalness = 0.0;     // No metallic look for food
+        material.roughness = 0.7;     // More matte surface, less glossy
+        material.envMapIntensity = 0.8;  // Reduce environment reflection
         
-        // Enhance food colors to look more appetizing
+        // Enhance food colors to look more appetizing but not too bright
         if (material.color) {
-          material.color.multiplyScalar(1.4); // Boost saturation significantly
+          material.color.multiplyScalar(1.2); // Moderate saturation boost
           material.color.convertSRGBToLinear();
         }
         
-        // Make materials more vibrant
-        material.emissive = new THREE.Color(0x111111);
-        material.emissiveIntensity = 0.05;
+        // Subtle emissive glow for warmth
+        material.emissive = new THREE.Color(0x0a0a0a);
+        material.emissiveIntensity = 0.02;
       }
     }
 

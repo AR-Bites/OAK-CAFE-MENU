@@ -53,9 +53,11 @@ export const modelMapping: Record<string, string> = {
   'tuna-sandwich': '/models/chickenZingerSandwich_1752057967758.glb',
   'turkey-omelette-croissant': '/models/halloumiSandwich_1752057967753.glb',
   
-  // === MIDDLE EASTERN / MANAGEESH === (All authentic models)
+  // === MANAGEESH VARIATIONS === (Correct Middle Eastern mappings)
   'manakeesh-labneh-rocca': '/models/manageeshLabnehandRocca_1752071939019.glb',
   'manakish-labneh-rocca': '/models/manageeshLabnehandRocca_1752071939019.glb',
+  
+  // === MIDDLE EASTERN / MANAGEESH === (All authentic models)
   'manageesh-labaneh-and-rocca': '/models/manageeshLabnehandRocca_1752071939019.glb',
   'manageesh-falafel': '/models/manageeshFalafel_1752071924239.glb',
   'manageesh-molasses-tahini': '/models/manageeshMolassesAndTahini_1752071973508.glb',
