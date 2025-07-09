@@ -40,58 +40,32 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     camera.position.set(2, 4, 3); // Closer position with better top-down angle
     cameraRef.current = camera;
 
-    // Setup renderer with premium settings
+    // Setup renderer optimized for performance
     const renderer = new THREE.WebGLRenderer({ 
       canvas: canvasRef.current,
-      antialias: true,
+      antialias: false, // Disable for better performance
       alpha: true,
       powerPreference: "high-performance"
     });
     renderer.setSize(width, height);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5)); // Reduced for better performance
+    renderer.shadowMap.enabled = false; // Disable shadows for performance
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.2;
     rendererRef.current = renderer;
 
-    // Premium studio lighting setup
-    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    // Simplified lighting for better performance
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
     scene.add(ambientLight);
 
-    // Key light (main)
-    const keyLight = new THREE.DirectionalLight(0xffffff, 1.5);
-    keyLight.position.set(8, 10, 5);
-    keyLight.castShadow = true;
-    keyLight.shadow.mapSize.width = 2048;
-    keyLight.shadow.mapSize.height = 2048;
-    keyLight.shadow.camera.near = 0.5;
-    keyLight.shadow.camera.far = 500;
+    // Single key light
+    const keyLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    keyLight.position.set(5, 5, 5);
     scene.add(keyLight);
 
-    // Fill light (softer, from opposite side)
-    const fillLight = new THREE.DirectionalLight(0xfff5e6, 0.8);
-    fillLight.position.set(-5, 5, -3);
+    // Single fill light
+    const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    fillLight.position.set(-3, 3, -3);
     scene.add(fillLight);
-
-    // Rim light (back light for edge definition)
-    const rimLight = new THREE.DirectionalLight(0xe6f3ff, 0.6);
-    rimLight.position.set(0, 0, -10);
-    scene.add(rimLight);
-
-    // Warm accent lights
-    const spotLight1 = new THREE.SpotLight(0xffa500, 0.8, 30, Math.PI / 6, 0.3);
-    spotLight1.position.set(5, 8, 3);
-    scene.add(spotLight1);
-
-    const spotLight2 = new THREE.SpotLight(0xff6b35, 0.6, 25, Math.PI / 8, 0.4);
-    spotLight2.position.set(-3, 6, 4);
-    scene.add(spotLight2);
-
-    // Add subtle environment lighting
-    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.3);
-    scene.add(hemiLight);
 
     // Setup orbit controls for better user interaction - closer zoom and better rotation
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -103,14 +77,14 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     controls.minPolarAngle = 0; // Allow full rotation from top
     controls.maxPolarAngle = Math.PI; // Allow rotation to bottom too
     controls.autoRotate = autoRotate;
-    controls.autoRotateSpeed = 1.5;
-    // Improve mobile touch controls
+    controls.autoRotateSpeed = 1.0; // Slower for better performance
+    // Optimize mobile touch controls
     controls.enablePan = true;
     controls.enableZoom = true;
     controls.enableRotate = true;
-    controls.rotateSpeed = 0.8; // Smoother rotation on mobile
-    controls.zoomSpeed = 1.2;   // Better zoom sensitivity
-    controls.panSpeed = 0.8;    // Smoother panning
+    controls.rotateSpeed = 1.0;
+    controls.zoomSpeed = 1.0;
+    controls.panSpeed = 1.0;
     controlsRef.current = controls;
 
     // Helper function to enhance materials
@@ -139,19 +113,27 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       (gltf) => {
         const model = gltf.scene;
         
-        // Enhanced material processing for better visuals
+        // Simplified material processing for performance
         model.traverse((child) => {
           if (child instanceof THREE.Mesh) {
-            // Enable shadows
-            child.castShadow = true;
-            child.receiveShadow = true;
+            // Skip shadows for performance
+            child.castShadow = false;
+            child.receiveShadow = false;
             
-            // Enhance materials
+            // Basic material optimization
             if (child.material) {
               if (Array.isArray(child.material)) {
-                child.material.forEach(mat => enhanceMaterial(mat));
+                child.material.forEach(mat => {
+                  if (mat instanceof THREE.MeshStandardMaterial) {
+                    mat.metalness = 0.0;
+                    mat.roughness = 0.7;
+                  }
+                });
               } else {
-                enhanceMaterial(child.material);
+                if (child.material instanceof THREE.MeshStandardMaterial) {
+                  child.material.metalness = 0.0;
+                  child.material.roughness = 0.7;
+                }
               }
             }
           }
@@ -187,16 +169,23 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       }
     );
 
-    // Enhanced animation loop
-    const animate = () => {
-      if (controlsRef.current) {
-        controlsRef.current.autoRotate = autoRotate;
-        controlsRef.current.update();
+    // Performance-optimized animation loop with throttling
+    let lastTime = 0;
+    const targetFPS = 30; // Lower FPS for better performance
+    const frameTime = 1000 / targetFPS;
+    
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= frameTime) {
+        if (controlsRef.current) {
+          controlsRef.current.autoRotate = autoRotate;
+          controlsRef.current.update();
+        }
+        renderer.render(scene, camera);
+        lastTime = currentTime;
       }
-      renderer.render(scene, camera);
       animationRef.current = requestAnimationFrame(animate);
     };
-    animate();
+    animate(0);
 
     return () => {
       if (animationRef.current) {
