@@ -177,7 +177,7 @@ export default function Food() {
         <div className={`fixed left-0 top-0 h-full bg-warm-brown text-white z-[9999] transition-transform duration-300 ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         } w-64`}>
-          <div className="p-6 pt-20">
+          <div className="p-6 pt-6">
             <h2 className="text-xl font-bold mb-6 luxury-font">{t('food-menu')}</h2>
             <nav className="space-y-4">
               {foodCategories.map((category) => {
