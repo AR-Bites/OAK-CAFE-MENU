@@ -1,19 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HyaQqabaz - Premium Middle Eastern Experience</title>
-    <meta name="description" content="Experience the finest Middle Eastern cuisine, premium beverages, traditional sweets, and luxury shisha lounge at HyaQqabaz. Discover our unique offerings in an elegant atmosphere.">
-    <meta property="og:title" content="HyaQqabaz - Premium Middle Eastern Experience">
-    <meta property="og:description" content="Experience the finest Middle Eastern cuisine, premium beverages, traditional sweets, and luxury shisha lounge at HyaQqabaz.">
-    <meta property="og:type" content="website">
+    <meta name="description" content="Experience the finest Middle Eastern cuisine, premium beverages, traditional sweets, and luxury shisha lounge at HyaQqabaz.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <script type="module" crossorigin src="./assets/index.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .luxury-font { font-family: 'Playfair Display', serif; }
+        .content-font { font-family: 'Inter', sans-serif; }
+        .hero-bg {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center">
+                <div class="w-12 h-12 bg-amber-600 rounded-full flex items-center justify-center mr-3">
+                    <i class="fas fa-utensils text-white text-xl"></i>
+                </div>
+                <h1 class="text-2xl font-bold luxury-font text-gray-800">HyaQqabaz</h1>
+            </div>
+            <button id="languageToggle" class="px-4 py-2 bg-amber-600 text-white rounded-lg hover:bg-amber-700 transition-colors">
+                <span id="langText">عربي</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-5xl font-bold luxury-font mb-6">
+                <span class="en">Premium Middle Eastern Experience</span>
+                <span class="ar hidden">تجربة شرق أوسطية فاخرة</span>
+            </h2>
+            <p class="text-xl mb-8 content-font">
+                <span class="en">Discover authentic flavors, premium beverages, and luxury dining</span>
+                <span class="ar hidden">اكتشف النكهات الأصيلة والمشروبات المميزة والطعام الفاخر</span>
+            </p>
+        </div>
+    </section>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-sm sticky top-16 z-40">
+        <div class="container mx-auto px-4">
+            <div class="flex space-x-2 overflow-x-auto py-4" id="categoryNav">
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg bg-amber-600 text-white" data-category="appetizers">
+                    <span class="en">Appetizers</span>
+                    <span class="ar hidden">مقبلات</span>
+                </button>
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg hover:bg-amber-100 text-gray-700" data-category="breakfast">
+                    <span class="en">Breakfast</span>
+                    <span class="ar hidden">فطور</span>
+                </button>
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg hover:bg-amber-100 text-gray-700" data-category="italian">
+                    <span class="en">Italian</span>
+                    <span class="ar hidden">إيطالي</span>
+                </button>
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg hover:bg-amber-100 text-gray-700" data-category="main-course">
+                    <span class="en">Main Course</span>
+                    <span class="ar hidden">الطبق الرئيسي</span>
+                </button>
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg hover:bg-amber-100 text-gray-700" data-category="sandwiches">
+                    <span class="en">Sandwiches</span>
+                    <span class="ar hidden">ساندويتش</span>
+                </button>
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg hover:bg-amber-100 text-gray-700" data-category="beverages">
+                    <span class="en">Beverages</span>
+                    <span class="ar hidden">مشروبات</span>
+                </button>
+                <button class="nav-btn whitespace-nowrap px-4 py-2 rounded-lg hover:bg-amber-100 text-gray-700" data-category="shisha">
+                    <span class="en">Shisha</span>
+                    <span class="ar hidden">شيشة</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <h2 id="categoryTitle" class="text-3xl font-bold text-center text-gray-800 mb-8 luxury-font">
+            <span class="en">Appetizers</span>
+            <span class="ar hidden">مقبلات</span>
+        </h2>
+        
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 max-w-7xl mx-auto">
+            <!-- Products will be loaded here -->
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12 mt-16">
+        <div class="container mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold luxury-font mb-4">HyaQqabaz</h3>
+            <p class="content-font">
+                <span class="en">Premium Middle Eastern Experience</span>
+                <span class="ar hidden">تجربة شرق أوسطية فاخرة</span>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Language toggle
+        let currentLanguage = 'en';
+        const languageToggle = document.getElementById('languageToggle');
+        const langText = document.getElementById('langText');
+
+        languageToggle.addEventListener('click', function() {
+            currentLanguage = currentLanguage === 'en' ? 'ar' : 'en';
+            
+            // Update language toggle text
+            langText.textContent = currentLanguage === 'en' ? 'عربي' : 'English';
+            
+            // Toggle visibility of language elements
+            document.querySelectorAll('.en').forEach(el => {
+                el.classList.toggle('hidden', currentLanguage !== 'en');
+            });
+            document.querySelectorAll('.ar').forEach(el => {
+                el.classList.toggle('hidden', currentLanguage !== 'ar');
+            });
+            
+            // Update text direction
+            document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+        });
+
+        // Menu data with pricing
+        const menuData = {
+            appetizers: [
+                { id: 'mozzarella-sticks', name: 'Mozzarella Sticks', nameAr: 'أصابع جبن موزاريلا', price: '$8.99', desc: 'Crispy mozzarella cheese sticks', descAr: 'أصابع جبن موزاريلا مقرمشة' },
+                { id: 'onion-rings', name: 'Onion Rings', nameAr: 'حلقات البصل', price: '$6.99', desc: 'Golden crispy onion rings', descAr: 'حلقات البصل المقرمشة الذهبية' },
+                { id: 'loaded-waffle-fries', name: 'Loaded Waffle Fries', nameAr: 'بطاطس وافل محشوة', price: '$9.99', desc: 'Waffle fries loaded with cheese and toppings', descAr: 'بطاطس وافل مغطاة بالجبن والإضافات' },
+                { id: 'cheese-roll', name: 'Cheese Roll', nameAr: 'رول جبنة', price: '$7.99', desc: 'Crispy cheese roll with melted filling', descAr: 'رول جبنة مقرمش مع حشوة الجبن المذاب' },
+                { id: 'yalanji', name: 'Yalanji', nameAr: 'يالانجي', price: '$8.99', desc: 'Stuffed grape leaves with rice and herbs', descAr: 'أوراق عنب محشوة بالأرز والأعشاب' },
+                { id: 'grilled-halloumi', name: 'Grilled Halloumi', nameAr: 'حلوم مشوي', price: '$9.99', desc: 'Grilled halloumi cheese with herbs', descAr: 'جبنة حلوم مشوية بالأعشاب' }
+            ],
+            breakfast: [
+                { id: 'hash-browns', name: 'Hash Browns', nameAr: 'هاش براون', price: '$4.99', desc: 'Golden crispy hash browns', descAr: 'بطاطس هاش براون ذهبية مقرمشة' },
+                { id: 'french-toast', name: 'French Toast', nameAr: 'توست فرنسي', price: '$7.99', desc: 'Classic French toast with syrup', descAr: 'توست فرنسي كلاسيكي مع الشراب' }
+            ],
+            italian: [
+                { id: 'fettuccine-alfredo', name: 'Fettuccine Alfredo', nameAr: 'فيتوتشيني ألفريدو', price: '$14.99', desc: 'Creamy fettuccine pasta with Alfredo sauce', descAr: 'فيتوتشيني كريمي مع صلصة ألفريدو' },
+                { id: 'margherita-pizza', name: 'Margherita Pizza', nameAr: 'بيتزا مارغريتا', price: '$12.99', desc: 'Classic pizza with tomato, mozzarella, and basil', descAr: 'بيتزا كلاسيكية مع الطماطم والموزاريلا والريحان' },
+                { id: 'pepperoni-pizza', name: 'Pepperoni Pizza', nameAr: 'بيتزا بيبروني', price: '$13.99', desc: 'Pizza topped with pepperoni and cheese', descAr: 'بيتزا مغطاة بالبيبروني والجبن' },
+                { id: 'pesto-pasta', name: 'Pesto Pasta', nameAr: 'باستا بيستو', price: '$13.99', desc: 'Fresh pasta with basil pesto sauce', descAr: 'باستا طازجة مع صلصة البيستو' }
+            ],
+            'main-course': [
+                { id: 'grilled-chicken', name: 'Grilled Chicken', nameAr: 'دجاج مشوي', price: '$16.99', desc: 'Tender grilled chicken breast', descAr: 'صدر دجاج مشوي طري' },
+                { id: 'beef-steak', name: 'Beef Steak', nameAr: 'ستيك لحم', price: '$22.99', desc: 'Premium beef steak cooked to perfection', descAr: 'ستيك لحم مميز مطبوخ للكمال' }
+            ],
+            sandwiches: [
+                { id: 'club-sandwich', name: 'Club Sandwich', nameAr: 'ساندويتش كلوب', price: '$11.99', desc: 'Triple-layered sandwich with chicken and bacon', descAr: 'ساندويتش ثلاثي الطبقات مع الدجاج والبيكون' },
+                { id: 'chicken-shawarma', name: 'Chicken Shawarma', nameAr: 'شاورما دجاج', price: '$9.99', desc: 'Traditional Middle Eastern chicken wrap', descAr: 'لفة دجاج شرق أوسطية تقليدية' }
+            ],
+            beverages: [
+                { id: 'fresh-orange-juice', name: 'Fresh Orange Juice', nameAr: 'عصير برتقال طازج', price: '$4.99', desc: 'Freshly squeezed orange juice', descAr: 'عصير برتقال طازج معصور' },
+                { id: 'turkish-coffee', name: 'Turkish Coffee', nameAr: 'قهوة تركية', price: '$3.99', desc: 'Traditional Turkish coffee', descAr: 'قهوة تركية تقليدية' }
+            ],
+            shisha: [
+                { id: 'apple-shisha', name: 'Apple Shisha', nameAr: 'شيشة تفاح', price: '$15.99', desc: 'Fresh apple flavored shisha', descAr: 'شيشة بنكهة التفاح الطازج' },
+                { id: 'mint-shisha', name: 'Mint Shisha', nameAr: 'شيشة نعناع', price: '$15.99', desc: 'Refreshing mint flavored shisha', descAr: 'شيشة بنكهة النعناع المنعش' }
+            ]
+        };
+
+        // Current category
+        let currentCategory = 'appetizers';
+
+        // Navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.nav-btn').forEach(b => {
+                    b.classList.remove('bg-amber-600', 'text-white');
+                    b.classList.add('hover:bg-amber-100', 'text-gray-700');
+                });
+                
+                // Add active class to clicked button
+                this.classList.add('bg-amber-600', 'text-white');
+                this.classList.remove('hover:bg-amber-100', 'text-gray-700');
+                
+                // Update current category
+                currentCategory = this.dataset.category;
+                loadProducts(currentCategory);
+                
+                // Update category title
+                const categoryTitles = {
+                    'appetizers': { en: 'Appetizers', ar: 'مقبلات' },
+                    'breakfast': { en: 'Breakfast', ar: 'فطور' },
+                    'italian': { en: 'Italian', ar: 'إيطالي' },
+                    'main-course': { en: 'Main Course', ar: 'الطبق الرئيسي' },
+                    'sandwiches': { en: 'Sandwiches', ar: 'ساندويتش' },
+                    'beverages': { en: 'Beverages', ar: 'مشروبات' },
+                    'shisha': { en: 'Shisha', ar: 'شيشة' }
+                };
+                
+                const titleEn = document.querySelector('#categoryTitle .en');
+                const titleAr = document.querySelector('#categoryTitle .ar');
+                if (titleEn && titleAr) {
+                    titleEn.textContent = categoryTitles[currentCategory].en;
+                    titleAr.textContent = categoryTitles[currentCategory].ar;
+                }
+            });
+        });
+
+        // Load products
+        function loadProducts(category) {
+            const products = menuData[category] || [];
+            const productGrid = document.getElementById('productGrid');
+            
+            productGrid.innerHTML = products.map(product => `
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow cursor-pointer product-card group" 
+                     data-product="${JSON.stringify(product).replace(/"/g, '&quot;')}">
+                    <div class="aspect-square bg-gradient-to-br from-amber-100 to-amber-200 flex items-center justify-center group-hover:from-amber-200 group-hover:to-amber-300 transition-colors">
+                        <i class="fas fa-utensils text-4xl text-amber-600"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-gray-800 mb-2 luxury-font">
+                            <span class="en">${product.name}</span>
+                            <span class="ar hidden">${product.nameAr}</span>
+                        </h3>
+                        <p class="text-sm text-gray-600 mb-2 content-font">
+                            <span class="en">${product.desc}</span>
+                            <span class="ar hidden">${product.descAr}</span>
+                        </p>
+                        <p class="text-amber-600 font-bold text-lg">${product.price}</p>
+                        <button class="mt-2 w-full bg-amber-600 text-white py-2 rounded-lg hover:bg-amber-700 transition-colors">
+                            <span class="en">View Details</span>
+                            <span class="ar hidden">عرض التفاصيل</span>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Add click listeners to product cards
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const product = JSON.parse(this.dataset.product.replace(/&quot;/g, '"'));
+                    const productName = currentLanguage === 'en' ? product.name : product.nameAr;
+                    alert(`3D Model for ${productName} would load here!`);
+                });
+            });
+        }
+
+        // Initialize
+        loadProducts('appetizers');
+    </script>
+</body>
 </html>
