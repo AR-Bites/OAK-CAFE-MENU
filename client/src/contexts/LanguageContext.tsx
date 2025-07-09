@@ -750,6 +750,28 @@ const translations = {
     'cold-brew-desc': 'قهوة ناعمة مخمرة ببطء تقدم على الثلج للحصول على أقصى نكهة',
     'iced-americano-desc': 'قهوة سوداء باردة مصنوعة من الإسبريسو والماء البارد',
     
+    // CRITICAL MISSING KEYS - Adding ALL missing description translations
+    'avocado-omelette-desc': 'أومليت أفوكادو طازج مع البيض المخفوق',
+    'basil-lemonade-juice-desc': 'ليمونادا منعشة مع الريحان الطازج',
+    'carrot-juice-desc': 'عصير جزر طازج مليء بالفيتامينات',
+    'cheesecake-desc': 'كعكة الجبن الكريمية اللذيذة',
+    'kenafa-naama-desc': 'كنافة ناعمة تقليدية مع الجبن الحلو',
+    'lemonade-juice-desc': 'ليمونادا طازجة كلاسيكية',
+    'lemon-mint-juice-desc': 'عصير ليمون طازج مع النعناع',
+    'mac-and-cheese-desc': 'معكرونة بالجبن الكريمي',
+    'manakish-falafel-desc': 'مناقيش فلافل تقليدية',
+    'manakish-mix-cheese-desc': 'مناقيش جبن مشكل لذيذة',
+    'manakish-molasses-tahini-desc': 'مناقيش دبس وطحينة تقليدية',
+    'manakish-nabulsi-cheese-desc': 'مناقيش جبن نابلسي أصيل',
+    'manakish-zaatar-vegetables-desc': 'مناقيش زعتر مع الخضار الطازجة',
+    'mango-basil-juice-desc': 'عصير مانجو طازج مع أوراق الريحان',
+    'mango-mint-juice-desc': 'عصير مانجو طازج مع أوراق النعناع',
+    'orange-juice-desc': 'عصير برتقال طازج معصور',
+    'pomegranate-juice-desc': 'عصير رمان طازج مليء بمضادات الأكسدة',
+    'turkey-croissant-desc': 'كرواسان تركي لذيذ بالحشوة المميزة',
+    'marshmallow-chocolate-desc': 'شوكولاتة ساخنة غنية مع المارشمالو',
+    'oak-seasonal-juice-desc': 'مزيجنا الموسمي المميز من أطيب الفواكه المتوفرة',
+    
     // Product Names - Food (Arabic - unique keys)
     'eggs-of-your-choice-ar': 'بيض على اختيارك',
     'french-toast-ar': 'توست فرنسي',
