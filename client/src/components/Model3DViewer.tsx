@@ -238,18 +238,16 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       --poster-color: transparent;
     }
     #arButton {
+      display: none !important;
+    }
+    .loading-message {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      padding: 20px 40px;
-      background: #8B4513;
       color: white;
-      border: none;
-      border-radius: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      cursor: pointer;
+      font-size: 24px;
+      text-align: center;
       z-index: 1000;
     }
     #closeButton {
@@ -275,11 +273,16 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     auto-rotate
     loading="eager">
     
-    <button slot="ar-button" id="arButton">
-      📱 Open LIVE AR Camera
+    <button slot="ar-button" id="arButton" style="display: none;">
+      AR
     </button>
     
   </model-viewer>
+  
+  <div class="loading-message">
+    📱 Opening AR Camera...<br>
+    <small>Point your device at a surface</small>
+  </div>
   
   <button id="closeButton" onclick="window.close()">✕ Close</button>
   
@@ -288,15 +291,25 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     const modelViewer = document.querySelector('#arModel');
     const arButton = document.querySelector('#arButton');
     
-    // Auto-trigger AR when page loads
+    // Auto-trigger AR immediately when page loads
     modelViewer.addEventListener('load', () => {
-      console.log('Model loaded, auto-triggering AR');
+      console.log('Model loaded, triggering AR camera directly');
       setTimeout(() => {
         if (arButton) {
           arButton.click();
-          console.log('AR CAMERA TRIGGERED AUTOMATICALLY');
+          console.log('AR CAMERA OPENED DIRECTLY');
         }
-      }, 1000);
+      }, 500);
+    });
+    
+    // Also try to trigger immediately on ready
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        if (arButton) {
+          arButton.click();
+          console.log('AR CAMERA TRIGGERED ON DOM READY');
+        }
+      }, 200);
     });
     
     // Manual trigger as backup
