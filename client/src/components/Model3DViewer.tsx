@@ -236,17 +236,26 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       
       if (hasUSDZ) {
         console.log('Using USDZ file for AR');
-        // Create a proper AR Quick Look link
+        // Create a proper AR Quick Look link for iOS
         const arLink = document.createElement('a');
         arLink.href = usdzPath;
         arLink.rel = 'ar';
+        arLink.download = `${productName.replace(/\s+/g, '-')}.usdz`;
         arLink.style.display = 'none';
         document.body.appendChild(arLink);
         arLink.click();
         document.body.removeChild(arLink);
       } else {
-        console.log('Using GLB file for AR on iOS');
-        window.open(glbPath, '_blank');
+        console.log('No USDZ available, trying GLB for AR on iOS');
+        // For iOS Safari, try to trigger AR with GLB file
+        const arLink = document.createElement('a');
+        arLink.href = glbPath;
+        arLink.rel = 'ar';
+        arLink.download = `${productName.replace(/\s+/g, '-')}.glb`;
+        arLink.style.display = 'none';
+        document.body.appendChild(arLink);
+        arLink.click();
+        document.body.removeChild(arLink);
       }
     } else if (isAndroid) {
       // For Android - use Scene Viewer
@@ -255,11 +264,34 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       
       console.log('Android full URL:', fullUrl);
       
-      // Direct Scene Viewer URL
-      const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
-      console.log('Scene Viewer URL:', sceneViewerUrl);
-      
-      window.open(sceneViewerUrl, '_blank');
+      // Create Scene Viewer intent for Android AR - using proper file download
+      try {
+        // Create a download link for the GLB file first
+        const downloadLink = document.createElement('a');
+        downloadLink.href = glbPath;
+        downloadLink.download = `${productName.replace(/\s+/g, '-')}.glb`;
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+        
+        // Then try to open Scene Viewer
+        setTimeout(() => {
+          const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
+          console.log('Scene Viewer URL:', sceneViewerUrl);
+          window.open(sceneViewerUrl, '_blank');
+        }, 500);
+      } catch (error) {
+        console.log('AR failed, falling back to download');
+        // Fallback to just downloading the file
+        const downloadLink = document.createElement('a');
+        downloadLink.href = glbPath;
+        downloadLink.download = `${productName.replace(/\s+/g, '-')}.glb`;
+        downloadLink.style.display = 'none';
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+      }
     } else {
       // Desktop - show instruction
       alert(`To view ${productName} in AR:\n1. Open this page on your mobile device\n2. Click "View in AR" to open your camera\n3. Place the 3D model in your real environment`);
