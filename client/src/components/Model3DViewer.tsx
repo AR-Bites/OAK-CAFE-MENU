@@ -210,8 +210,15 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       // For iOS devices, check for USDZ file
       const usdzPath = modelPath.replace('/models/', '/assets/').replace('.glb', '.usdz');
       
-      // List of items that have USDZ files available
-      const hasUSDZ = modelPath.includes('Calezone_') || modelPath.includes('grilledChicken_');
+      // List of items that have USDZ files available (based on actual files in attached_assets)
+      const hasUSDZ = modelPath.includes('Calezone_1752057967755.glb') || 
+                     modelPath.includes('grilledChicken_1752057967760.glb') ||
+                     modelPath.includes('Calezone_1752057536010.glb') ||
+                     modelPath.includes('grilledChicken_1752057536014.glb');
+      
+      console.log('Model path:', modelPath);
+      console.log('Has USDZ:', hasUSDZ);
+      console.log('USDZ path:', usdzPath);
       
       if (hasUSDZ) {
         // USDZ file available, open it
