@@ -239,6 +239,12 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     }
     #arButton {
       display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      position: absolute !important;
+      left: -9999px !important;
+      width: 0 !important;
+      height: 0 !important;
     }
     .loading-message {
       position: absolute;
@@ -273,15 +279,13 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     auto-rotate
     loading="eager">
     
-    <button slot="ar-button" id="arButton" style="display: none;">
-      AR
-    </button>
+    <button slot="ar-button" id="arButton" style="display: none !important; visibility: hidden !important; opacity: 0 !important; position: absolute !important; left: -9999px !important;"></button>
     
   </model-viewer>
   
   <div class="loading-message">
-    📱 Opening AR Camera...<br>
-    <small>Point your device at a surface</small>
+    📱 Starting AR Camera...<br>
+    <small>Camera will open automatically</small>
   </div>
   
   <button id="closeButton" onclick="window.close()">✕ Close</button>
