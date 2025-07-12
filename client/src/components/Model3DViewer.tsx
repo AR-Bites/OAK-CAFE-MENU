@@ -204,97 +204,67 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     };
   }, [isOpen, modelPath, autoRotate]);
 
-  const handleViewInAR = () => {
-    console.log('=== AR BUTTON CLICKED ===');
-    console.log('Product name:', productName);
-    console.log('Original model path:', modelPath);
+  const handleViewInAR = async () => {
+    console.log('=== STARTING LIVE AR CAMERA ===');
+    console.log('Product:', productName);
     
-    // Test if files exist first
-    const glbPath = modelPath.replace('/models/', '/attached_assets/');
-    const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
-    
-    console.log('GLB path:', glbPath);
-    console.log('USDZ path:', usdzPath);
-    console.log('Full GLB URL:', `${window.location.origin}${glbPath}`);
-    console.log('Full USDZ URL:', `${window.location.origin}${usdzPath}`);
-    
-    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-    const isAndroid = /Android/.test(navigator.userAgent);
-    
-    console.log('Device - iOS:', isIOS, 'Android:', isAndroid);
-    
-    if (isIOS) {
-      // For iOS - try USDZ first, then GLB
-      const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
-      const glbPath = modelPath.replace('/models/', '/attached_assets/');
-      
-      console.log('iOS paths - USDZ:', usdzPath, 'GLB:', glbPath);
-      
-      // Check if this model has USDZ
-      const hasUSDZ = modelPath.includes('Calezone_1752057967755') || 
-                     modelPath.includes('grilledChicken_1752057967760');
-      
-      if (hasUSDZ) {
-        console.log('Using USDZ file for AR');
-        // Create a proper AR Quick Look link for iOS
-        const arLink = document.createElement('a');
-        arLink.href = usdzPath;
-        arLink.rel = 'ar';
-        arLink.download = `${productName.replace(/\s+/g, '-')}.usdz`;
-        arLink.style.display = 'none';
-        document.body.appendChild(arLink);
-        arLink.click();
-        document.body.removeChild(arLink);
-      } else {
-        console.log('No USDZ available, trying GLB for AR on iOS');
-        // For iOS Safari, try to trigger AR with GLB file
-        const arLink = document.createElement('a');
-        arLink.href = glbPath;
-        arLink.rel = 'ar';
-        arLink.download = `${productName.replace(/\s+/g, '-')}.glb`;
-        arLink.style.display = 'none';
-        document.body.appendChild(arLink);
-        arLink.click();
-        document.body.removeChild(arLink);
+    try {
+      // Check if device supports WebXR AR
+      if ('xr' in navigator) {
+        const isSupported = await navigator.xr.isSessionSupported('immersive-ar');
+        if (isSupported) {
+          console.log('Starting WebXR AR session...');
+          const session = await navigator.xr.requestSession('immersive-ar', {
+            requiredFeatures: ['local', 'hit-test'],
+            optionalFeatures: ['dom-overlay'],
+            domOverlay: { root: document.body }
+          });
+          
+          // Start AR session with camera
+          console.log('AR session started, camera is now active');
+          alert(`AR Camera is now active! Look around to place ${productName} in your space.`);
+          return;
+        }
       }
-    } else if (isAndroid) {
-      // For Android - use Scene Viewer
-      const glbPath = modelPath.replace('/models/', '/attached_assets/');
-      const fullUrl = `${window.location.origin}${glbPath}`;
       
-      console.log('Android full URL:', fullUrl);
-      
-      // Create Scene Viewer intent for Android AR - using proper file download
-      try {
-        // Create a download link for the GLB file first
-        const downloadLink = document.createElement('a');
-        downloadLink.href = glbPath;
-        downloadLink.download = `${productName.replace(/\s+/g, '-')}.glb`;
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
+      // Fallback for iOS AR Quick Look
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        console.log('Using iOS AR Quick Look');
+        const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
         
-        // Then try to open Scene Viewer
-        setTimeout(() => {
-          const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
-          console.log('Scene Viewer URL:', sceneViewerUrl);
-          window.open(sceneViewerUrl, '_blank');
-        }, 500);
-      } catch (error) {
-        console.log('AR failed, falling back to download');
-        // Fallback to just downloading the file
-        const downloadLink = document.createElement('a');
-        downloadLink.href = glbPath;
-        downloadLink.download = `${productName.replace(/\s+/g, '-')}.glb`;
-        downloadLink.style.display = 'none';
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
+        // Check if USDZ exists for this model
+        const hasUSDZ = modelPath.includes('Calezone_1752057967755') || 
+                       modelPath.includes('grilledChicken_1752057967760');
+        
+        if (hasUSDZ) {
+          console.log('Opening AR Quick Look with camera');
+          window.location.href = usdzPath + '#allowsContentScaling=0';
+          return;
+        }
       }
-    } else {
-      // Desktop - show instruction
-      alert(`To view ${productName} in AR:\n1. Open this page on your mobile device\n2. Click "View in AR" to open your camera\n3. Place the 3D model in your real environment`);
+      
+      // Fallback for Android Scene Viewer
+      const isAndroid = /Android/.test(navigator.userAgent);
+      if (isAndroid) {
+        console.log('Using Android Scene Viewer');
+        const glbPath = modelPath.replace('/models/', '/attached_assets/');
+        const fullUrl = `${window.location.origin}${glbPath}`;
+        
+        // Direct intent to Scene Viewer AR mode
+        const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
+        
+        console.log('Opening Android AR camera');
+        window.location.href = intent;
+        return;
+      }
+      
+      // Desktop fallback
+      alert(`AR Camera requires a mobile device.\n\nTo experience live AR:\n1. Open this page on your phone\n2. Click "View in AR"\n3. Your camera will open\n4. Point at a surface to place ${productName}`);
+      
+    } catch (error) {
+      console.error('AR Error:', error);
+      alert(`Camera access failed. Please:\n1. Allow camera permissions\n2. Use a compatible mobile browser\n3. Try again with a supported device`);
     }
   };
 
