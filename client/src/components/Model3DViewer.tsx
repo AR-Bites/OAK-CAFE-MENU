@@ -252,83 +252,40 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
         
         console.log('Final AR file path for iOS:', finalPath);
         
-        // Create invisible AR trigger button in DOM
-        const arButton = document.createElement('a');
-        arButton.href = finalPath;
-        arButton.rel = 'ar';
-        arButton.innerHTML = '&nbsp;';
-        arButton.style.position = 'fixed';
-        arButton.style.top = '-1000px';
-        arButton.style.left = '-1000px';
-        arButton.style.width = '1px';
-        arButton.style.height = '1px';
-        arButton.style.opacity = '0';
+        // For iOS AR Quick Look - use direct window.open to prevent router navigation
+        const arUrl = finalPath + '#allowsContentScaling=0';
+        console.log('Opening iOS AR Quick Look with URL:', arUrl);
         
-        document.body.appendChild(arButton);
-        
-        // Programmatically click the AR button
-        const clickEvent = new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true
-        });
-        
-        arButton.dispatchEvent(clickEvent);
-        
-        // Clean up after a delay
-        setTimeout(() => {
-          if (document.body.contains(arButton)) {
-            document.body.removeChild(arButton);
-          }
-        }, 1000);
-        
-        console.log('iOS AR Quick Look triggered via DOM event');
-        alert('AR camera is opening! Point your device at a surface to place the 3D model.');
+        // Open AR viewer in same window but with special AR parameters
+        try {
+          const newWindow = window.open(arUrl, '_self');
+          console.log('iOS AR Quick Look opened');
+        } catch (error) {
+          console.error('Failed to open AR Quick Look:', error);
+          // Fallback: try location.assign
+          window.location.assign(arUrl);
+        }
         return;
       }
       
       if (isAndroid || isMobile) {
-        console.log('Android/Mobile AR - Creating Scene Viewer trigger');
+        console.log('Android/Mobile AR - Opening Scene Viewer for LIVE AR');
         const fullUrl = `${window.location.origin}${modelPath}`;
         
-        // Use Google Scene Viewer for Android AR
+        // For Android Scene Viewer - open AR camera directly
         const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
         
-        console.log('Scene Viewer URL:', sceneViewerUrl);
+        console.log('Opening Android Scene Viewer with URL:', sceneViewerUrl);
         
-        // Create invisible link and trigger download
-        const arButton = document.createElement('a');
-        arButton.href = sceneViewerUrl;
-        arButton.target = '_blank';
-        arButton.rel = 'noopener noreferrer';
-        arButton.innerHTML = '&nbsp;';
-        arButton.style.position = 'fixed';
-        arButton.style.top = '-1000px';
-        arButton.style.left = '-1000px';
-        arButton.style.width = '1px';
-        arButton.style.height = '1px';
-        arButton.style.opacity = '0';
-        
-        document.body.appendChild(arButton);
-        
-        // Programmatically click the link
-        const clickEvent = new MouseEvent('click', {
-          view: window,
-          bubbles: true,
-          cancelable: true
-        });
-        
-        arButton.dispatchEvent(clickEvent);
-        
-        // Clean up after a delay
-        setTimeout(() => {
-          if (document.body.contains(arButton)) {
-            document.body.removeChild(arButton);
-          }
-        }, 1000);
-        
-        console.log('Scene Viewer triggered via DOM event');
-        alert('AR camera is opening! Point your device at a surface to place the 3D model.');
+        // Direct navigation to AR viewer for LIVE camera access
+        try {
+          window.location.href = sceneViewerUrl;
+          console.log('Android Scene Viewer opened - LIVE AR camera should start');
+        } catch (error) {
+          console.error('Failed to open Scene Viewer:', error);
+          // Fallback: try window.open
+          window.open(sceneViewerUrl, '_self');
+        }
         return;
       }
       
