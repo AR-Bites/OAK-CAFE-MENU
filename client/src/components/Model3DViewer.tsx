@@ -233,13 +233,24 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       
       if (isIOS) {
         console.log('iOS AR - Creating AR Quick Look trigger');
-        const usdzPath = modelPath.replace('.glb', '.usdz');
+        console.log('Original GLB path:', modelPath);
         
-        // Verify USDZ file exists
-        const usdzResponse = await fetch(usdzPath, { method: 'HEAD' });
-        const finalPath = usdzResponse.ok ? usdzPath : modelPath;
+        // For iOS, we need to use specific USDZ files that exist
+        let finalPath = modelPath; // Default to GLB if no USDZ
         
-        console.log('Using AR file:', finalPath);
+        // Check if we have USDZ for this specific model
+        if (modelPath.includes('Calezone_1752057967755')) {
+          finalPath = '/attached_assets/Calezone_1752057967755.usdz';
+          console.log('Using Calzone USDZ file');
+        } else if (modelPath.includes('grilledChicken_1752057967760')) {
+          finalPath = '/attached_assets/grilledChicken_1752057967760.usdz';
+          console.log('Using Grilled Chicken USDZ file');
+        } else {
+          // Fallback: use GLB file for iOS Safari
+          console.log('No USDZ available, using GLB for iOS Safari');
+        }
+        
+        console.log('Final AR file path for iOS:', finalPath);
         
         // Create invisible AR trigger button in DOM
         const arButton = document.createElement('a');
