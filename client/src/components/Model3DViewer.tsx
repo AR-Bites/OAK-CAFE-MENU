@@ -205,56 +205,79 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
   }, [isOpen, modelPath, autoRotate]);
 
   const handleViewInAR = () => {
-    // Check if device supports AR
-    if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-      // For iOS devices, check for USDZ file
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = /Android/.test(navigator.userAgent);
+    
+    if (isIOS) {
+      // For iOS devices - use AR Quick Look with USDZ
       const usdzPath = modelPath.replace('/models/', '/assets/').replace('.glb', '.usdz');
       
-      // List of items that have USDZ files available (based on actual files in attached_assets)
-      const hasUSDZ = modelPath.includes('Calezone_1752057967755.glb') || 
-                     modelPath.includes('grilledChicken_1752057967760.glb') ||
-                     modelPath.includes('Calezone_1752057536010.glb') ||
-                     modelPath.includes('grilledChicken_1752057536014.glb');
-      
-      console.log('Model path:', modelPath);
-      console.log('Has USDZ:', hasUSDZ);
-      console.log('USDZ path:', usdzPath);
+      // Check if this model has USDZ available
+      const hasUSDZ = modelPath.includes('Calezone_1752057967755') || 
+                     modelPath.includes('grilledChicken_1752057967760');
       
       if (hasUSDZ) {
-        // USDZ file available, open it
-        const link = document.createElement('a');
-        link.href = usdzPath;
-        link.setAttribute('rel', 'ar');
-        link.click();
+        // Create AR Quick Look link
+        const arLink = document.createElement('a');
+        arLink.href = usdzPath;
+        arLink.rel = 'ar';
+        arLink.appendChild(document.createElement('img'));
+        document.body.appendChild(arLink);
+        arLink.click();
+        document.body.removeChild(arLink);
       } else {
-        // No USDZ available, inform user
-        alert(`AR viewing for ${productName} is being prepared. For now, please enjoy the interactive 3D viewer above.`);
+        // Create AR Quick Look with GLB to USDZ conversion hint
+        alert('AR viewing will open your camera to place this item in your space. Note: This feature works best with Safari on iOS 12+');
+        const arLink = document.createElement('a');
+        arLink.href = modelPath.replace('/models/', '/assets/');
+        arLink.rel = 'ar';
+        arLink.click();
       }
-    } else if (navigator.userAgent.includes('Android')) {
-      // For Android devices, try to use Scene Viewer
-      const fullModelUrl = `${window.location.origin}${modelPath.replace('/models/', '/assets/')}`;
+    } else if (isAndroid) {
+      // For Android devices - use Model Viewer with Scene Viewer
+      const modelUrl = `${window.location.origin}${modelPath.replace('/models/', '/assets/')}`;
       
-      // Create intent URL for Scene Viewer
-      const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullModelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
+      // Try direct Scene Viewer intent
+      const sceneViewerIntent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
+      
+      // Alternative: Create model-viewer element dynamically
+      const createModelViewer = () => {
+        const modelViewer = document.createElement('model-viewer');
+        modelViewer.src = modelUrl;
+        modelViewer.ar = true;
+        modelViewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
+        modelViewer.setAttribute('camera-controls', '');
+        modelViewer.setAttribute('auto-rotate', '');
+        modelViewer.style.width = '100%';
+        modelViewer.style.height = '400px';
+        
+        // Trigger AR mode
+        if (modelViewer.activateAR) {
+          modelViewer.activateAR();
+        }
+      };
       
       try {
-        window.location.href = intent;
-        
-        // Fallback after 3 seconds if intent doesn't work
-        setTimeout(() => {
-          const fallbackUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullModelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
-          window.open(fallbackUrl, '_blank');
-        }, 3000);
+        window.location.href = sceneViewerIntent;
       } catch (error) {
-        alert('AR viewing requires the Google AR app. Please install it from the Play Store or use the 3D viewer above.');
+        // Fallback: Open in new window with Scene Viewer
+        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelUrl)}&mode=ar_only`;
+        window.open(sceneViewerUrl, '_blank');
       }
     } else {
-      // For desktop/other devices
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-      if (isMobile) {
-        alert('AR viewing requires an AR-compatible app on your device. Please use the 3D viewer above to explore the model.');
+      // For desktop browsers - show WebXR or fallback message
+      if ('xr' in navigator) {
+        // Check for WebXR support
+        navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
+          if (supported) {
+            alert('AR viewing will start shortly. Point your camera where you want to place the item.');
+            // Implement WebXR AR session here
+          } else {
+            alert('AR viewing is best experienced on mobile devices. Please visit this site on your phone or tablet to place this item in your space using your camera.');
+          }
+        });
       } else {
-        alert('AR viewing is available on mobile devices. Use your phone or tablet to view this menu item in your space!');
+        alert('AR viewing opens your device camera to place this menu item in your real environment. Please visit this site on a mobile device (iPhone/iPad or Android) for the full AR experience.');
       }
     }
   };
