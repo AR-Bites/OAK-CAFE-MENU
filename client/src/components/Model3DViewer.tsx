@@ -227,10 +227,19 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
         }
       }
       
-      // Fallback for iOS AR Quick Look
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      // Enhanced mobile device detection
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+      const isAndroid = /android/i.test(userAgent);
+      const isMobile = /Mobi|Android/i.test(userAgent) || 
+                      ('ontouchstart' in window) || 
+                      (navigator.maxTouchPoints > 0) ||
+                      (navigator.msMaxTouchPoints > 0);
+      
+      console.log('Device detection:', { isIOS, isAndroid, isMobile, userAgent });
+      
       if (isIOS) {
-        console.log('Using iOS AR Quick Look');
+        console.log('iOS device detected - starting AR Quick Look');
         const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
         
         // Check if USDZ exists for this model
@@ -238,29 +247,46 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
                        modelPath.includes('grilledChicken_1752057967760');
         
         if (hasUSDZ) {
-          console.log('Opening AR Quick Look with camera');
+          console.log('Opening AR Quick Look with camera for iOS');
           window.location.href = usdzPath + '#allowsContentScaling=0';
+          return;
+        } else {
+          // Try GLB for iOS Safari
+          const glbPath = modelPath.replace('/models/', '/attached_assets/');
+          console.log('No USDZ found, trying GLB for iOS Safari AR');
+          window.location.href = glbPath;
           return;
         }
       }
       
-      // Fallback for Android Scene Viewer
-      const isAndroid = /Android/.test(navigator.userAgent);
       if (isAndroid) {
-        console.log('Using Android Scene Viewer');
+        console.log('Android device detected - starting Scene Viewer');
         const glbPath = modelPath.replace('/models/', '/attached_assets/');
         const fullUrl = `${window.location.origin}${glbPath}`;
         
-        // Direct intent to Scene Viewer AR mode
+        // Try Scene Viewer with intent
         const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
         
-        console.log('Opening Android AR camera');
+        console.log('Opening Android AR camera with Scene Viewer');
         window.location.href = intent;
         return;
       }
       
-      // Desktop fallback
-      alert(`AR Camera requires a mobile device.\n\nTo experience live AR:\n1. Open this page on your phone\n2. Click "View in AR"\n3. Your camera will open\n4. Point at a surface to place ${productName}`);
+      if (isMobile) {
+        console.log('Mobile device detected - trying mobile AR fallback');
+        const glbPath = modelPath.replace('/models/', '/attached_assets/');
+        const fullUrl = `${window.location.origin}${glbPath}`;
+        
+        // Try direct Scene Viewer URL for mobile browsers
+        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
+        console.log('Opening mobile AR with Scene Viewer URL');
+        window.open(sceneViewerUrl, '_blank');
+        return;
+      }
+      
+      // Only show desktop message if truly not mobile
+      console.log('Desktop device detected');
+      alert(`Desktop detected. For AR:\n1. Open this page on your mobile device\n2. Click "View in AR"\n3. Camera will open for live AR`);
       
     } catch (error) {
       console.error('AR Error:', error);
