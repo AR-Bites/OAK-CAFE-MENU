@@ -205,21 +205,11 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
   }, [isOpen, modelPath, autoRotate]);
 
   const handleViewInAR = async () => {
-    console.log('=== STARTING AR CAMERA ===');
+    console.log('=== STARTING LIVE AR CAMERA ===');
     console.log('Product:', productName);
     console.log('Model path:', modelPath);
     
     try {
-      // First, verify the 3D model file exists
-      const response = await fetch(modelPath, { method: 'HEAD' });
-      if (!response.ok) {
-        console.error('3D model file not found:', modelPath);
-        alert('3D model not available. Please try another item.');
-        return;
-      }
-      
-      console.log('3D model file verified:', response.status);
-      
       // Enhanced mobile device detection
       const userAgent = navigator.userAgent || navigator.vendor || window.opera;
       const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
@@ -231,71 +221,118 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
       
       console.log('Device detection:', { isIOS, isAndroid, isMobile, userAgent });
       
-      if (isIOS) {
-        console.log('iOS AR - Creating AR Quick Look trigger');
-        console.log('Original GLB path:', modelPath);
-        
-        // For iOS, we need to use specific USDZ files that exist
-        let finalPath = modelPath; // Default to GLB if no USDZ
-        
-        // Check if we have USDZ for this specific model
-        if (modelPath.includes('Calezone_1752057967755')) {
-          finalPath = '/attached_assets/Calezone_1752057967755.usdz';
-          console.log('Using Calzone USDZ file');
-        } else if (modelPath.includes('grilledChicken_1752057967760')) {
-          finalPath = '/attached_assets/grilledChicken_1752057967760.usdz';
-          console.log('Using Grilled Chicken USDZ file');
-        } else {
-          // Fallback: use GLB file for iOS Safari
-          console.log('No USDZ available, using GLB for iOS Safari');
+      // Create a dynamic HTML page with model-viewer that triggers AR immediately
+      const arPageContent = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AR Viewer - ${productName}</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    body { margin: 0; background: #000; }
+    model-viewer { 
+      width: 100vw; 
+      height: 100vh; 
+      --poster-color: transparent;
+    }
+    #arButton {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      background: #8B4513;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 1000;
+    }
+    #closeButton {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.9);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1001;
+    }
+  </style>
+</head>
+<body>
+  <model-viewer
+    id="arModel"
+    src="${window.location.origin}${modelPath}"
+    ar
+    ar-modes="webxr scene-viewer quick-look"
+    camera-controls
+    auto-rotate
+    loading="eager">
+    
+    <button slot="ar-button" id="arButton">
+      📱 Open LIVE AR Camera
+    </button>
+    
+  </model-viewer>
+  
+  <button id="closeButton" onclick="window.close()">✕ Close</button>
+  
+  <script>
+    console.log('AR page loaded');
+    const modelViewer = document.querySelector('#arModel');
+    const arButton = document.querySelector('#arButton');
+    
+    // Auto-trigger AR when page loads
+    modelViewer.addEventListener('load', () => {
+      console.log('Model loaded, auto-triggering AR');
+      setTimeout(() => {
+        if (arButton) {
+          arButton.click();
+          console.log('AR CAMERA TRIGGERED AUTOMATICALLY');
         }
-        
-        console.log('Final AR file path for iOS:', finalPath);
-        
-        // For iOS AR Quick Look - use direct window.open to prevent router navigation
-        const arUrl = finalPath + '#allowsContentScaling=0';
-        console.log('Opening iOS AR Quick Look with URL:', arUrl);
-        
-        // Open AR viewer in same window but with special AR parameters
-        try {
-          const newWindow = window.open(arUrl, '_self');
-          console.log('iOS AR Quick Look opened');
-        } catch (error) {
-          console.error('Failed to open AR Quick Look:', error);
-          // Fallback: try location.assign
-          window.location.assign(arUrl);
-        }
-        return;
+      }, 1000);
+    });
+    
+    // Manual trigger as backup
+    arButton.addEventListener('click', () => {
+      console.log('MANUAL AR CAMERA TRIGGER');
+      if (modelViewer.activateAR) {
+        modelViewer.activateAR();
       }
+    });
+  </script>
+</body>
+</html>`;
+
+      // Create a blob URL for the AR page
+      const blob = new Blob([arPageContent], { type: 'text/html' });
+      const arPageUrl = URL.createObjectURL(blob);
       
-      if (isAndroid || isMobile) {
-        console.log('Android/Mobile AR - Opening Scene Viewer for LIVE AR');
-        const fullUrl = `${window.location.origin}${modelPath}`;
-        
-        // For Android Scene Viewer - open AR camera directly
-        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
-        
-        console.log('Opening Android Scene Viewer with URL:', sceneViewerUrl);
-        
-        // Direct navigation to AR viewer for LIVE camera access
-        try {
-          window.location.href = sceneViewerUrl;
-          console.log('Android Scene Viewer opened - LIVE AR camera should start');
-        } catch (error) {
-          console.error('Failed to open Scene Viewer:', error);
-          // Fallback: try window.open
-          window.open(sceneViewerUrl, '_self');
-        }
-        return;
+      console.log('Opening dedicated AR page...');
+      
+      // Open the AR page in a new window/tab
+      const arWindow = window.open(arPageUrl, '_blank', 'width=100vw,height=100vh,fullscreen=yes');
+      
+      if (arWindow) {
+        console.log('LIVE AR page opened successfully');
+        // Clean up blob URL after a delay
+        setTimeout(() => {
+          URL.revokeObjectURL(arPageUrl);
+        }, 10000);
+      } else {
+        console.error('Failed to open AR page');
+        alert('Please allow popups for this site to use AR camera');
       }
-      
-      // Desktop fallback
-      console.log('Desktop device - showing mobile instructions');
-      alert('AR Camera requires a mobile device.\n\nFor live AR experience:\n1. Open this page on your phone\n2. Click "View in AR"\n3. Your camera will open to place the 3D model in real space');
       
     } catch (error) {
       console.error('AR Error:', error);
-      alert('Unable to start AR. Please ensure you are on a mobile device with a camera and try again.');
+      alert('Unable to start LIVE AR camera. Please ensure you are on a mobile device with camera access and try again.');
     }
   };
 
