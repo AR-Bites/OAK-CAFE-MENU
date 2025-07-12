@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { X, RotateCcw, ZoomIn, ZoomOut, Play, Pause } from 'lucide-react';
+import { X, RotateCcw, Play, Pause, Eye } from 'lucide-react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
@@ -204,21 +204,22 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     };
   }, [isOpen, modelPath, autoRotate]);
 
-  const handleZoomIn = () => {
-    if (cameraRef.current) {
-      const direction = new THREE.Vector3();
-      cameraRef.current.getWorldDirection(direction);
-      cameraRef.current.position.addScaledVector(direction, 0.5);
-      setZoom(Math.min(zoom * 1.2, 3));
-    }
-  };
-
-  const handleZoomOut = () => {
-    if (cameraRef.current) {
-      const direction = new THREE.Vector3();
-      cameraRef.current.getWorldDirection(direction);
-      cameraRef.current.position.addScaledVector(direction, -0.5);
-      setZoom(Math.max(zoom / 1.2, 0.5));
+  const handleViewInAR = () => {
+    // Check if device supports AR
+    if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+      // For iOS devices, try to open USDZ file if available
+      const usdzPath = modelPath.replace('.glb', '.usdz');
+      const link = document.createElement('a');
+      link.href = usdzPath;
+      link.setAttribute('rel', 'ar');
+      link.click();
+    } else if (navigator.userAgent.includes('Android')) {
+      // For Android devices, try to open with scene-viewer
+      const androidLink = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(window.location.origin + modelPath)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end;`;
+      window.location.href = androidLink;
+    } else {
+      // Fallback for other devices
+      alert('AR viewing is supported on mobile devices with AR capabilities (iOS 12+ or Android with ARCore)');
     }
   };
 
@@ -252,21 +253,15 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
           </div>
         )}
 
-        {/* Simple Controls for inline */}
+        {/* AR Controls for inline */}
         <div className="absolute top-4 left-4 flex gap-2">
           <button
-            onClick={handleZoomIn}
-            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
-            title="Zoom In"
+            onClick={handleViewInAR}
+            className="p-3 bg-warm-brown text-white rounded-lg hover:bg-opacity-90 transition-all shadow-lg flex items-center gap-2"
+            title="View in AR"
           >
-            <ZoomIn className="w-5 h-5" />
-          </button>
-          <button
-            onClick={handleZoomOut}
-            className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
-            title="Zoom Out"
-          >
-            <ZoomOut className="w-5 h-5" />
+            <Eye className="w-5 h-5" />
+            <span className="text-sm font-medium">View in AR</span>
           </button>
         </div>
       </div>
@@ -305,21 +300,29 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
             </div>
           )}
 
-          {/* Simple Controls */}
+          {/* AR Controls */}
           <div className="absolute top-4 right-4 flex gap-2">
             <button
-              onClick={handleZoomIn}
+              onClick={() => setAutoRotate(!autoRotate)}
               className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
-              title="Zoom In"
+              title={autoRotate ? "Stop Rotation" : "Start Rotation"}
             >
-              <ZoomIn className="w-5 h-5" />
+              {autoRotate ? <Pause className="w-5 h-5" /> : <Play className="w-5 h-5" />}
             </button>
             <button
-              onClick={handleZoomOut}
+              onClick={handleReset}
               className="p-3 bg-white bg-opacity-90 text-gray-700 rounded-lg hover:bg-opacity-100 transition-all shadow-lg"
-              title="Zoom Out"
+              title="Reset View"
             >
-              <ZoomOut className="w-5 h-5" />
+              <RotateCcw className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleViewInAR}
+              className="p-3 bg-warm-brown text-white rounded-lg hover:bg-opacity-90 transition-all shadow-lg flex items-center gap-2"
+              title="View in AR"
+            >
+              <Eye className="w-5 h-5" />
+              <span className="text-sm font-medium">View in AR</span>
             </button>
           </div>
         </div>
