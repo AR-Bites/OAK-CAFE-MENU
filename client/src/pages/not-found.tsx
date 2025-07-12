@@ -23,6 +23,13 @@ export default function NotFound() {
             URL: {window.location.href}
           </p>
           
+          {window.location.pathname.includes('/models/') && (
+            <div className="mt-4 p-3 bg-red-100 border border-red-300 rounded text-sm text-red-700">
+              ⚠️ FOUND THE ISSUE: URL contains "/models/" but files are in "/attached_assets/"
+              <br />This indicates browser cache or old reference needs clearing.
+            </div>
+          )}
+          
           <button 
             onClick={() => window.location.href = '/'}
             className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
