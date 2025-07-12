@@ -210,7 +210,7 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     
     if (isIOS) {
       // For iOS devices - use AR Quick Look with USDZ
-      const usdzPath = modelPath.replace('/models/', '/assets/').replace('.glb', '.usdz');
+      const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
       
       // Check if this model has USDZ available
       const hasUSDZ = modelPath.includes('Calezone_1752057967755') || 
@@ -229,13 +229,13 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
         // Create AR Quick Look with GLB to USDZ conversion hint
         alert('AR viewing will open your camera to place this item in your space. Note: This feature works best with Safari on iOS 12+');
         const arLink = document.createElement('a');
-        arLink.href = modelPath.replace('/models/', '/assets/');
+        arLink.href = modelPath.replace('/models/', '/attached_assets/');
         arLink.rel = 'ar';
         arLink.click();
       }
     } else if (isAndroid) {
       // For Android devices - use Model Viewer with Scene Viewer
-      const modelUrl = `${window.location.origin}${modelPath.replace('/models/', '/assets/')}`;
+      const modelUrl = `${window.location.origin}${modelPath.replace('/models/', '/attached_assets/')}`;
       
       // Try direct Scene Viewer intent
       const sceneViewerIntent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
