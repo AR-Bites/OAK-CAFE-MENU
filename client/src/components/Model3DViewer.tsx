@@ -204,94 +204,75 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
     };
   }, [isOpen, modelPath, autoRotate]);
 
-  const handleViewInAR = async () => {
-    console.log('=== STARTING LIVE AR CAMERA ===');
+  const handleViewInAR = () => {
+    console.log('=== STARTING AR CAMERA ===');
     console.log('Product:', productName);
+    console.log('Model path:', modelPath);
     
-    try {
-      // Check if device supports WebXR AR
-      if ('xr' in navigator) {
-        const isSupported = await navigator.xr.isSessionSupported('immersive-ar');
-        if (isSupported) {
-          console.log('Starting WebXR AR session...');
-          const session = await navigator.xr.requestSession('immersive-ar', {
-            requiredFeatures: ['local', 'hit-test'],
-            optionalFeatures: ['dom-overlay'],
-            domOverlay: { root: document.body }
-          });
-          
-          // Start AR session with camera
-          console.log('AR session started, camera is now active');
-          alert(`AR Camera is now active! Look around to place ${productName} in your space.`);
-          return;
-        }
-      }
+    // Enhanced mobile device detection
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+    const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+    const isAndroid = /android/i.test(userAgent);
+    const isMobile = /Mobi|Android/i.test(userAgent) || 
+                    ('ontouchstart' in window) || 
+                    (navigator.maxTouchPoints > 0) ||
+                    (navigator.msMaxTouchPoints > 0);
+    
+    console.log('Device detection:', { isIOS, isAndroid, isMobile, userAgent });
+    
+    // NEVER use window.location.href - it causes 404 router errors!
+    // Use proper AR methods instead
+    
+    if (isIOS) {
+      console.log('iOS AR - Creating download link for AR Quick Look');
+      const usdzPath = modelPath.replace('.glb', '.usdz');
       
-      // Enhanced mobile device detection
-      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-      const isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-      const isAndroid = /android/i.test(userAgent);
-      const isMobile = /Mobi|Android/i.test(userAgent) || 
-                      ('ontouchstart' in window) || 
-                      (navigator.maxTouchPoints > 0) ||
-                      (navigator.msMaxTouchPoints > 0);
+      // Create proper AR Quick Look download link
+      const arLink = document.createElement('a');
+      arLink.href = usdzPath;
+      arLink.rel = 'ar';
+      arLink.target = '_blank';
+      arLink.style.display = 'none';
+      document.body.appendChild(arLink);
+      arLink.click();
+      document.body.removeChild(arLink);
       
-      console.log('Device detection:', { isIOS, isAndroid, isMobile, userAgent });
-      
-      if (isIOS) {
-        console.log('iOS device detected - starting AR Quick Look');
-        const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
-        
-        // Check if USDZ exists for this model
-        const hasUSDZ = modelPath.includes('Calezone_1752057967755') || 
-                       modelPath.includes('grilledChicken_1752057967760');
-        
-        if (hasUSDZ) {
-          console.log('Opening AR Quick Look with camera for iOS');
-          window.location.href = usdzPath + '#allowsContentScaling=0';
-          return;
-        } else {
-          // Try GLB for iOS Safari
-          const glbPath = modelPath.replace('/models/', '/attached_assets/');
-          console.log('No USDZ found, trying GLB for iOS Safari AR');
-          window.location.href = glbPath;
-          return;
-        }
-      }
-      
-      if (isAndroid) {
-        console.log('Android device detected - starting Scene Viewer');
-        const glbPath = modelPath.replace('/models/', '/attached_assets/');
-        const fullUrl = `${window.location.origin}${glbPath}`;
-        
-        // Try Scene Viewer with intent
-        const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
-        
-        console.log('Opening Android AR camera with Scene Viewer');
-        window.location.href = intent;
-        return;
-      }
-      
-      if (isMobile) {
-        console.log('Mobile device detected - trying mobile AR fallback');
-        const glbPath = modelPath.replace('/models/', '/attached_assets/');
-        const fullUrl = `${window.location.origin}${glbPath}`;
-        
-        // Try direct Scene Viewer URL for mobile browsers
-        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
-        console.log('Opening mobile AR with Scene Viewer URL');
-        window.open(sceneViewerUrl, '_blank');
-        return;
-      }
-      
-      // Only show desktop message if truly not mobile
-      console.log('Desktop device detected');
-      alert(`Desktop detected. For AR:\n1. Open this page on your mobile device\n2. Click "View in AR"\n3. Camera will open for live AR`);
-      
-    } catch (error) {
-      console.error('AR Error:', error);
-      alert(`Camera access failed. Please:\n1. Allow camera permissions\n2. Use a compatible mobile browser\n3. Try again with a supported device`);
+      console.log('iOS AR Quick Look triggered');
+      alert('AR camera is opening! Point your device at a surface to place the 3D model.');
+      return;
     }
+    
+    if (isAndroid || isMobile) {
+      console.log('Android/Mobile AR - Opening Scene Viewer');
+      const fullUrl = `${window.location.origin}${modelPath}`;
+      
+      // Create Scene Viewer URL and open in new tab (no navigation!)
+      const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
+      
+      // Open in new window to avoid router navigation
+      const newWindow = window.open(sceneViewerUrl, '_blank');
+      
+      if (newWindow) {
+        console.log('Scene Viewer opened in new window');
+        alert('AR camera is opening! Point your device at a surface to place the 3D model.');
+      } else {
+        console.log('Popup blocked, trying direct method');
+        // Fallback: create a download link
+        const arLink = document.createElement('a');
+        arLink.href = sceneViewerUrl;
+        arLink.target = '_blank';
+        arLink.style.display = 'none';
+        document.body.appendChild(arLink);
+        arLink.click();
+        document.body.removeChild(arLink);
+        alert('AR camera is opening! Point your device at a surface to place the 3D model.');
+      }
+      return;
+    }
+    
+    // Desktop fallback
+    console.log('Desktop device - showing mobile instructions');
+    alert('AR Camera requires a mobile device.\n\nFor live AR experience:\n1. Open this page on your phone\n2. Click "View in AR"\n3. Your camera will open to place the 3D model in real space');
   };
 
   const handleReset = () => {
