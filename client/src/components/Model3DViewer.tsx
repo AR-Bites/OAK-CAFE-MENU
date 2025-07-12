@@ -207,19 +207,48 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
   const handleViewInAR = () => {
     // Check if device supports AR
     if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-      // For iOS devices, try to open USDZ file if available
-      const usdzPath = modelPath.replace('.glb', '.usdz');
-      const link = document.createElement('a');
-      link.href = usdzPath;
-      link.setAttribute('rel', 'ar');
-      link.click();
+      // For iOS devices, check for USDZ file
+      const usdzPath = modelPath.replace('/models/', '/assets/').replace('.glb', '.usdz');
+      
+      // List of items that have USDZ files available
+      const hasUSDZ = modelPath.includes('Calezone_') || modelPath.includes('grilledChicken_');
+      
+      if (hasUSDZ) {
+        // USDZ file available, open it
+        const link = document.createElement('a');
+        link.href = usdzPath;
+        link.setAttribute('rel', 'ar');
+        link.click();
+      } else {
+        // No USDZ available, inform user
+        alert(`AR viewing for ${productName} is being prepared. For now, please enjoy the interactive 3D viewer above.`);
+      }
     } else if (navigator.userAgent.includes('Android')) {
-      // For Android devices, try to open with scene-viewer
-      const androidLink = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(window.location.origin + modelPath)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(window.location.href)};end;`;
-      window.location.href = androidLink;
+      // For Android devices, try to use Scene Viewer
+      const fullModelUrl = `${window.location.origin}${modelPath.replace('/models/', '/assets/')}`;
+      
+      // Create intent URL for Scene Viewer
+      const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullModelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
+      
+      try {
+        window.location.href = intent;
+        
+        // Fallback after 3 seconds if intent doesn't work
+        setTimeout(() => {
+          const fallbackUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(fullModelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}`;
+          window.open(fallbackUrl, '_blank');
+        }, 3000);
+      } catch (error) {
+        alert('AR viewing requires the Google AR app. Please install it from the Play Store or use the 3D viewer above.');
+      }
     } else {
-      // Fallback for other devices
-      alert('AR viewing is supported on mobile devices with AR capabilities (iOS 12+ or Android with ARCore)');
+      // For desktop/other devices
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        alert('AR viewing requires an AR-compatible app on your device. Please use the 3D viewer above to explore the model.');
+      } else {
+        alert('AR viewing is available on mobile devices. Use your phone or tablet to view this menu item in your space!');
+      }
     }
   };
 
