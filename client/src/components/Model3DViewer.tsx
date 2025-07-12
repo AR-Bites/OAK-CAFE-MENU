@@ -205,80 +205,50 @@ export default function Model3DViewer({ modelPath, productName, isOpen, onClose,
   }, [isOpen, modelPath, autoRotate]);
 
   const handleViewInAR = () => {
+    console.log('AR button clicked for product:', productName);
+    console.log('Model path:', modelPath);
+    
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isAndroid = /Android/.test(navigator.userAgent);
+    const isMobile = isIOS || isAndroid;
+    
+    console.log('Device detection - iOS:', isIOS, 'Android:', isAndroid, 'Mobile:', isMobile);
     
     if (isIOS) {
-      // For iOS devices - use AR Quick Look with USDZ
+      // For iOS devices - use AR Quick Look
       const usdzPath = modelPath.replace('/models/', '/attached_assets/').replace('.glb', '.usdz');
+      console.log('iOS USDZ path:', usdzPath);
       
-      // Check if this model has USDZ available
+      // Check if USDZ file exists for this specific model
       const hasUSDZ = modelPath.includes('Calezone_1752057967755') || 
                      modelPath.includes('grilledChicken_1752057967760');
       
+      console.log('Has USDZ file:', hasUSDZ);
+      
       if (hasUSDZ) {
-        // Create AR Quick Look link
-        const arLink = document.createElement('a');
-        arLink.href = usdzPath;
-        arLink.rel = 'ar';
-        arLink.appendChild(document.createElement('img'));
-        document.body.appendChild(arLink);
-        arLink.click();
-        document.body.removeChild(arLink);
+        // Direct AR Quick Look with USDZ
+        console.log('Opening USDZ in AR Quick Look');
+        window.location.href = usdzPath + '#allowsContentScaling=0';
       } else {
-        // Create AR Quick Look with GLB to USDZ conversion hint
-        alert('AR viewing will open your camera to place this item in your space. Note: This feature works best with Safari on iOS 12+');
-        const arLink = document.createElement('a');
-        arLink.href = modelPath.replace('/models/', '/attached_assets/');
-        arLink.rel = 'ar';
-        arLink.click();
+        // Try with GLB file for iOS Safari AR
+        console.log('Trying GLB file for AR on iOS');
+        const glbPath = modelPath.replace('/models/', '/attached_assets/');
+        window.location.href = glbPath + '#allowsContentScaling=0';
       }
     } else if (isAndroid) {
-      // For Android devices - use Model Viewer with Scene Viewer
+      // For Android devices - use Scene Viewer
       const modelUrl = `${window.location.origin}${modelPath.replace('/models/', '/attached_assets/')}`;
+      console.log('Android model URL:', modelUrl);
       
-      // Try direct Scene Viewer intent
-      const sceneViewerIntent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;end;`;
+      // Scene Viewer intent with ar_only mode
+      const intent = `intent://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelUrl)}&mode=ar_only&title=${encodeURIComponent(productName)}#Intent;scheme=https;package=com.google.ar.core;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;`;
       
-      // Alternative: Create model-viewer element dynamically
-      const createModelViewer = () => {
-        const modelViewer = document.createElement('model-viewer');
-        modelViewer.src = modelUrl;
-        modelViewer.ar = true;
-        modelViewer.setAttribute('ar-modes', 'scene-viewer webxr quick-look');
-        modelViewer.setAttribute('camera-controls', '');
-        modelViewer.setAttribute('auto-rotate', '');
-        modelViewer.style.width = '100%';
-        modelViewer.style.height = '400px';
-        
-        // Trigger AR mode
-        if (modelViewer.activateAR) {
-          modelViewer.activateAR();
-        }
-      };
-      
-      try {
-        window.location.href = sceneViewerIntent;
-      } catch (error) {
-        // Fallback: Open in new window with Scene Viewer
-        const sceneViewerUrl = `https://arvr.google.com/scene-viewer/1.0?file=${encodeURIComponent(modelUrl)}&mode=ar_only`;
-        window.open(sceneViewerUrl, '_blank');
-      }
+      console.log('Opening Android AR with intent:', intent);
+      window.location.href = intent;
     } else {
-      // For desktop browsers - show WebXR or fallback message
-      if ('xr' in navigator) {
-        // Check for WebXR support
-        navigator.xr.isSessionSupported('immersive-ar').then((supported) => {
-          if (supported) {
-            alert('AR viewing will start shortly. Point your camera where you want to place the item.');
-            // Implement WebXR AR session here
-          } else {
-            alert('AR viewing is best experienced on mobile devices. Please visit this site on your phone or tablet to place this item in your space using your camera.');
-          }
-        });
-      } else {
-        alert('AR viewing opens your device camera to place this menu item in your real environment. Please visit this site on a mobile device (iPhone/iPad or Android) for the full AR experience.');
-      }
+      // For desktop/other devices
+      console.log('Desktop device detected');
+      alert(`To view ${productName} in AR, please visit this page on your mobile device. The AR feature will open your camera and let you place the 3D model in your real environment.`);
     }
   };
 
