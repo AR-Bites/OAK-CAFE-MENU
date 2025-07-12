@@ -2,6 +2,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AlertCircle } from "lucide-react";
 
 export default function NotFound() {
+  // Debug logging to track what URL caused 404
+  console.error('404 PAGE NOT FOUND - Current URL:', window.location.href);
+  console.error('404 PATH:', window.location.pathname);
+  console.error('404 SEARCH:', window.location.search);
+  
   return (
     <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
       <Card className="w-full max-w-md mx-4">
@@ -12,8 +17,18 @@ export default function NotFound() {
           </div>
 
           <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
+            Path: {window.location.pathname}
           </p>
+          <p className="mt-2 text-sm text-gray-600">
+            URL: {window.location.href}
+          </p>
+          
+          <button 
+            onClick={() => window.location.href = '/'}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          >
+            Go Home
+          </button>
         </CardContent>
       </Card>
     </div>
